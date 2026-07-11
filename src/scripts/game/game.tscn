@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://7f08wus2t5vh"]
 
 [ext_resource type="PackedScene" uid="uid://da0t467v22tbh" path="res://src/scripts/map/map.tscn" id="2_o4j0j"]
+[ext_resource type="PackedScene" uid="uid://bc5gstts3lrlq" path="res://src/scripts/pickable/pickable_spawner.tscn" id="2_watld"]
+[ext_resource type="Script" uid="uid://31407ldqsotx" path="res://src/scripts/pickable/pickable.gd" id="3_50moq"]
+[ext_resource type="Resource" uid="uid://djl3qpu07l5qq" path="res://src/scripts/pickable/Resources/pickable_sand.tres" id="4_quy78"]
+[ext_resource type="Resource" uid="uid://ceeu6iqhruiyw" path="res://src/scripts/pickable/Resources/pickable_seed.tres" id="5_hdf7i"]
+[ext_resource type="PackedScene" uid="uid://oypaj1bkq7jd" path="res://src/scripts/pickable/pickable_item.tscn" id="6_8wyrr"]
 
 [node name="Game" type="Node2D" unique_id=778324019]
 
@@ -9,3 +14,11 @@ position = Vector2(136, 166.75)
 scale = Vector2(1.109375, 334.5)
 
 [node name="Map" parent="." unique_id=1065599540 instance=ExtResource("2_o4j0j")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=711049568]
+
+[node name="PickableSpawner" parent="." unique_id=1137790638 instance=ExtResource("2_watld")]
+position = Vector2(-180, -98)
+spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78"), ExtResource("5_hdf7i")])
+possible_directions = Array[Vector2]([Vector2(1, 0), Vector2(0, 1)])
+pickable_item_scene = ExtResource("6_8wyrr")

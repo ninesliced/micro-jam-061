@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bc5gstts3lrlq"]
+
+[ext_resource type="Script" uid="uid://8rau5ivrfxam" path="res://src/scripts/pickable/pickable_spawner.gd" id="1_pfj86"]
+
+[node name="PickableSpawner" type="Node2D" unique_id=1137790638]
+script = ExtResource("1_pfj86")
