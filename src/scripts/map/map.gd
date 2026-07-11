@@ -41,7 +41,7 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 	# Place element
 	if is_element_placable(pos):
 		match picakble:
-			Pickable.pickableType.Sand:
+			Pickable.PickableType.Sand:
 				place_item(pos, element_type["Sand"])
 				return
 				
@@ -50,10 +50,10 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 	# Si y'a un block et que il que y'a pas d'item dessus
 	if current_block != null and current_block.item != null:
 		match picakble:
-			Pickable.pickableType.Seed:
+			Pickable.PickableType.Seed:
 				place_item(pos, element_type["Seed"])
 				return
-			Pickable.pickableType.Wood:
+			Pickable.PickableType.Wood:
 				place_item(pos, element_type["Wood"])
 				return
 	return

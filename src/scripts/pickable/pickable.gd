@@ -1,9 +1,9 @@
 extends Resource
 class_name Pickable
 
-enum pickableType {
+enum PickableType {
 	Seed, Sand, Water, Wood
 }
 
 @export var sprite : Texture2D
-@export var type: pickableType
+@export var type: PickableType
