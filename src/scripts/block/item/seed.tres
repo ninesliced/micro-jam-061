@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_0lp32")
 name = "Seed"
-random_state_update = 0.1
+random_state_update = 1.0
 tileset_source_id = 7
 metadata/_custom_type_script = "uid://hwwhmb8dfkrk"

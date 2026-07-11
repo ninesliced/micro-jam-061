@@ -72,7 +72,6 @@ func place_item(pos: Vector2i, item: Item):
 	a_block_was_updated(pos, self.map[pos])
 
 func destroy_block(pos: Vector2i):
-	print("DESTROY ", pos)
 	self.map.erase(pos)
 	a_block_was_updated(pos, null)
 
