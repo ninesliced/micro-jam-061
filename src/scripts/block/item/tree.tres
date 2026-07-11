@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bys1fy8gb7200"]
+
+[ext_resource type="Script" uid="uid://hwwhmb8dfkrk" path="res://src/scripts/block/item/item.gd" id="1_2uclw"]
+
+[resource]
+script = ExtResource("1_2uclw")
+name = "Tree"
+random_state_update = -1.0
+tileset_source_id = 7
+tileset_atlas_coord = Vector2i(3, 0)
+metadata/_custom_type_script = "uid://hwwhmb8dfkrk"
