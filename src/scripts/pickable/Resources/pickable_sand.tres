@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Pickable" format=3 uid="uid://djl3qpu07l5qq"]
+
+[ext_resource type="Script" uid="uid://31407ldqsotx" path="res://src/scripts/pickable/pickable.gd" id="1_b5c2a"]
+[ext_resource type="Texture2D" uid="uid://bmy0do1trisuf" path="res://src/Assets/sand_not_floating.png" id="2_8j2xs"]
+
+[resource]
+script = ExtResource("1_b5c2a")
+sprite = ExtResource("2_8j2xs")
+type = 1
+metadata/_custom_type_script = "uid://31407ldqsotx"

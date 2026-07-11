@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://oypaj1bkq7jd"]
+
+[ext_resource type="Script" uid="uid://kgbli8iblyp7" path="res://src/scripts/pickable/pickable_item.gd" id="1_1ko1y"]
+[ext_resource type="Shader" uid="uid://dh4wtqxpqaamx" path="res://src/scripts/pickable/pickable_item_shader.gdshader" id="1_x1t8b"]
+[ext_resource type="Texture2D" uid="uid://bmy0do1trisuf" path="res://src/Assets/sand_not_floating.png" id="2_x1t8b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_03t1c"]
+shader = ExtResource("1_x1t8b")
+shader_parameter/thickness = 1.0000000475
+shader_parameter/ring_count = 4
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0.9137255, 0, 0, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/max_or_add = false
+
+[node name="PickableItem" type="Node2D" unique_id=1814440759 node_paths=PackedStringArray("sprite_2d")]
+script = ExtResource("1_1ko1y")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=838520717]
+material = SubResource("ShaderMaterial_03t1c")
+texture = ExtResource("2_x1t8b")
+
+[node name="Button" type="Button" parent="." unique_id=1554863317]
+modulate = Color(1, 1, 1, 0.003921569)
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[connection signal="mouse_entered" from="Button" to="." method="hover"]
+[connection signal="mouse_exited" from="Button" to="." method="unhover"]
