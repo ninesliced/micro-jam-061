@@ -54,11 +54,14 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 		
 	return
 
+
 func place_item(pos: Vector2i, item: Item):
 	return
-	
+
+
 func place_element(pos: Vector2i, element: Element):
-	return
+	element_layer.set_cells_terrain_connect([pos], element.terrain_set, element.terrain)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
