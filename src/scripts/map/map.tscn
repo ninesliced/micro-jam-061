@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://24ecg34gn1vx" path="res://src/scripts/map/map.gd" id="1_tx736"]
 [ext_resource type="TileSet" uid="uid://btd2kipa6ly2y" path="res://src/scripts/map/item_tile_set.tres" id="2_62esv"]
 [ext_resource type="TileSet" uid="uid://cpmu7c5wdr8wy" path="res://src/scripts/map/element_tile_set.tres" id="2_cxrw2"]
+[ext_resource type="Script" uid="uid://bexcbi1uv46vv" path="res://src/scripts/map/element_layer.gd" id="4_jrvfg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tv6tg"]
 
@@ -15,3 +16,4 @@ tile_set = ExtResource("2_62esv")
 [node name="ElementLayer" type="TileMapLayer" parent="." unique_id=703666881]
 material = SubResource("ShaderMaterial_tv6tg")
 tile_set = ExtResource("2_cxrw2")
+script = ExtResource("4_jrvfg")
