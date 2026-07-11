@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://8rau5ivrfxam" path="res://src/scripts/pickable/pickable_spawner.gd" id="1_pfj86"]
 
 [node name="PickableSpawner" type="Node2D" unique_id=1137790638]
+y_sort_enabled = true
 script = ExtResource("1_pfj86")
