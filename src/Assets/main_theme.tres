@@ -1,15 +1,18 @@
 [gd_resource type="Theme" format=3 uid="uid://b6qkmtr8mp6ee"]
 
-[ext_resource type="FontFile" uid="uid://b7h5tjhpcgs87" path="res://src/Assets/EduNSWACTFoundation-VariableFont_wght.ttf" id="1_vhovy"]
+[ext_resource type="FontFile" uid="uid://dgvhx610iqt3h" path="res://src/Assets/Vibur-Regular.ttf" id="2_unk0h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhovy"]
-bg_color = Color(0.94675153, 0.660829, 0.35456026, 1)
+bg_color = Color(0.86, 0.5879533, 0.23219998, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 expand_margin_left = 10.0
 expand_margin_right = 9.0
+shadow_color = Color(0.84, 0.40376002, 0.1512, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unk0h"]
 bg_color = Color(0.85788435, 0.5307418, 0.15838856, 1)
@@ -19,18 +22,27 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 expand_margin_left = 10.0
 expand_margin_right = 9.0
+shadow_color = Color(0.84, 0.40376002, 0.1512, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ao26c"]
-bg_color = Color(0.8057012, 0.46419984, 0.11932526, 1)
+bg_color = Color(0.78, 0.41755998, 0.1404, 1)
+border_width_top = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 expand_margin_left = 10.0
 expand_margin_right = 9.0
+shadow_color = Color(0.84, 0.40376002, 0.1512, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 4)
 
 [resource]
-Button/fonts/font = ExtResource("1_vhovy")
+Button/fonts/font = ExtResource("2_unk0h")
 Button/styles/hover = SubResource("StyleBoxFlat_vhovy")
 Button/styles/normal = SubResource("StyleBoxFlat_unk0h")
 Button/styles/pressed = SubResource("StyleBoxFlat_ao26c")
+Label/fonts/font = ExtResource("2_unk0h")
