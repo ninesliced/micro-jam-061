@@ -67,16 +67,13 @@ func place_element(pos: Vector2i, element: Element):
 	self.map[pos] = Block.new(pos, self, element)
 	a_block_was_updated(pos, self.map[pos])
 
-func delete_block(pos: Vector2i):
-	self.map.erase(pos)
-	a_block_was_updated(pos, null)
-	
 func place_item(pos: Vector2i, item: Item):
 	self.map[pos].item = item
 	a_block_was_updated(pos, self.map[pos])
 
 func destroy_block(pos: Vector2i):
-	delete_block(pos)
+	print("DESTROY ", pos)
+	self.map.erase(pos)
 	a_block_was_updated(pos, null)
 
 func a_block_was_updated(pos: Vector2i, block: Block):
