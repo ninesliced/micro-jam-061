@@ -17,6 +17,10 @@ var map: Dictionary[Vector2i, Block] = {
 	Vector2i(0,0): Block.new(elementType["Sand"], null)
 }
 
+@onready var item_layer: TileMapLayer = $ItemLayer
+@onready var element_layer: TileMapLayer = $ElementLayer
+
+
 func interact_at(pos: Vector2i, picakble: Pickable):
 	# Place item
 	if pos in map.keys():
@@ -27,8 +31,11 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 
 func place_item(pos: Vector2i, item: String):
 	return
+	item_layer.
 	
-func place_element(pos)
+func place_element(pos: Vector2i):
+	pass
+	element_layer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,4 +45,3 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-func place_item(item):
