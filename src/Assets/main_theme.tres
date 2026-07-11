@@ -1,0 +1,36 @@
+[gd_resource type="Theme" format=3 uid="uid://b6qkmtr8mp6ee"]
+
+[ext_resource type="FontFile" uid="uid://b7h5tjhpcgs87" path="res://src/Assets/EduNSWACTFoundation-VariableFont_wght.ttf" id="1_vhovy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhovy"]
+bg_color = Color(0.94675153, 0.660829, 0.35456026, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 10.0
+expand_margin_right = 9.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unk0h"]
+bg_color = Color(0.85788435, 0.5307418, 0.15838856, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 10.0
+expand_margin_right = 9.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ao26c"]
+bg_color = Color(0.8057012, 0.46419984, 0.11932526, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 10.0
+expand_margin_right = 9.0
+
+[resource]
+Button/fonts/font = ExtResource("1_vhovy")
+Button/styles/hover = SubResource("StyleBoxFlat_vhovy")
+Button/styles/normal = SubResource("StyleBoxFlat_unk0h")
+Button/styles/pressed = SubResource("StyleBoxFlat_ao26c")

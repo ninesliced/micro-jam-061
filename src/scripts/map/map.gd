@@ -73,7 +73,7 @@ func place_item(pos: Vector2i, item: Item):
 	self.map[pos].item = item
 	a_block_was_updated(pos, self.map[pos])
 
-func destroy_block(pos: Vector2i, block: Block):
+func destroy_block(pos: Vector2i):
 	delete_block(pos)
 	a_block_was_updated(pos, null)
 
@@ -83,10 +83,23 @@ func a_block_was_updated(pos: Vector2i, block: Block):
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.is_pressed() and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-			var pos = event.global_position
+	if event is InputEventMouse:
+		var pressed = (
+			(event is InputEventMouseButton and event.is_pressed()) or 
+			(event is InputEventMouseMotion and 
+				(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or 
+				Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT))
+			)
+		)
+		
+		if pressed:
+			var pos = item_layer.to_local(get_global_mouse_position())
 			var grid_pos = item_layer.local_to_map(pos)
-			var pickable = Pickable.new()
-			pickable.type = Pickable.PickableType.Sand
-			interact_at(grid_pos, pickable)
+			
+			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				var pickable = Pickable.new()
+				pickable.type = Pickable.PickableType.Sand
+				print(grid_pos)
+				interact_at(grid_pos, pickable)
+			elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+				destroy_block(grid_pos)

@@ -7,14 +7,14 @@ var position: Vector2i
 
 @export var map_referance: Map
 
-func _init(pos, map, element, item = null):
+func _init(pos, map, element_, item_ = null):
 	self.position = pos
 	self.map_referance = map
-	self.element = element
-	self.item = item
+	self.element = element_
+	self.item = item_
 
-func set_element(element):
-	self.element = element
+func set_element(element_):
+	self.element = element_
 
 func set_item(new_item):
 	self.item = new_item
@@ -37,7 +37,7 @@ func _on_random_tick_element():
 	if random_f < self.element.erosion_proba:
 		self.element.erosion_level += 1
 		if self.element.erosion_level > self.element.erosion_max:
-			self.map_referance.destroy_block(self.position, self)
+			self.map_referance.destroy_block(self.position)
 			self.element.erosion_level = 0
 		self.map_referance.a_block_was_updated(self.position, self)
 
