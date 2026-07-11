@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Element" format=3 uid="uid://7yj7w6o3bm87"]
+
+[ext_resource type="Script" uid="uid://cpo8dsmhbq7g4" path="res://src/scripts/block/element/element.gd" id="1_pva6h"]
+
+[resource]
+script = ExtResource("1_pva6h")
+name = "Sand"
+metadata/_custom_type_script = "uid://cpo8dsmhbq7g4"
