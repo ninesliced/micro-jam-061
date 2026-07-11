@@ -77,6 +77,9 @@ func destroy_block(block: Block):
 		if block == v:
 			delete_block(pos)
 
+func a_block_was_updated():
+	pass
+
 func set_visuals_element(cell: Vector2i, element: Element, layer: TileMapLayer = element_layer):
 	layer.set_cells_terrain_connect([cell], element.terrain_set, element.terrain)
 
