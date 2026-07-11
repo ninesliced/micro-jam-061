@@ -7,7 +7,7 @@ var element_type = {
 }
 
 
-var itemType = {
+var item_type = {
 	"Seed" = load("res://src/scripts/block/element/sand.tres"),
 	"Tree" = load("res://src/scripts/block/element/dirt.tres"),
 	"Barrier" = load("res://src/scripts/block/element/dirt.tres")
