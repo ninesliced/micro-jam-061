@@ -9,6 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://oypaj1bkq7jd" path="res://src/scripts/pickable/pickable_item.tscn" id="6_8wyrr"]
 [ext_resource type="Theme" uid="uid://b6qkmtr8mp6ee" path="res://src/Assets/main_theme.tres" id="8_quy78"]
 
+[sub_resource type="Gradient" id="Gradient_quy78"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hdf7i"]
+gradient = SubResource("Gradient_quy78")
+
 [node name="Game" type="Node2D" unique_id=778324019]
 script = ExtResource("1_50moq")
 
@@ -60,3 +65,9 @@ grow_vertical = 2
 [node name="Button" type="Button" parent="CanvasLayer/Control/ColorRect/VBoxContainer" unique_id=838031622]
 layout_mode = 2
 text = "Resume"
+
+[node name="Hand" type="Node2D" parent="." unique_id=1014798882]
+
+[node name="HandSprite" type="Sprite2D" parent="Hand" unique_id=2105344507]
+unique_name_in_owner = true
+texture = SubResource("GradientTexture2D_hdf7i")

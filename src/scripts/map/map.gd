@@ -38,14 +38,15 @@ func get_current_block(pos: Vector2i) -> Block: # Ou null
 		return map[pos]
 	return null
 
-func interact_at(pos: Vector2i, picakble: Pickable):
-	print(picakble.type, " ", Pickable.PickableType.Sand)
+# Retourne true si ca a reussi a interact
+func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
+	# print(picakble.type, " ", Pickable.PickableType.Sand)
 	# Place element
-	if is_element_placable(pos):
+	if is_element_placable(pos) and picakble:
 		match picakble.type:
 			Pickable.PickableType.Sand:
 				place_element(pos, element_type["Sand"])
-				return
+				return true
 				
 	# Place item
 	var current_block = get_current_block(pos)
@@ -54,11 +55,11 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 		match picakble:
 			Pickable.PickableType.Seed:
 				place_item(pos, item_type["Seed"])
-				return
+				return true
 			Pickable.PickableType.Wood:
 				place_item(pos, item_type["Wood"])
-				return
-	return
+				return true
+	return false
 
 
 func place_element(pos: Vector2i, element: Element):
@@ -97,9 +98,12 @@ func _input(event: InputEvent) -> void:
 			var grid_pos = item_layer.local_to_map(pos)
 			
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-				var pickable = Pickable.new()
-				pickable.type = Pickable.PickableType.Sand
+				var game = $".."
+				var pickable = game.get_hand()
 				print(grid_pos)
-				interact_at(grid_pos, pickable)
+				var interact_has_worked = interact_at(grid_pos, pickable)
+				if interact_has_worked:
+					game.use_hand()
+					
 			elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 				destroy_block(grid_pos)
