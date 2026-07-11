@@ -4,6 +4,8 @@
 [ext_resource type="TileSet" uid="uid://btd2kipa6ly2y" path="res://src/scripts/map/item_tile_set.tres" id="2_62esv"]
 [ext_resource type="TileSet" uid="uid://cpmu7c5wdr8wy" path="res://src/scripts/map/element_tile_set.tres" id="2_cxrw2"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tv6tg"]
+
 [node name="Map" type="Node2D" unique_id=1065599540]
 script = ExtResource("1_tx736")
 
@@ -11,4 +13,5 @@ script = ExtResource("1_tx736")
 tile_set = ExtResource("2_62esv")
 
 [node name="ElementLayer" type="TileMapLayer" parent="." unique_id=703666881]
+material = SubResource("ShaderMaterial_tv6tg")
 tile_set = ExtResource("2_cxrw2")

@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="micro-jam-061"
+run/main_scene="uid://c11xqif3hh7pi"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Utils="*uid://dep4jrhnu15bk"
+RunConfigManager="*uid://bdmd27xjo35cf"
 
 [display]
 
@@ -24,6 +26,10 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/run-configs/plugin.cfg")
 
 [physics]
 
@@ -34,3 +40,8 @@ window/stretch/aspect="expand"
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 environment/defaults/default_clear_color=Color(0.49803922, 0.8509804, 0.9607843, 1)
+
+[run_configs]
+
+data/configs=["{\"custom_scene\":\"res://src/scripts/game/game.tscn\",\"environment_variables\":{},\"name\":\"Game\",\"play_mode\":2}"]
+data/current=0
