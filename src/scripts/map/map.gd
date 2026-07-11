@@ -47,19 +47,24 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 				
 	# Place item
 	var current_block = get_current_block(pos)
-	if current_block != null:
-		if current_block.item != null:
-			place_item(pos, element_type["Seed"])
-		
-		
+	# Si y'a un block et que il que y'a pas d'item dessus
+	if current_block != null and current_block.item != null:
+		match picakble:
+			Pickable.pickableType.Seed:
+				place_item(pos, element_type["Seed"])
+				return
+			Pickable.pickableType.Wood:
+				place_item(pos, element_type["Wood"])
+				return
 	return
 
-func place_item(pos: Vector2i, item: Item):
-	return
 	
 func place_element(pos: Vector2i, element: Element):
-	return
+	self.map[pos] = Block.new(element)
 
+func place_item(pos: Vector2i, item: Item):
+	self.map[pos].item = item
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
