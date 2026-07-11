@@ -35,10 +35,10 @@ func _on_random_tick_element():
 		return
 	var random_f = randf()
 	if random_f < self.element.erosion_proba:
-		self.element.errosion_level += 1
+		self.element.erosion_level += 1
 		if self.element.erosion_level > self.element.erosion_max:
-			self.map_referance.destroy_block(self)
-			self.element.errosion_level = 0
+			self.map_referance.destroy_block(self.position, self)
+			self.element.erosion_level = 0
 		self.map_referance.a_block_was_updated(self.position, self)
 
 func _on_random_tick():
