@@ -3,7 +3,7 @@ class_name Map
 
 static var element_type: Dictionary[String, Element] = {
 	"Sand" = load("res://src/scripts/block/element/sand.tres"),
-	"Grasse" = load("res://src/scripts/block/element/grasse.tres")
+	"Grass" = load("res://src/scripts/block/element/grass.tres")
 }
 
 
@@ -18,6 +18,7 @@ var map: Dictionary[Vector2i, Block] = {}
 
 @onready var item_layer: TileMapLayer = $ItemLayer
 @onready var element_layer: TileMapLayer = $ElementLayer
+@onready var grass_layer: TileMapLayer = $GrassLayer
 
 func _ready() -> void:
 	place_element(Vector2i(0,0), element_type["Sand"])
@@ -80,10 +81,17 @@ func destroy_block(pos: Vector2i):
 
 func a_block_was_updated(pos: Vector2i, block: Block):
 	element_layer.block_updated(pos, block)
+	grass_layer.block_updated(pos, block)
 	#item_layer.block_updated(block)
 
 
+var selected = 0
+
 func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed() and event.keycode == Key.KEY_SPACE:
+		selected = (selected+1) % 2
+		print("selected ", selected)
+	
 	if event is InputEventMouse:
 		var pressed = (
 			(event is InputEventMouseButton and event.is_pressed()) or 
@@ -98,12 +106,21 @@ func _input(event: InputEvent) -> void:
 			var grid_pos = item_layer.local_to_map(pos)
 			
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-				var game = $".."
-				var pickable = game.get_hand()
-				print(grid_pos)
-				var interact_has_worked = interact_at(grid_pos, pickable)
-				if interact_has_worked:
-					game.use_hand()
+				if Input.is_key_pressed(KEY_SHIFT):
+					var pickable = Pickable.new()
+					var elem
+					if selected == 0:
+						elem = element_type["Sand"]
+					elif selected == 1:
+						elem = element_type["Grass"]
+					place_element(grid_pos, elem)
+				else:
+					var game = $".."
+					var pickable = game.get_hand()
+					print(grid_pos)
+					var interact_has_worked = interact_at(grid_pos, pickable)
+					if interact_has_worked:
+						game.use_hand()
 					
 			elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 				destroy_block(grid_pos)

@@ -1,7 +1,7 @@
 extends TileMapLayer
 
 func block_updated(position: Vector2i, block: Block):
-	if block and block.element:
+	if block and block.element and block.element.tile_map_layer == name:
 		set_cells_terrain_connect([block.position], block.element.terrain_set, block.element.terrain)
-	else:
+	elif not block:
 		set_cells_terrain_connect([position], 0, -1)

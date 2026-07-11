@@ -5,9 +5,9 @@ extends Control
 
 func _ready() -> void:
 	resume.pressed.connect(unpause)
-	# quit.pressed.connect(func():
-	#	get_tree().quit()
-	# )
+	quit.pressed.connect(func():
+		get_tree().quit()
+	)
 
 
 func pause():

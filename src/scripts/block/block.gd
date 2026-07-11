@@ -22,7 +22,7 @@ func set_item(new_item):
 	self.element.erosion_level = 0
 	if new_item == Map.item_type["Tree"]:
 		if not has_water_next_to():
-			set_element(Map.element_type["Grasse"])
+			set_element(Map.element_type["Grass"])
 
 func _on_random_tick_item():
 	# Si il a un voisin arbre alors il peut placer un une seed

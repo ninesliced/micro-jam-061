@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://oypaj1bkq7jd" path="res://src/scripts/pickable/pickable_item.tscn" id="6_8wyrr"]
 [ext_resource type="Theme" uid="uid://b6qkmtr8mp6ee" path="res://src/Assets/main_theme.tres" id="8_quy78"]
 [ext_resource type="Script" uid="uid://buafy44ml1hn" path="res://src/scripts/game/pause_menu.gd" id="9_hdf7i"]
+[ext_resource type="Texture2D" uid="uid://ce1jya3bpntgp" path="res://src/Assets/cursor.png" id="10_8wyrr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vhovy"]
 font_size = 30
@@ -83,7 +84,12 @@ label_settings = SubResource("LabelSettings_hdf7i")
 layout_mode = 2
 text = "Resume"
 
+[node name="Quit" type="Button" parent="CanvasLayer/PauseMenu/ColorRect/VBoxContainer" unique_id=1458009684]
+layout_mode = 2
+text = "Quit"
+
 [node name="Hand" type="Node2D" parent="." unique_id=719623884]
 
 [node name="HandSprite" type="Sprite2D" parent="Hand" unique_id=824478699]
 unique_name_in_owner = true
+texture = ExtResource("10_8wyrr")
