@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_0lp32")
-itemtype = 1
+name = "Seed"
 metadata/_custom_type_script = "uid://hwwhmb8dfkrk"

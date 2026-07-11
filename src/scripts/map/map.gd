@@ -1,13 +1,13 @@
 extends Node2D
 class_name Map
 
-var element_type = {
+static var element_type = {
 	"Sand" = load("res://src/scripts/block/element/sand.tres"),
 	"Dirt" = load("res://src/scripts/block/element/dirt.tres")
 }
 
 
-var item_type = {
+static var item_type = {
 	"Seed" = load("res://src/scripts/block/element/sand.tres"),
 	"Tree" = load("res://src/scripts/block/element/dirt.tres"),
 	"Barrier" = load("res://src/scripts/block/element/dirt.tres")
@@ -59,13 +59,22 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 	return
 	
 func place_element(pos: Vector2i, element: Element):
-	self.map[pos] = Block.new(element)
+	self.map[pos] = Block.new(self, element)
 	element_layer.set_cells_terrain_connect([pos], element.terrain_set, element.terrain)
 
-
+func delete_block(pos: Vector2i):
+	self.map.erase(pos)
+	
 func place_item(pos: Vector2i, item: Item):
 	self.map[pos].item = item
-	
+
+func destroy_block(block: Block):
+	for pos in self.map.keys():
+		var v = self.map[pos]
+		if block == v:
+			delete_block(pos)
+			
+			
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
