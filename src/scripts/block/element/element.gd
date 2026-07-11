@@ -8,5 +8,5 @@ class_name Element
 
 
 var erosion_level = 0
-@export var erosion_proba = null
+@export var erosion_proba: float = -1
 @export var erosion_max = 15
