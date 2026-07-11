@@ -5,6 +5,11 @@ class_name PickableItem
 
 @export var is_moving: bool = true
 @export var is_picked: bool = false
+@export var is_floating: bool = true:
+	set(v):
+		is_floating = v
+		set_water_inline_on(v)
+		
 @export var moving_direction: Vector2
 @export var move_speed : float = 0.1
 
@@ -16,6 +21,7 @@ var mat : ShaderMaterial
 func _ready() -> void:
 	mat = sprite_2d.material as ShaderMaterial
 	if is_instance_valid(resource): load_resource()
+	unhover()
 	
 func _process(delta: float) -> void:
 	if is_moving:
@@ -32,13 +38,13 @@ func hover()-> void:
 	if not is_picked:
 		set_outline_color(Color.WHITE)
 		set_outline_width(2)
-	
+		#is_floating = false
 	
 func unhover()-> void:
 	if not is_picked:
 		set_outline_color(Color.BLACK)
 		set_outline_width(1)
-	
+		#is_floating = true
 
 func drop()->void:
 	pass
@@ -54,3 +60,7 @@ func set_outline_width(width : int)->void:
 func set_inline_width(width : int)->void:
 	if mat is ShaderMaterial:
 		mat.set_shader_parameter("inline_width", width)
+		
+func set_water_inline_on(value : bool)->void:
+	if mat is ShaderMaterial:
+		mat.set_shader_parameter("use_water_inline", value)
