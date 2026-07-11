@@ -57,10 +57,11 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 				place_item(pos, element_type["Wood"])
 				return
 	return
-
 	
 func place_element(pos: Vector2i, element: Element):
 	self.map[pos] = Block.new(element)
+	element_layer.set_cells_terrain_connect([pos], element.terrain_set, element.terrain)
+
 
 func place_item(pos: Vector2i, item: Item):
 	self.map[pos].item = item
