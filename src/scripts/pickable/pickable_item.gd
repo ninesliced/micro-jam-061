@@ -11,7 +11,7 @@ class_name PickableItem
 		set_water_inline_on(v)
 		
 @export var moving_direction: Vector2
-@export var move_speed : float = 10
+@export var move_speed : float = 14
 
 var mat : ShaderMaterial
 @export var sink_height : int = 4:
