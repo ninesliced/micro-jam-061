@@ -82,7 +82,7 @@ func destroy_block(pos: Vector2i):
 func a_block_was_updated(pos: Vector2i, block: Block):
 	element_layer.block_updated(pos, block)
 	grass_layer.block_updated(pos, block)
-	#item_layer.block_updated(block)
+	item_layer.block_updated(pos, block)
 
 
 var selected = 0
