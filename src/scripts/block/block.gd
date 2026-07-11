@@ -26,7 +26,8 @@ func set_item(new_item):
 
 func _on_random_tick_item():
 	# Si il a un voisin arbre alors il peut placer un une seed
-	
+	if not self.item:
+		return
 	# il essaye de s'agrandire
 	if not self.item.random_state_update:
 		return
@@ -68,10 +69,4 @@ func _on_random_tick():
 	_on_random_tick_item()
 	_on_random_tick_element()
 
-var timer = 0
-func _process(delta: float) -> void:
-	timer += delta
-	if timer > 1:
-		timer -= 1
-		_on_random_tick()
 	
