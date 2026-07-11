@@ -16,6 +16,7 @@ func set_hand(pickable: Pickable):
 
 func use_hand():
 	hand = null
+	Input.set_custom_mouse_cursor(null)
 
 func get_hand():
 	return hand

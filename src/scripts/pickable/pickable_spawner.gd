@@ -7,6 +7,9 @@ class_name PickableSpawner
 
 @export var spawn_enable : bool = true
 @export var spawn_delay : float = 3.0
+
+@export var game: Node2D
+
 var _timer : float = 10.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

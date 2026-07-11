@@ -41,7 +41,9 @@ func _on_clicked() -> void:
 	var cursor_img = resource.sprite.get_image().duplicate()
 	cursor_img.resize(100, 100, Image.INTERPOLATE_NEAREST)
 	Input.set_custom_mouse_cursor(cursor_img, Input.CURSOR_ARROW, Vector2(50, 50))
-	#queue_free()
+	
+	get_parent().game.set_hand(resource)
+	queue_free.call_deferred()
 	pass
 	
 func load_resource()->void:

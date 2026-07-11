@@ -51,8 +51,8 @@ func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 	# Place item
 	var current_block = get_current_block(pos)
 	# Si y'a un block et que il que y'a pas d'item dessus
-	if current_block != null and current_block.item != null:
-		match picakble:
+	if current_block != null and current_block.item == null and picakble:
+		match picakble.type:
 			Pickable.PickableType.Seed:
 				place_item(pos, item_type["Seed"])
 				return true
