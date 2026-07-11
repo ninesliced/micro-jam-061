@@ -17,3 +17,8 @@ tile_set = ExtResource("2_62esv")
 material = SubResource("ShaderMaterial_tv6tg")
 tile_set = ExtResource("2_cxrw2")
 script = ExtResource("4_jrvfg")
+
+[node name="GrassLayer" type="TileMapLayer" parent="." unique_id=1498368570]
+material = SubResource("ShaderMaterial_tv6tg")
+tile_set = ExtResource("2_cxrw2")
+script = ExtResource("4_jrvfg")
