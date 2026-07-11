@@ -2,19 +2,79 @@
 
 [ext_resource type="Script" uid="uid://kgbli8iblyp7" path="res://src/scripts/pickable/pickable_item.gd" id="1_1ko1y"]
 [ext_resource type="Shader" uid="uid://dh4wtqxpqaamx" path="res://src/scripts/pickable/pickable_item_shader.gdshader" id="1_x1t8b"]
-[ext_resource type="Texture2D" uid="uid://bmy0do1trisuf" path="res://src/Assets/sand_not_floating.png" id="2_x1t8b"]
+[ext_resource type="Texture2D" uid="uid://b5aovhmcol56m" path="res://src/Assets/seed.png" id="3_x1t8b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_03t1c"]
+resource_local_to_scene = true
 shader = ExtResource("1_x1t8b")
-shader_parameter/thickness = 1.0000000475
-shader_parameter/ring_count = 4
-shader_parameter/ring_offset = 0.0
-shader_parameter/outline_color = Color(0.9137255, 0, 0, 1)
-shader_parameter/border_clipping_fix = true
-shader_parameter/aspect_ratio = 1.0
-shader_parameter/square_border = false
-shader_parameter/offset = Vector2(0, 0)
-shader_parameter/max_or_add = false
+shader_parameter/use_outline = true
+shader_parameter/use_water_inline = true
+shader_parameter/outline_color = Color(0, 0.039215688, 0, 1)
+shader_parameter/outline_width = 1.0
+shader_parameter/inline_color = Color(0.14880003, 0.44825995, 0.93, 0.3372549)
+shader_parameter/inline_width = 4.0
+
+[sub_resource type="Animation" id="Animation_x1t8b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:sink_height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_03t1c"]
+resource_name = "float"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:y")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -4.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:sink_height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.0333333, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [4, 1, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h6y1m"]
+_data = {
+&"RESET": SubResource("Animation_x1t8b"),
+&"float": SubResource("Animation_03t1c")
+}
 
 [node name="PickableItem" type="Node2D" unique_id=1814440759 node_paths=PackedStringArray("sprite_2d")]
 script = ExtResource("1_1ko1y")
@@ -22,7 +82,7 @@ sprite_2d = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=838520717]
 material = SubResource("ShaderMaterial_03t1c")
-texture = ExtResource("2_x1t8b")
+texture = ExtResource("3_x1t8b")
 
 [node name="Button" type="Button" parent="." unique_id=1554863317]
 modulate = Color(1, 1, 1, 0.003921569)
@@ -30,6 +90,10 @@ offset_left = -10.0
 offset_top = -11.0
 offset_right = 10.0
 offset_bottom = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1929130436]
+libraries/ = SubResource("AnimationLibrary_h6y1m")
+autoplay = &"float"
 
 [connection signal="mouse_entered" from="Button" to="." method="hover"]
 [connection signal="mouse_exited" from="Button" to="." method="unhover"]
