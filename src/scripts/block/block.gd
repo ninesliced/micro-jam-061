@@ -18,8 +18,16 @@ func set_element(element):
 
 func set_item(new_item):
 	self.item = new_item
+	self.item.current_state = 0
+	self.element.erosion_level = 0
+	if new_item == Map.item_type["Tree"]:
+		if not has_water_next_to():
+			set_element(Map.element_type["Grasse"])
 
 func _on_random_tick_item():
+	# Si il a un voisin arbre alors il peut placer un une seed
+	
+	# il essaye de s'agrandire
 	if not self.item.random_state_update:
 		return
 	var random_f = randf()
@@ -34,12 +42,27 @@ func _on_random_tick_element():
 	if not self.element.erosion_proba:
 		return
 	var random_f = randf()
-	if random_f < self.element.erosion_proba:
+	if random_f < self.element.erosion_proba and can_erodate():
 		self.element.erosion_level += 1
 		if self.element.erosion_level > self.element.erosion_max:
-			self.map_referance.destroy_block(self.position, self)
-			self.element.erosion_level = 0
+			erodate_block()
 		self.map_referance.a_block_was_updated(self.position, self)
+
+func erodate_block():
+	if self.element == Map.element_type["Grass"]:
+		self.set_element(Map.element_type["Sand"])
+	else:
+		self.map_referance.destroy_block(self.position, self)
+
+
+func has_water_next_to() -> bool:
+	for dpos in Utils.four_directions:
+		if not self.map_referance.get_current_block(dpos+self.position):
+			return true
+	return false
+
+func can_erodate() -> bool:
+	return has_water_next_to()
 
 func _on_random_tick():
 	_on_random_tick_item()

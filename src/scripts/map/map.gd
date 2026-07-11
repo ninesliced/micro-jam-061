@@ -3,7 +3,7 @@ class_name Map
 
 static var element_type: Dictionary[String, Element] = {
 	"Sand" = load("res://src/scripts/block/element/sand.tres"),
-	"Dirt" = load("res://src/scripts/block/element/dirt.tres")
+	"Grasse" = load("res://src/scripts/block/element/grasse.tres")
 }
 
 
