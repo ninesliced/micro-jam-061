@@ -1,69 +1,90 @@
 shader_type canvas_item;
-render_mode unshaded;
 
-uniform float thickness : hint_range(0.0, 100.0);
-uniform int ring_count : hint_range(1,128) = 16;
-uniform float ring_offset : hint_range(0.0, 1.0, 0.01);
-uniform vec4 outline_color : source_color;
-uniform bool border_clipping_fix = true;
-uniform float aspect_ratio : hint_range(0.1, 10.0, 0.01) = 1.0;
-uniform bool square_border = false;
-uniform vec2 offset;
-uniform bool max_or_add = false;
+uniform bool use_outline = false;
+uniform bool use_water_inline = true;
 
-void vertex(){
-	if (border_clipping_fix){
-		vec2 o = (UV * 2.0 - 1.0);
-		VERTEX += o * thickness - offset;
-		VERTEX.x *= 1.0 + (aspect_ratio-1.0) * (thickness * TEXTURE_PIXEL_SIZE.x) * 2.0;
-	}
+uniform vec4 outline_color:source_color=vec4(0.0,0.0,0.0,1.0);
+uniform float outline_width : hint_range(1.0, 5.0, 1.0) = 1.0;
+
+uniform vec4 inline_color:source_color=vec4(0.0,0.0,0.0,1.0);
+uniform float inline_width : hint_range(1.0, 5.0, 1.0) = 1.0;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
 }
 
-vec2 square(float i){ // samples a square pattern
-	i *= 2.0;
-	return (vec2(
-		clamp(abs(mod(i,2.0)-1.0),0.25,0.75),
-		clamp(abs(mod(i+0.5,2.0)-1.0),0.25,0.75)
-		)-0.5)*4.0;
-}
+void fragment() {
 
-vec4 tex(sampler2D sampler, vec2 uv){
-	vec4 clr;
-	if (uv.x > 0.0 && uv.y > 0.0 && uv.x < 1.0 && uv.y < 1.0){ // bleeding texture sampling fix
-		clr = texture(sampler, uv);
-	}else{clr = vec4(0.0);}
-	return clr;
-}
+    // Get the texture data from the SubViewport
+    vec4 color = COLOR;
+	vec4 final_color = color; 
+    // Use the texture size to determine the size of a single pixel (texel)
+    vec2 texel_size = 1.0 / vec2(textureSize(TEXTURE, 0));
 
-void fragment(){
-	vec2 o = offset / vec2(textureSize(TEXTURE, 0));
-	vec2 uv = UV;
-	uv -= vec2(0.5);
-	if (border_clipping_fix){
-		uv.x *= 1.0 + (aspect_ratio-1.0) * thickness * TEXTURE_PIXEL_SIZE.x * 2.0;
-		uv *= (1.0 + (thickness * TEXTURE_PIXEL_SIZE * 2.0));
-		uv -= o;
+    // Check neighbors for outline
+    float alpha = color.a;
+
+    for (int i = 0; i < 4; i++) {
+		if (use_outline)
+		{
+			vec2 offset;
+			float outline_pixel_size_x = outline_width * texel_size.x;
+			float outline_pixel_size_y = outline_width * texel_size.y;
+	        // Check surrounding pixels: left, right, up, down
+	        if (i == 0) offset = vec2(-outline_pixel_size_x, -0.0);
+	        if (i == 1) offset = vec2(outline_pixel_size_x, 0.0);
+	        if (i == 2) offset = vec2(0.0, -outline_pixel_size_y);
+	        if (i == 3) offset = vec2(0.0, outline_pixel_size_y);
+
+	        // Sample the neighbor pixel's alpha
+	        float neighbor_alpha = texture(TEXTURE, UV + offset).a;
+			if (alpha < 0.01 && neighbor_alpha > 0.01) {
+	            final_color = outline_color;
+	            break; // Found an edge, so draw the outline and stop checking
+	        }
 		}
-	uv += vec2(0.5);
-	vec2 size = vec2(thickness) / vec2(textureSize(TEXTURE, 0));
-	
-	vec4 sprite_color = tex(TEXTURE, uv);
-	
-	float alpha = sprite_color.a;
-	if (square_border){
-		for(int i=0;i<ring_count;++i){
-			float r = float(i) / float(ring_count) + ring_offset;
-			alpha = max(alpha,texture(TEXTURE, uv + o + size * square(r) * vec2(aspect_ratio,1.0)).a * outline_color.a);}// texture sampling fix is disabled because both with and without give the same result
-	}else{
-		for(int i=0;i<ring_count;++i){
-			float r = float(i) * 3.14159 / float(ring_count) * 2.0 + ring_offset;
-			if (max_or_add){
-				alpha = alpha+tex(TEXTURE, uv + o +  vec2(size.x * sin(r) * aspect_ratio, size.y * cos(r))).a * outline_color.a;
-			}else{
-				alpha = max(alpha,tex(TEXTURE, uv + o +  vec2(size.x * sin(r) * aspect_ratio, size.y * cos(r))).a * outline_color.a);
-			}
+		
+		if (use_water_inline)
+		{
+			vec2 offset;
+			float inline_pixel_size_x = inline_width * texel_size.x;
+			float inline_pixel_size_y = inline_width * texel_size.y;
+	        // Check surrounding pixels: left, right, up, down
+	        //if (i == 0) offset = vec2(-inline_pixel_size_x, -0.0);
+	        //if (i == 1) offset = vec2(inline_pixel_size_x, 0.0);
+	        //if (i == 2) offset = vec2(0.0, -inline_pixel_size_y);
+	        if (i == 3) offset = vec2(0.0, inline_pixel_size_y);
+
+	        // Sample the neighbor pixel's alpha
+	        float neighbor_alpha = texture(TEXTURE, UV + offset).a;
+			if (alpha > 0.01 && neighbor_alpha < 0.01) {
+				
+	            final_color += inline_color*0.7;
+	            break; // Found an edge, so draw the outline and stop checking
+	        }
 		}
-	}
-    vec3 final_color = mix(outline_color.rgb, sprite_color.rgb, sprite_color.a);
-    COLOR = vec4(final_color, clamp(alpha, 0.0, 1.0));
+        
+
+        //// If the neighbor is opaque (or mostly opaque), and the current pixel is transparent, draw outline
+        //else if (use_darken)
+		//{
+			//final_color *= darken_color;
+		//}
+		//if (hit_effect > 0.0) {
+			//float flash = sin(TIME * flash_speed) * 0.5 + 0.5;
+        	//flash *= original_color.a;
+			//flash *= flash_color.a;
+			//final_color = mix(original_color, flash_color, flash);
+	        ////final_color = mix(original_color, final_color, hit_effect);
+	        //final_color.a = original_color.a;
+		//} 
+    }
+
+    // Output the final color
+    COLOR = final_color;
 }
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}

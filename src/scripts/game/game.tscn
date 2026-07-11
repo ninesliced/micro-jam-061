@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://djl3qpu07l5qq" path="res://src/scripts/pickable/Resources/pickable_sand.tres" id="4_quy78"]
 [ext_resource type="Resource" uid="uid://ceeu6iqhruiyw" path="res://src/scripts/pickable/Resources/pickable_seed.tres" id="5_hdf7i"]
 [ext_resource type="PackedScene" uid="uid://oypaj1bkq7jd" path="res://src/scripts/pickable/pickable_item.tscn" id="6_8wyrr"]
+[ext_resource type="Theme" uid="uid://b6qkmtr8mp6ee" path="res://src/Assets/main_theme.tres" id="8_quy78"]
 
 [node name="Game" type="Node2D" unique_id=778324019]
 script = ExtResource("1_50moq")
@@ -20,3 +21,42 @@ position = Vector2(-180, -98)
 spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78"), ExtResource("5_hdf7i")])
 possible_directions = Array[Vector2]([Vector2(1, 0), Vector2(0, 1)])
 pickable_item_scene = ExtResource("6_8wyrr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=443480858]
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=536414412]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_quy78")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=1548452485]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09411765, 0.09019608, 0.13333334, 0.6313726)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/ColorRect" unique_id=587164441]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/ColorRect/VBoxContainer" unique_id=838031622]
+layout_mode = 2
+text = "Resume"

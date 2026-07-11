@@ -7,14 +7,14 @@ var position: Vector2i
 
 @export var map_referance: Map
 
-func _init(pos, map, element, item = null):
+func _init(pos, map, element_, item_ = null):
 	self.position = pos
 	self.map_referance = map
-	self.element = element
-	self.item = item
+	self.element = element_
+	self.item = item_
 
-func set_element(element):
-	self.element = element
+func set_element(element_):
+	self.element = element_
 
 func set_item(new_item):
 	self.item = new_item
@@ -52,7 +52,7 @@ func erodate_block():
 	if self.element == Map.element_type["Grass"]:
 		self.set_element(Map.element_type["Sand"])
 	else:
-		self.map_referance.destroy_block(self.position, self)
+		self.map_referance.destroy_block(self.position)
 
 
 func has_water_next_to() -> bool:
