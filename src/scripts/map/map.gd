@@ -124,3 +124,16 @@ func _input(event: InputEvent) -> void:
 					
 			elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 				destroy_block(grid_pos)
+
+var timer = 0
+
+func _process(delta: float) -> void:
+	timer += delta
+	if timer > 1:
+		timer -= 1
+
+		for pos in map.keys():
+			var block = map[pos]
+			block._on_random_tick()
+	
+		

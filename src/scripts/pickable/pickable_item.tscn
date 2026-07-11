@@ -4,6 +4,10 @@
 [ext_resource type="Shader" uid="uid://dh4wtqxpqaamx" path="res://src/scripts/pickable/pickable_item_shader.gdshader" id="1_x1t8b"]
 [ext_resource type="Texture2D" uid="uid://b5aovhmcol56m" path="res://src/Assets/seed.png" id="3_x1t8b"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hdf7i"]
+friction = 0.5
+bounce = 0.5
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_03t1c"]
 resource_local_to_scene = true
 shader = ExtResource("1_x1t8b")
@@ -76,7 +80,13 @@ _data = {
 &"float": SubResource("Animation_03t1c")
 }
 
-[node name="PickableItem" type="Node2D" unique_id=1814440759 node_paths=PackedStringArray("sprite_2d")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqlge"]
+radius = 6.0
+
+[node name="PickableItem" type="RigidBody2D" unique_id=977739885 node_paths=PackedStringArray("sprite_2d")]
+physics_material_override = SubResource("PhysicsMaterial_hdf7i")
+gravity_scale = 0.0
+lock_rotation = true
 script = ExtResource("1_1ko1y")
 sprite_2d = NodePath("Sprite2D")
 
@@ -94,6 +104,9 @@ offset_bottom = 10.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1929130436]
 libraries/ = SubResource("AnimationLibrary_h6y1m")
 autoplay = &"float"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=590025469]
+shape = SubResource("CircleShape2D_tqlge")
 
 [connection signal="mouse_entered" from="Button" to="." method="hover"]
 [connection signal="mouse_exited" from="Button" to="." method="unhover"]

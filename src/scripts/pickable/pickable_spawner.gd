@@ -6,8 +6,12 @@ class_name PickableSpawner
 @export var pickable_item_scene : PackedScene
 
 @export var spawn_enable : bool = true
-@export var spawn_delay : float = 3.0
+@export var min_spawn_delay : float = 5.0
+@export var max_spawn_delay : float = 10.0
 
+var spawn_delay : float:
+	get:
+		return randf_range(min_spawn_delay, max_spawn_delay)
 @export var game: Node2D
 
 var _timer : float = 10.0
