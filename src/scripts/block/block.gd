@@ -35,7 +35,7 @@ func _on_random_tick_item():
 	if random_f < self.item.random_state_update:
 		if self.item == Map.item_type["Seed"]:
 			self.item.current_state += 1
-			if self.item.current_state > self.item.max_random_state:
+			if self.item.current_state >= self.item.max_random_state:
 				self.set_item(Map.item_type["Tree"])
 			self.map_referance.a_block_was_updated(self.position, self)
 
