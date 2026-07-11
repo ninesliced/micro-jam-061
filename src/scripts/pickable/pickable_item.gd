@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 class_name PickableItem
 @export var resource: Pickable
 @export var sprite_2d: Sprite2D
@@ -11,7 +11,7 @@ class_name PickableItem
 		set_water_inline_on(v)
 		
 @export var moving_direction: Vector2
-@export var move_speed : float = 0.1
+@export var move_speed : float = 10
 
 var mat : ShaderMaterial
 @export var sink_height : int = 4:
@@ -34,9 +34,9 @@ func _process(delta: float) -> void:
 	if _death_timer <= 0:
 		queue_free()
 		return
-	if is_moving:
-		position +=  moving_direction.normalized() * move_speed
-	
+	#if is_moving:
+		#position +=  moving_direction.normalized() * move_speed
+	#
 func _on_clicked() -> void:
 	var cursor_img = resource.sprite.get_image().duplicate()
 	cursor_img.resize(100, 100, Image.INTERPOLATE_NEAREST)
@@ -48,7 +48,7 @@ func _on_clicked() -> void:
 	
 func load_resource()->void:
 	sprite_2d.texture = resource.sprite
-
+	linear_velocity = moving_direction.normalized() * move_speed
 func pick()-> void:
 	pass
 	
