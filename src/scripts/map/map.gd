@@ -1,7 +1,7 @@
 extends Node2D
 class_name Map
 
-var elementType = {
+var element_type = {
 	"Sand" = load("res://src/scripts/block/element/sand.tres"),
 	"Dirt" = load("res://src/scripts/block/element/dirt.tres")
 }
@@ -15,7 +15,7 @@ var itemType = {
 
 
 var map: Dictionary[Vector2i, Block] = {
-	Vector2i(0,0): Block.new(elementType["Sand"], null)
+	Vector2i(0,0): Block.new(element_type["Sand"], null)
 }
 
 @onready var item_layer: TileMapLayer = $ItemLayer
@@ -42,14 +42,14 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 	if is_element_placable(pos):
 		match picakble:
 			Pickable.pickableType.Sand:
-				place_item(pos, elementType["Sand"])
+				place_item(pos, element_type["Sand"])
 				return
 				
 	# Place item
 	var current_block = get_current_block(pos)
 	if current_block != null:
 		if current_block.item != null:
-			place_item(pos, elementType["Seed"])
+			place_item(pos, element_type["Seed"])
 		
 		
 	return
