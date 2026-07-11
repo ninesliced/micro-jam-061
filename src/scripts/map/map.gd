@@ -1,25 +1,26 @@
 extends Node2D
 class_name Map
 
-static var element_type = {
+static var element_type: Dictionary[String, Element] = {
 	"Sand" = load("res://src/scripts/block/element/sand.tres"),
 	"Dirt" = load("res://src/scripts/block/element/dirt.tres")
 }
 
 
-static var item_type = {
+static var item_type: Dictionary[String, Item] = {
 	"Seed" = load("res://src/scripts/block/element/sand.tres"),
 	"Tree" = load("res://src/scripts/block/element/dirt.tres"),
 	"Barrier" = load("res://src/scripts/block/element/dirt.tres")
 }
 
 
-var map: Dictionary[Vector2i, Block] = {
-	Vector2i(0,0): Block.new(element_type["Sand"], null)
-}
+var map: Dictionary[Vector2i, Block] = {}
 
 @onready var item_layer: TileMapLayer = $ItemLayer
 @onready var element_layer: TileMapLayer = $ElementLayer
+
+func _ready() -> void:
+	place_element(Vector2i(0,0), element_type["Sand"])
 
 
 func is_element_placable(pos: Vector2i):
@@ -38,11 +39,12 @@ func get_current_block(pos: Vector2i) -> Block: # Ou null
 	return null
 
 func interact_at(pos: Vector2i, picakble: Pickable):
+	print(picakble.type, " ", Pickable.PickableType.Sand)
 	# Place element
 	if is_element_placable(pos):
-		match picakble:
+		match picakble.type:
 			Pickable.PickableType.Sand:
-				place_item(pos, element_type["Sand"])
+				place_element(pos, element_type["Sand"])
 				return
 				
 	# Place item
@@ -51,13 +53,14 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 	if current_block != null and current_block.item != null:
 		match picakble:
 			Pickable.PickableType.Seed:
-				place_item(pos, element_type["Seed"])
+				place_item(pos, item_type["Seed"])
 				return
 			Pickable.PickableType.Wood:
-				place_item(pos, element_type["Wood"])
+				place_item(pos, item_type["Wood"])
 				return
 	return
-	
+
+
 func place_element(pos: Vector2i, element: Element):
 	self.map[pos] = Block.new(self, element)
 	element_layer.set_cells_terrain_connect([pos], element.terrain_set, element.terrain)
@@ -73,17 +76,16 @@ func destroy_block(block: Block):
 		var v = self.map[pos]
 		if block == v:
 			delete_block(pos)
-			
-			
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func set_visuals_element(cell: Vector2i, element: Element, layer: TileMapLayer = element_layer):
 	layer.set_cells_terrain_connect([cell], element.terrain_set, element.terrain)
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_pressed() and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+			var pos = event.global_position
+			var grid_pos = item_layer.local_to_map(pos)
+			var pickable = Pickable.new()
+			pickable.type = Pickable.PickableType.Sand
+			interact_at(grid_pos, pickable)

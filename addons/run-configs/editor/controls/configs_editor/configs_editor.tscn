@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://dso1w1uqfsxmi"]
+
+[ext_resource type="Script" uid="uid://n3qvf2bacml3" path="res://addons/run-configs/editor/controls/configs_editor/play_mode_dropdown.gd" id="1_bhvuh"]
+[ext_resource type="Script" uid="uid://b2gbsvhcu5c62" path="res://addons/run-configs/editor/controls/configs_editor/configs_editor.gd" id="1_ldnip"]
+[ext_resource type="Script" uid="uid://du0y3lw0aiqjt" path="res://addons/run-configs/editor/controls/configs_editor/env_editor.gd" id="3_2bcxm"]
+
+[sub_resource type="DPITexture" id="DPITexture_w0gko"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
+
+[sub_resource type="GDScript" id="GDScript_knwq4"]
+script/source = "@tool
+extends Button
+
+func _ready() -> void:
+	icon = get_theme_icon(&\"Add\", &\"EditorIcons\")
+"
+
+[sub_resource type="GDScript" id="GDScript_b2o0p"]
+script/source = "@tool
+extends Button
+
+func _ready() -> void:
+	icon = get_theme_icon(&\"Close\", &\"EditorIcons\")
+"
+
+[sub_resource type="GDScript" id="GDScript_fhb5p"]
+script/source = "@tool
+extends Button
+
+func _ready() -> void:
+	icon = get_theme_icon(&\"Folder\", &\"EditorIcons\")
+"
+
+[sub_resource type="GDScript" id="GDScript_ggysl"]
+script/source = "@tool
+extends Button
+
+func _ready() -> void:
+	icon = get_theme_icon(&\"Add\", &\"EditorIcons\")
+"
+
+[node name="ConfigsEditor" type="ConfirmationDialog" unique_id=1959484499]
+oversampling_override = 1.0
+title = "Edit Run Configurations"
+initial_position = 2
+size = Vector2i(698, 400)
+visible = true
+ok_button_text = "Apply"
+script = ExtResource("1_ldnip")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=882378259]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 690.0
+offset_bottom = 351.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ConfigsEditor" type="VBoxContainer" parent="MarginContainer" unique_id=1274299452]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ConfigsEditor" unique_id=39267150]
+layout_mode = 2
+
+[node name="AddConfig" type="Button" parent="MarginContainer/ConfigsEditor/HBoxContainer" unique_id=1502628783]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Add a new config"
+icon = SubResource("DPITexture_w0gko")
+script = SubResource("GDScript_knwq4")
+
+[node name="RemoveConfig" type="Button" parent="MarginContainer/ConfigsEditor/HBoxContainer" unique_id=1398534694]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Remove selected config"
+icon = SubResource("DPITexture_w0gko")
+script = SubResource("GDScript_b2o0p")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/ConfigsEditor" unique_id=1134492050]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ConfigsEditor/HSplitContainer" unique_id=1721005410]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+
+[node name="ConfigsList" type="ItemList" parent="MarginContainer/ConfigsEditor/HSplitContainer/VBoxContainer" unique_id=1136570869]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+auto_height = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/ConfigsEditor/HSplitContainer" unique_id=1931674143]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer" unique_id=546947721]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Form" type="GridContainer" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer" unique_id=334543253]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Name" type="Label" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer/Form" unique_id=111574358]
+layout_mode = 2
+tooltip_text = "Name of the config"
+text = "Name                          "
+
+[node name="NameEdit" type="LineEdit" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer/Form" unique_id=465973656]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayMode" type="Label" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer/Form" unique_id=1952817907]
+layout_mode = 2
+tooltip_text = "Scene that will be run
+This only applies if you run via the custom \"Run Config\" button"
+text = "Run Scene"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer/Form" unique_id=1425169986]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayModeEdit" type="OptionButton" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer/Form/HBoxContainer" unique_id=109741467]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 3
+popup/item_0/text = "Main Scene"
+popup/item_0/icon = SubResource("DPITexture_w0gko")
+popup/item_0/id = 0
+popup/item_1/text = "Current Scene"
+popup/item_1/icon = SubResource("DPITexture_w0gko")
+popup/item_1/id = 1
+popup/item_2/text = "Custom Scene"
+popup/item_2/icon = SubResource("DPITexture_w0gko")
+popup/item_2/id = 2
+script = ExtResource("1_bhvuh")
+
+[node name="CustomSceneEdit" type="Button" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer/Form/HBoxContainer" unique_id=673936942]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Choose a scene..."
+icon = SubResource("DPITexture_w0gko")
+script = SubResource("GDScript_fhb5p")
+
+[node name="Env" type="Label" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer/Form" unique_id=1738641060]
+layout_mode = 2
+size_flags_vertical = 0
+tooltip_text = "Environment variables
+Use OS.get_environment() to access these values in runtime"
+text = "Environment Variables"
+
+[node name="EnvEdit" type="VBoxContainer" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer/Form" unique_id=139247703]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_2bcxm")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer/Form/EnvEdit" unique_id=863873808]
+layout_mode = 2
+columns = 3
+
+[node name="AddEnv" type="Button" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer/Form/EnvEdit" unique_id=1552972395]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "New Variable"
+icon = SubResource("DPITexture_w0gko")
+script = SubResource("GDScript_ggysl")
+
+[node name="Hint" type="Label" parent="MarginContainer/ConfigsEditor/HSplitContainer/ScrollContainer/PanelContainer" unique_id=1417541705]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Click \"+\" to create a new config."
