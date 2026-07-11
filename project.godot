@@ -14,6 +14,10 @@ config/name="micro-jam-061"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Utils="*uid://dep4jrhnu15bk"
+
 [display]
 
 window/size/viewport_width=640
