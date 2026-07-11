@@ -18,8 +18,12 @@ var map: Dictionary[Vector2i, Block] = {
 	Vector2i(0,0): Block.new(elementType["Sand"], null)
 }
 
-func is_element_placable(pos) -> bool:
-	# Un element est deja place, docn non
+@onready var item_layer: TileMapLayer = $ItemLayer
+@onready var element_layer: TileMapLayer = $ElementLayer
+
+
+func is_element_placable(pos: Vector2i):
+	# Place item
 	if pos in map.keys():
 		return false
 	# faut check si a touche une case a cote
@@ -64,3 +68,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func set_visuals_element(cell: Vector2i, element: Element, layer: TileMapLayer = element_layer):
+	layer.set_cells_terrain_connect([cell], element.terrain_set, element.terrain)
