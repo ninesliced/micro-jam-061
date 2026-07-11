@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctu86pdr5uanx"
-path="res://.godot/imported/4x4plus.pngd.png-7b6788df1f2eaeb4e0f03570c5dbf882.ctex"
+uid="uid://2yqscmna86dq"
+path="res://.godot/imported/sprouts_stage1.png-fc7aa45a77e76cc231d4ec0598d14746.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/scripts/block/element/4x4plus.pngd.png"
-dest_files=["res://.godot/imported/4x4plus.pngd.png-7b6788df1f2eaeb4e0f03570c5dbf882.ctex"]
+source_file="res://src/Assets/sprouts_stage1.png"
+dest_files=["res://.godot/imported/sprouts_stage1.png-fc7aa45a77e76cc231d4ec0598d14746.ctex"]
 
 [params]
 

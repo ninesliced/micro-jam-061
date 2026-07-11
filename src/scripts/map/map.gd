@@ -29,13 +29,14 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 	else: 
 		return
 
+
 func place_item(pos: Vector2i, item: String):
 	return
-	item_layer.
-	
+
+
 func place_element(pos: Vector2i):
 	pass
-	element_layer
+	#set_cells(pos)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,3 +46,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func set_visuals_element(cell: Vector2i, element: Element, layer: TileMapLayer = element_layer):
+	layer.set_cells_terrain_connect([cell], element.terrain_set, element.terrain)
