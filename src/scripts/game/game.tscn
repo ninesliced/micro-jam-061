@@ -25,11 +25,12 @@ script = ExtResource("1_50moq")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=711049568]
 
-[node name="PickableSpawner" parent="." unique_id=1137790638 instance=ExtResource("2_watld")]
+[node name="PickableSpawner" parent="." unique_id=1137790638 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
 position = Vector2(-180, -98)
 spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78"), ExtResource("5_hdf7i")])
 possible_directions = Array[Vector2]([Vector2(1, 0), Vector2(0, 1)])
 pickable_item_scene = ExtResource("6_8wyrr")
+game = NodePath("..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=443480858]
 
@@ -82,6 +83,7 @@ label_settings = SubResource("LabelSettings_hdf7i")
 layout_mode = 2
 text = "Resume"
 
-[node name="Quit" type="Button" parent="CanvasLayer/PauseMenu/ColorRect/VBoxContainer" unique_id=161753247]
-layout_mode = 2
-text = "Quit"
+[node name="Hand" type="Node2D" parent="." unique_id=719623884]
+
+[node name="HandSprite" type="Sprite2D" parent="Hand" unique_id=824478699]
+unique_name_in_owner = true

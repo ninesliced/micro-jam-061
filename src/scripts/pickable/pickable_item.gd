@@ -18,14 +18,33 @@ var mat : ShaderMaterial
 	set(v):
 		sink_height = v
 		set_inline_width(v)
+		
+var _death_timer : float = 10
+@export var lifespan : float = 60
+		
 func _ready() -> void:
 	mat = sprite_2d.material as ShaderMaterial
 	if is_instance_valid(resource): load_resource()
 	unhover()
+	_death_timer = lifespan
+	
 	
 func _process(delta: float) -> void:
+	_death_timer -= delta
+	if _death_timer <= 0:
+		queue_free()
+		return
 	if is_moving:
 		position +=  moving_direction.normalized() * move_speed
+	
+func _on_clicked() -> void:
+	var cursor_img = resource.sprite.get_image().duplicate()
+	cursor_img.resize(100, 100, Image.INTERPOLATE_NEAREST)
+	Input.set_custom_mouse_cursor(cursor_img, Input.CURSOR_ARROW, Vector2(50, 50))
+	
+	get_parent().game.set_hand(resource)
+	queue_free.call_deferred()
+	pass
 	
 func load_resource()->void:
 	sprite_2d.texture = resource.sprite

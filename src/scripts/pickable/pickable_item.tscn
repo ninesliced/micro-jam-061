@@ -97,3 +97,4 @@ autoplay = &"float"
 
 [connection signal="mouse_entered" from="Button" to="." method="hover"]
 [connection signal="mouse_exited" from="Button" to="." method="unhover"]
+[connection signal="pressed" from="Button" to="." method="_on_clicked"]
