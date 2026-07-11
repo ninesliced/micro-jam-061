@@ -26,6 +26,7 @@ func _on_random_tick_item():
 			self.item.current_state += 1
 			if self.item.current_state > self.item.max_random_state:
 				self.set_item(Map.item_type["Tree"])
+				self.item.current_state = 0
 			self.map_referance.a_block_was_updated()
 
 func _on_random_tick_element():
@@ -36,8 +37,17 @@ func _on_random_tick_element():
 		self.element.errosion_level += 1
 		if self.element.erosion_level > self.element.erosion_max:
 			self.map_referance.destroy_block(self)
+			self.element.errosion_level = 0
 		self.map_referance.a_block_was_updated()
 
 func _on_random_tick():
 	_on_random_tick_item()
 	_on_random_tick_element()
+
+var timer = 0
+func _process(delta: float) -> void:
+	timer += delta
+	if timer > 1:
+		timer -= 1
+		_on_random_tick()
+	
