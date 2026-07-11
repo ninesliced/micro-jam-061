@@ -1,12 +1,14 @@
 extends Node
 class_name Block
 
+var position: Vector2i
 @export var element: Element
 @export var item: Item = null
 
 @export var map_referance: Map
 
-func _init(map, element, item = null):
+func _init(pos, map, element, item = null):
+	self.position = pos
 	self.map_referance = map
 	self.element = element
 	self.item = item
@@ -26,7 +28,7 @@ func _on_random_tick_item():
 			self.item.current_state += 1
 			if self.item.current_state > self.item.max_random_state:
 				self.set_item(Map.item_type["Tree"])
-			self.map_referance.a_block_was_updated()
+			self.map_referance.a_block_was_updated(self.position, self)
 
 func _on_random_tick_element():
 	if not self.element.erosion_proba:
@@ -35,8 +37,8 @@ func _on_random_tick_element():
 	if random_f < self.element.erosion_proba:
 		self.element.errosion_level += 1
 		if self.element.erosion_level > self.element.erosion_max:
-			self.map_referance.destroy_block(self)
-		self.map_referance.a_block_was_updated()
+			self.map_referance.destroy_block(self.position, self)
+		self.map_referance.a_block_was_updated(self.position, self)
 
 func _on_random_tick():
 	_on_random_tick_item()

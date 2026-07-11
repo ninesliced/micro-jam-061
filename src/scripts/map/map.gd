@@ -62,26 +62,24 @@ func interact_at(pos: Vector2i, picakble: Pickable):
 
 
 func place_element(pos: Vector2i, element: Element):
-	self.map[pos] = Block.new(self, element)
-	element_layer.set_cells_terrain_connect([pos], element.terrain_set, element.terrain)
+	self.map[pos] = Block.new(pos, self, element)
+	a_block_was_updated(pos, self.map[pos])
 
 func delete_block(pos: Vector2i):
 	self.map.erase(pos)
+	a_block_was_updated(pos, null)
 	
 func place_item(pos: Vector2i, item: Item):
 	self.map[pos].item = item
+	a_block_was_updated(pos, self.map[pos])
 
-func destroy_block(block: Block):
-	for pos in self.map.keys():
-		var v = self.map[pos]
-		if block == v:
-			delete_block(pos)
+func destroy_block(pos: Vector2i, block: Block):
+	delete_block(pos)
+	a_block_was_updated(pos, null)
 
-func a_block_was_updated():
-	pass
-
-func set_visuals_element(cell: Vector2i, element: Element, layer: TileMapLayer = element_layer):
-	layer.set_cells_terrain_connect([cell], element.terrain_set, element.terrain)
+func a_block_was_updated(pos: Vector2i, block: Block):
+	element_layer.block_updated(pos, block)
+	#item_layer.block_updated(block)
 
 
 func _input(event: InputEvent) -> void:
