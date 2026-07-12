@@ -137,3 +137,11 @@ text = "Quit"
 [node name="HandSprite" type="Sprite2D" parent="Hand" unique_id=824478699]
 unique_name_in_owner = true
 texture = ExtResource("10_8wyrr")
+
+[node name="Debeugue" type="Label" parent="." unique_id=637421362]
+unique_name_in_owner = true
+offset_left = -321.0
+offset_top = -178.0
+offset_right = 120.0
+offset_bottom = 81.0
+text = "HJLKJFHKDJSHKLFJHSD"
