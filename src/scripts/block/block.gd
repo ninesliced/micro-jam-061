@@ -69,4 +69,5 @@ func _on_random_tick():
 	_on_random_tick_item()
 	_on_random_tick_element()
 
-	
+func _to_string() -> String:
+	return "<Block:elem=%s,item=%s>" % [element.name if element else "null", item.name if item else "null"]

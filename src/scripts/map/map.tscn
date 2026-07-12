@@ -1,26 +1,47 @@
-[gd_scene format=3 uid="uid://da0t467v22tbh"]
+[gd_scene format=4 uid="uid://da0t467v22tbh"]
 
 [ext_resource type="Script" uid="uid://24ecg34gn1vx" path="res://src/scripts/map/map.gd" id="1_tx736"]
 [ext_resource type="TileSet" uid="uid://btd2kipa6ly2y" path="res://src/scripts/map/item_tile_set.tres" id="2_62esv"]
 [ext_resource type="TileSet" uid="uid://cpmu7c5wdr8wy" path="res://src/scripts/map/element_tile_set.tres" id="2_cxrw2"]
+[ext_resource type="Script" uid="uid://1wu8vbfghfbb" path="res://src/scripts/map/map_canvas_group.gd" id="3_ayfhm"]
 [ext_resource type="Script" uid="uid://c22xc4pbioden" path="res://src/scripts/map/item_layer.gd" id="3_u40d8"]
 [ext_resource type="Script" uid="uid://bexcbi1uv46vv" path="res://src/scripts/map/element_layer.gd" id="4_jrvfg"]
+[ext_resource type="Shader" uid="uid://bqv76apercqtv" path="res://src/scripts/map/map.gdshader" id="6_famy8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_famy8"]
+shader = ExtResource("6_famy8")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/mid_color = Color(0.81975013, 0.9469915, 0.9898204, 1)
+shader_parameter/far_color = Color(0.5832074, 0.8782973, 0.9727588, 1)
+shader_parameter/furthest_color = Color(0.55065507, 0.8682133, 0.96884114, 1)
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_time_scale = 0.0
+shader_parameter/scale_factor = 4.0
+shader_parameter/ripple_speed = 5.0
+shader_parameter/total_duration = 10.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tv6tg"]
 
 [node name="Map" type="Node2D" unique_id=1065599540]
 script = ExtResource("1_tx736")
 
-[node name="ElementLayer" type="TileMapLayer" parent="." unique_id=703666881]
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=86772544]
+material = SubResource("ShaderMaterial_famy8")
+script = ExtResource("3_ayfhm")
+
+[node name="ElementLayer" type="TileMapLayer" parent="CanvasGroup" unique_id=703666881]
 material = SubResource("ShaderMaterial_tv6tg")
 tile_set = ExtResource("2_cxrw2")
 script = ExtResource("4_jrvfg")
 
-[node name="GrassLayer" type="TileMapLayer" parent="." unique_id=1498368570]
+[node name="GrassLayer" type="TileMapLayer" parent="CanvasGroup" unique_id=1498368570]
 material = SubResource("ShaderMaterial_tv6tg")
+tile_map_data = PackedByteArray("AAALAAgAAAAAAAAAAAALAAkAAAABAAEAAAALAAoAAAAAAAEAAAALAAsAAAADAAEAAAAMAAwAAAACAAMAAAAOAA0AAAABAAMAAAANAAwAAAADAAMAAAAPAA0AAAACAAIAAAARAAwAAAAAAAMAAAAQAA0AAAADAAMAAAASAAsAAAAAAAIAAAASAAoAAAADAAAAAAARAAoAAAABAAMAAAAQAAkAAAADAAMAAAAPAAkAAAACAAMAAAANAAkAAAACAAMAAAAOAAkAAAACAAMAAAAMAAkAAAACAAMAAAAKAAsAAAABAAMAAAALAAwAAAABAAIAAAAPAAwAAAAAAAEAAAAPAAsAAAADAAAAAAAOAAsAAAABAAMAAAA=")
 tile_set = ExtResource("2_cxrw2")
 script = ExtResource("4_jrvfg")
 
-[node name="ItemLayer" type="TileMapLayer" parent="." unique_id=1745838176]
+[node name="ItemLayer" type="TileMapLayer" parent="CanvasGroup" unique_id=1745838176]
 tile_set = ExtResource("2_62esv")
 script = ExtResource("3_u40d8")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1712502081]

@@ -7,3 +7,4 @@ enum PickableType {
 
 @export var sprite : Texture2D
 @export var type: PickableType
+@export var audio: AudioStream
