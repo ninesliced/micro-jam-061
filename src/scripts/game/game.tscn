@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://buafy44ml1hn" path="res://src/scripts/game/pause_menu.gd" id="9_hdf7i"]
 [ext_resource type="Texture2D" uid="uid://ce1jya3bpntgp" path="res://src/Assets/cursor.png" id="10_8wyrr"]
 [ext_resource type="FontFile" uid="uid://bsq1u221rlgqo" path="res://src/Assets/FiraCode-Regular.ttf" id="12_y4xud"]
-[ext_resource type="PackedScene" uid="uid://dnulvn7spfcp3" path="res://shark.tscn" id="13_y4xud"]
+[ext_resource type="PackedScene" uid="uid://c2ujgqffp5fod" path="res://shark_spawner.tscn" id="13_y4xud"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vhovy"]
 font_size = 30
@@ -155,14 +155,17 @@ offset_bottom = 81.0
 text = "."
 label_settings = SubResource("LabelSettings_v2t2l")
 
-[node name="Shark" parent="." unique_id=1758020044 instance=ExtResource("13_y4xud")]
-position = Vector2(-70, -86)
+[node name="SharkSpawner" parent="." unique_id=1407215147 instance=ExtResource("13_y4xud")]
+position = Vector2(-490, 7)
 
-[node name="Shark2" parent="." unique_id=1077050688 instance=ExtResource("13_y4xud")]
-position = Vector2(527, -106)
+[node name="SharkSpawner2" parent="." unique_id=1105034384 instance=ExtResource("13_y4xud")]
+position = Vector2(-204, -344)
 
-[node name="Shark3" parent="." unique_id=244839147 instance=ExtResource("13_y4xud")]
-position = Vector2(277, 151)
+[node name="SharkSpawner3" parent="." unique_id=1588704642 instance=ExtResource("13_y4xud")]
+position = Vector2(366, -296)
 
-[node name="Shark4" parent="." unique_id=1463205533 instance=ExtResource("13_y4xud")]
-position = Vector2(-112, 151)
+[node name="SharkSpawner4" parent="." unique_id=1495083789 instance=ExtResource("13_y4xud")]
+position = Vector2(454, 105)
+
+[node name="SharkSpawner5" parent="." unique_id=322584694 instance=ExtResource("13_y4xud")]
+position = Vector2(-23, 268)
