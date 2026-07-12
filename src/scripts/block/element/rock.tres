@@ -6,4 +6,5 @@
 script = ExtResource("1_cx8pb")
 name = "Rock"
 terrain = 2
+tile_map_layer = "GrassLayer"
 metadata/_custom_type_script = "uid://cvu4shs4ydd2q"

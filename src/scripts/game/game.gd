@@ -1,6 +1,8 @@
 class_name Game
 extends Node2D
 
+var time = 0.0
+
 var hand: Pickable = null:
 	set(value):
 		hand = value
@@ -21,3 +23,7 @@ func use_hand():
 
 func get_hand():
 	return hand
+
+func _process(delta: float) -> void:
+	time += delta
+	%TimeLabel.text = "%d:%02d" % [int(time) / 60, int(fmod(time, 60.0))]
