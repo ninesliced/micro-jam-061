@@ -222,3 +222,14 @@ func map_to_text():
 		texte += "\n"
 			
 	return texte
+
+func global_pos_to_pos(gp: Vector2i):
+	return (gp - Vector2i(-8,-8))/16
+	
+func shark_at_global_pos(gp: Vector2i, shark: Shark):
+	var pos = global_pos_to_pos(gp)
+	var block = get_current_block(pos)
+	if not block:
+		print("Pas de block a sharker")
+		return
+	block.add_shark(shark)

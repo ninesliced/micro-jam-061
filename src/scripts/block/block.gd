@@ -9,6 +9,7 @@ var position: Vector2i
 
 var erosion_particles: ErosionParticles
 var baby_sharked = false
+var sharks = []
 
 func _init(pos, map, element_, item_ = null):
 	self.position = pos
@@ -105,6 +106,18 @@ func get_sharked():
 	
 func get_desharked():
 	baby_sharked = false
+	
+func add_shark(shark: Shark):
+	sharks.append(shark)
+	shark.connect("delete_shark", remove_shark)
+	get_sharked()
+
+func remove_shark(shark: Shark):
+	sharks.erase(shark)
+	if len(sharks) == 0:
+		baby_sharked = false
+	
+
 
 func _to_string() -> String:
 	return "<Block:elem=%s,item=%s>" % [element.name if element else "null", item.name if item else "null"]
