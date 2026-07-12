@@ -1,9 +1,25 @@
 [gd_resource type="Resource" script_class="Pickable" format=3 uid="uid://ceeu6iqhruiyw"]
 
+[ext_resource type="AudioStream" uid="uid://cww6e1gruk41k" path="res://src/Assets/sfx/Fantozzi-SandL1.ogg" id="1_c5f4a"]
 [ext_resource type="Script" uid="uid://31407ldqsotx" path="res://src/scripts/pickable/pickable.gd" id="1_n6a1a"]
 [ext_resource type="Texture2D" uid="uid://b5aovhmcol56m" path="res://src/Assets/seed.png" id="2_tevbc"]
+[ext_resource type="AudioStream" uid="uid://b3iu2aexgerwj" path="res://src/Assets/sfx/Fantozzi-SandL2.ogg" id="2_y3g6y"]
+[ext_resource type="AudioStream" uid="uid://budo3xuvijmvt" path="res://src/Assets/sfx/Fantozzi-SandL3.ogg" id="3_0h8ah"]
+[ext_resource type="AudioStream" uid="uid://d0uyctp41tdna" path="res://src/Assets/sfx/Fantozzi-SandR1.ogg" id="4_q1t83"]
+[ext_resource type="AudioStream" uid="uid://l8vs5pnog71o" path="res://src/Assets/sfx/Fantozzi-SandR2.ogg" id="5_6115k"]
+[ext_resource type="AudioStream" uid="uid://bhm8qlxgrgt60" path="res://src/Assets/sfx/Fantozzi-SandR3.ogg" id="6_lnl5k"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_unk0h"]
+streams_count = 6
+stream_0/stream = ExtResource("1_c5f4a")
+stream_1/stream = ExtResource("2_y3g6y")
+stream_2/stream = ExtResource("3_0h8ah")
+stream_3/stream = ExtResource("4_q1t83")
+stream_4/stream = ExtResource("5_6115k")
+stream_5/stream = ExtResource("6_lnl5k")
 
 [resource]
 script = ExtResource("1_n6a1a")
 sprite = ExtResource("2_tevbc")
+audio = SubResource("AudioStreamRandomizer_unk0h")
 metadata/_custom_type_script = "uid://31407ldqsotx"

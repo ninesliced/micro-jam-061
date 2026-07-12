@@ -1,10 +1,26 @@
 [gd_resource type="Resource" script_class="Pickable" format=3 uid="uid://djl3qpu07l5qq"]
 
 [ext_resource type="Script" uid="uid://31407ldqsotx" path="res://src/scripts/pickable/pickable.gd" id="1_b5c2a"]
+[ext_resource type="AudioStream" uid="uid://bqrowddn6pyp4" path="res://src/Assets/sfx/Fantozzi-StoneL1.ogg" id="1_ekw8t"]
 [ext_resource type="Texture2D" uid="uid://bmy0do1trisuf" path="res://src/Assets/sand_not_floating.png" id="2_8j2xs"]
+[ext_resource type="AudioStream" uid="uid://bya8ft4ngao2q" path="res://src/Assets/sfx/Fantozzi-StoneL2.ogg" id="2_pjjp2"]
+[ext_resource type="AudioStream" uid="uid://cs1jx337di8ng" path="res://src/Assets/sfx/Fantozzi-StoneL3.ogg" id="3_1salp"]
+[ext_resource type="AudioStream" uid="uid://brsaeloobf0kf" path="res://src/Assets/sfx/Fantozzi-StoneR1.ogg" id="4_wiuvw"]
+[ext_resource type="AudioStream" uid="uid://dt2801rvb8ix2" path="res://src/Assets/sfx/Fantozzi-StoneR2.ogg" id="5_r6yq0"]
+[ext_resource type="AudioStream" uid="uid://gbhh8hp5n8mg" path="res://src/Assets/sfx/Fantozzi-StoneR3.ogg" id="6_el2nq"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vhovy"]
+streams_count = 6
+stream_0/stream = ExtResource("1_ekw8t")
+stream_1/stream = ExtResource("2_pjjp2")
+stream_2/stream = ExtResource("3_1salp")
+stream_3/stream = ExtResource("4_wiuvw")
+stream_4/stream = ExtResource("5_r6yq0")
+stream_5/stream = ExtResource("6_el2nq")
 
 [resource]
 script = ExtResource("1_b5c2a")
 sprite = ExtResource("2_8j2xs")
 type = 1
+audio = SubResource("AudioStreamRandomizer_vhovy")
 metadata/_custom_type_script = "uid://31407ldqsotx"

@@ -28,9 +28,10 @@ var top_left_corner: Vector2i = Vector2i(0,0)
 var bottom_right_corner: Vector2i = Vector2i(0,0)
 var max_size_map: int = 1
 
-@onready var item_layer: TileMapLayer = $ItemLayer
-@onready var element_layer: TileMapLayer = $ElementLayer
-@onready var grass_layer: TileMapLayer = $GrassLayer
+@onready var item_layer: TileMapLayer = $CanvasGroup/ItemLayer
+@onready var element_layer: TileMapLayer = $CanvasGroup/ElementLayer
+@onready var grass_layer: TileMapLayer = $CanvasGroup/GrassLayer
+@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
 	place_element(Vector2i(0,0), get_element_by_name("Sand"))
@@ -107,12 +108,17 @@ func process_size():
 	else:
 		max_size_map = max(max_i - min_i, max_j - min_j)
 
+func play_sound(position: Vector2, audio: AudioStream):
+	audio_stream_player.global_position = position
+	audio_stream_player.stream = audio
+	audio_stream_player.play()
+
+
 var selected = 0
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and event.keycode == Key.KEY_SPACE:
 		selected = (selected+1) % 2
-		print("selected ", selected)
 	
 	if event is InputEventMouse:
 		var pressed = (
@@ -128,7 +134,7 @@ func _input(event: InputEvent) -> void:
 			var grid_pos = item_layer.local_to_map(pos)
 			
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-				if Input.is_key_pressed(KEY_SHIFT):
+				if Input.is_key_pressed(KEY_SHIFT) and OS.has_feature("debug"):
 					var pickable = Pickable.new()
 					var elem
 					if selected == 0:
@@ -137,13 +143,15 @@ func _input(event: InputEvent) -> void:
 						elem = get_element_by_name("Grass")
 					place_element(grid_pos, elem)
 				else:
-					var game = $".."
+					var game: Game = $".."
 					var pickable = game.get_hand()
 					var interact_has_worked = interact_at(grid_pos, pickable)
 					if interact_has_worked:
+						if pickable:
+							play_sound(get_global_mouse_position(), pickable.audio)
 						game.use_hand()
 					
-			elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and OS.has_feature("debug"):
 				destroy_block(grid_pos)
 
 var timer = 0
@@ -152,7 +160,7 @@ func _process(delta: float) -> void:
 	timer += delta
 	if timer > 1:
 		timer -= 1
-
+		
 		for pos in map.keys():
 			var block = map[pos]
 			block._on_random_tick()
