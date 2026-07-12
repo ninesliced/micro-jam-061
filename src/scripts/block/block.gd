@@ -95,8 +95,11 @@ func _on_random_tick_element():
 				self.map_referance.a_block_was_updated(self.position, self)
 
 func erodate_block():
-	if self.element == Map.get_element_by_name("Grass"):
+	if self.element and element.element_name == "Grass":
 		self.set_element(Map.get_element_by_name("Sand"))
+	elif self.element  and element.element_name == "Rock":
+		print("GMAE OVER APPEL")
+		map_referance.game.game_over()
 	else:
 		block_erodated.emit(self)
 		self.map_referance.destroy_block(self.position)

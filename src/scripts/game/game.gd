@@ -37,4 +37,5 @@ func _process(delta: float) -> void:
 @export var game_over_menu: Control
 
 func game_over():
+	print("GAME OVER")
 	game_over_menu.pause()
