@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Block" format=3 uid="uid://k06ugpn5l8an"]
-
-[ext_resource type="Script" uid="uid://dljk8x63582jq" path="res://src/scripts/block/block.gd" id="1_i04ik"]
-
-[resource]
-resource_name = "Sand"
-script = ExtResource("1_i04ik")
-metadata/_custom_type_script = "uid://dljk8x63582jq"

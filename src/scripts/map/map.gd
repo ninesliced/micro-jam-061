@@ -1,18 +1,27 @@
 extends Node2D
 class_name Map
 
-static var element_type: Dictionary[String, Element] = {
+static var element_type: Dictionary[String, ElementResource] = {
 	"Sand" = load("res://src/scripts/block/element/sand.tres"),
 	"Grass" = load("res://src/scripts/block/element/grass.tres")
 }
 
 
-static var item_type: Dictionary[String, Item] = {
+static var item_type: Dictionary[String, ItemResource] = {
 	"Seed" = load("res://src/scripts/block/item/seed.tres"),
 	"Tree" = load("res://src/scripts/block/item/tree.tres"),
-	"Barrier" = load("res://src/scripts/block/item/seed.tres")
 }
 
+
+static func get_element_by_name(name) -> Element:
+	if not name in element_type.keys():
+		return null
+	return Element.new(element_type[name])
+
+static func get_item_by_name(name) -> Item:
+	if not name in item_type.keys():
+		return null
+	return Item.new(item_type[name])
 
 var map: Dictionary[Vector2i, Block] = {}
 
@@ -22,7 +31,7 @@ var map: Dictionary[Vector2i, Block] = {}
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
-	place_element(Vector2i(0,0), element_type["Sand"])
+	place_element(Vector2i(0,0), get_element_by_name("Sand"))
 
 
 func is_element_placable(pos: Vector2i):
@@ -47,7 +56,7 @@ func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 	if is_element_placable(pos) and picakble:
 		match picakble.type:
 			Pickable.PickableType.Sand:
-				place_element(pos, element_type["Sand"])
+				place_element(pos, get_element_by_name("Sand"))
 				return true
 				
 	# Place item
@@ -56,10 +65,7 @@ func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 	if current_block != null and current_block.item == null and picakble:
 		match picakble.type:
 			Pickable.PickableType.Seed:
-				place_item(pos, item_type["Seed"])
-				return true
-			Pickable.PickableType.Wood:
-				place_item(pos, item_type["Wood"])
+				place_item(pos, get_item_by_name("Seed"))
 				return true
 	return false
 
@@ -112,9 +118,9 @@ func _input(event: InputEvent) -> void:
 					var pickable = Pickable.new()
 					var elem
 					if selected == 0:
-						elem = element_type["Sand"]
+						elem = get_element_by_name("Sand")
 					elif selected == 1:
-						elem = element_type["Grass"]
+						elem = get_element_by_name("Grass")
 					place_element(grid_pos, elem)
 				else:
 					var game: Game = $".."
@@ -138,5 +144,30 @@ func _process(delta: float) -> void:
 		for pos in map.keys():
 			var block = map[pos]
 			block._on_random_tick()
-		
-		
+	%Debeugue.text = map_to_text()
+	
+func map_to_text():
+	var texte = ""
+	var min_i = 1000
+	var max_i = -1000
+	var min_j = 1000
+	var max_j = -1000
+	for pos in map.keys():
+		min_i = min(min_i, pos.x)
+		max_i = max(max_i, pos.x)
+		min_j = min(min_j, pos.y)
+		max_j = max(max_j, pos.y)
+	for j in range(min_j, max_j+1):
+		for i in range(min_i, max_i+1):
+			var blok = get_current_block(Vector2i(i, j))
+			if blok:
+				texte += blok.element.get_value_letter()
+				if blok.item:
+					texte += blok.item.get_value_letter() + "|"
+				else:
+					texte += "  |"
+			else:
+				texte += "    |"
+		texte += "\n"
+			
+	return texte

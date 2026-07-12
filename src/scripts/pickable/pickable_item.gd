@@ -2,6 +2,7 @@ extends RigidBody2D
 class_name PickableItem
 @export var resource: Pickable
 @export var sprite_2d: Sprite2D
+@export var ripple_effect: AnimatedSprite2D
 
 @export var is_moving: bool = true
 @export var is_picked: bool = false
@@ -11,7 +12,9 @@ class_name PickableItem
 		set_water_inline_on(v)
 		
 @export var moving_direction: Vector2
-@export var move_speed : float = 14
+var move_speed : float = 10
+@export var min_move_speed : float = 7
+@export var max_move_speed : float = 10
 
 var mat : ShaderMaterial
 @export var sink_height : int = 4:
@@ -20,7 +23,7 @@ var mat : ShaderMaterial
 		set_inline_width(v)
 		
 var _death_timer : float = 10
-@export var lifespan : float = 60
+@export var lifespan : float = 120
 		
 func _ready() -> void:
 	mat = sprite_2d.material as ShaderMaterial
@@ -48,6 +51,7 @@ func _on_clicked() -> void:
 	
 func load_resource()->void:
 	sprite_2d.texture = resource.sprite
+	move_speed = randf_range(min_move_speed, max_move_speed)
 	linear_velocity = moving_direction.normalized() * move_speed
 func pick()-> void:
 	pass
@@ -83,3 +87,13 @@ func set_inline_width(width : int)->void:
 func set_water_inline_on(value : bool)->void:
 	if mat is ShaderMaterial:
 		mat.set_shader_parameter("use_water_inline", value)
+
+func ripple()->void:
+	if is_floating:
+		ripple_effect.reparent(get_parent())
+		ripple_effect.global_position = global_position
+		ripple_effect.play("ripple")
+
+
+func _on_body_entered(body: Node) -> void:
+	ripple()

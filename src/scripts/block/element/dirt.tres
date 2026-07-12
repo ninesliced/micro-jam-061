@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="Element" format=3 uid="uid://hcdvtx3eiegl"]
+[gd_resource type="Resource" script_class="ElementResource" format=3 uid="uid://hcdvtx3eiegl"]
 
-[ext_resource type="Script" uid="uid://cpo8dsmhbq7g4" path="res://src/scripts/block/element/element.gd" id="1_alte1"]
+[ext_resource type="Script" uid="uid://cvu4shs4ydd2q" path="res://src/scripts/block/element/element_resource.gd" id="1_alte1"]
 
 [resource]
 script = ExtResource("1_alte1")
 name = "Dirt"
-metadata/_custom_type_script = "uid://cpo8dsmhbq7g4"
+metadata/_custom_type_script = "uid://cvu4shs4ydd2q"
