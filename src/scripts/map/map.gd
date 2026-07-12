@@ -32,6 +32,10 @@ var top_left_corner: Vector2i = Vector2i(0,0)
 var bottom_right_corner: Vector2i = Vector2i(0,0)
 var max_size_map: int = 1
 
+var mouse_input_timer : float= 0
+var mouse_input_timer_duration : float= 0.15
+
+
 @onready var item_layer: TileMapLayer = $ItemLayer
 @onready var element_layer: TileMapLayer = $CanvasGroup/ElementLayer
 @onready var grass_layer: TileMapLayer = $CanvasGroup/GrassLayer
@@ -63,6 +67,8 @@ func get_current_block(pos: Vector2i) -> Block: # Ou null
 # Retourne true si ca a reussi a interact
 func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 	# print(picakble.type, " ", Pickable.PickableType.Sand)
+	if picakble and picakble.type == Pickable.PickableType.George:
+		return false
 	# Place element
 	if is_element_placable(pos) and picakble:
 		match picakble.type:
@@ -86,9 +92,10 @@ func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 		
 	# recup george
 	if current_block != null and current_block.item and current_block.item.item_name == "George" and not picakble:
+		$"..".set_hand(load("res://src/scripts/pickable/Resources/pickable_george.tres"))
 		current_block.set_item(get_item_by_name("Vide"))
-		$"..".hand = Pickable.PickableType.George
-		return true
+		a_block_was_updated(current_block.position, current_block)
+		return false
 	return false
 
 
@@ -160,32 +167,27 @@ func _input(event: InputEvent) -> void:
 		selected = (selected+1) % 2
 	
 	if event is InputEventMouse:
-		var pressed = (
-			(event is InputEventMouseButton and event.is_pressed()) or
-			(event is InputEventMouseMotion and
-				(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or
-				Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT))
-			)
-		)
-		
-		if pressed:
+		if event is InputEventMouseButton and event.is_pressed() and mouse_input_timer <= 0:
+			print("mouse clicked")
+			mouse_input_timer = mouse_input_timer_duration
 			var pos = item_layer.to_local(get_global_mouse_position())
 			var grid_pos = item_layer.local_to_map(pos)
 			
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-				var game: Game = $".."
-				var pickable = game.get_hand()
-				var interact_has_worked = interact_at(grid_pos, pickable)
-				if interact_has_worked:
-					if pickable:
-						play_sound(get_global_mouse_position(), pickable.audio)
-					game.use_hand()
+			var game: Game = $".."
+			var pickable = game.get_hand()
+			var interact_has_worked = interact_at(grid_pos, pickable)
+			if interact_has_worked:
+				if pickable:
+					play_sound(get_global_mouse_position(), pickable.audio)
+				game.use_hand()
 					
 
 var timer = 0
 
 func _process(delta: float) -> void:
 	timer += delta
+	if mouse_input_timer > 0:
+		mouse_input_timer -= delta
 	if timer > 1:
 		timer -= 1
 		
@@ -193,7 +195,9 @@ func _process(delta: float) -> void:
 			var block = map[pos]
 			block._on_random_tick()
 	%Debeugue.text = map_to_text()
-	
+	var hand = $"..".get_hand()
+	if hand:
+		%Debeugue.text += "\n"+hand.to_string()
 func map_to_text():
 	var texte = ""
 	var min_i = 1000

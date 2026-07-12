@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_ydsav")
 name = "Vide"
+random_state_update = 1.0
 metadata/_custom_type_script = "uid://cxe6xhurg1qks"

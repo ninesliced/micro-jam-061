@@ -30,14 +30,16 @@ func _init(pos, map, element_, item_ = null):
 func set_element(element_: Element):
 	self.element = element_
 	self.element.erosion_level = 0
-	item = Map.get_item_by_name("Vide")
+	if element and element.element_name == "Grass":
+		item = Map.get_item_by_name("Tree")
+	else:
+		item = Map.get_item_by_name("Vide")
 		
 
 func set_item(new_item):
 	self.item = new_item
 	self.item.current_state = 0
 	self.element.erosion_level = 0
-	print(item, item.item_name)
 	if new_item and new_item.item_name == "Tree":
 		if not has_water_next_to():
 			set_element(Map.get_element_by_name("Grass"))
@@ -51,8 +53,16 @@ func _on_random_tick_item():
 		return
 	var random_f = randf()
 	if random_f < self.item.random_state_update:
-		print(random_f, self.item.random_state_update)
-		if self.item.item_name == "Seed":
+		if self.item.item_name == "Vide":
+			if had_tree_next_to():
+				self.item.current_state += 1
+				if self.item.current_state >= self.item.max_random_state:
+					set_item(Map.get_item_by_name("George"))
+					self.map_referance.a_block_was_updated(self.position, self)
+			else:
+				self.item.current_state = max(self.item.current_state - 1, 0)
+				
+		elif self.item.item_name == "Seed":
 			self.item.current_state += 1
 
 			if self.item.current_state >= self.item.max_random_state:
@@ -69,15 +79,6 @@ func _on_random_tick_item():
 				if self.item.current_state != 0:
 					self.item.current_state = self.item.current_state
 					self.map_referance.a_block_was_updated(self.position, self)
-		elif self.item.item_name == "Vide":
-			if had_tree_next_to():
-				self.item.current_state += 1
-				if self.item.current_state >= self.item.max_random_state:
-					set_item(Map.get_item_by_name("George"))
-					self.map_referance.a_block_was_updated(self.position, self)
-			else:
-				self.item.current_state = max(self.item.current_state - 1, 0)
-				
 func _on_random_tick_element():
 	if not self.element.erosion_proba:
 		return
