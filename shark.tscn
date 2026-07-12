@@ -48,5 +48,13 @@ visible = false
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("5_l26on")
 
+[node name="Button" type="Button" parent="." unique_id=1648504457]
+modulate = Color(1, 1, 1, 0)
+offset_left = -13.0
+offset_top = -10.0
+offset_right = 13.0
+offset_bottom = 11.0
+
 [connection signal="body_entered" from="TileDetector" to="." method="_on_tile_detector_body_entered"]
 [connection signal="body_exited" from="TileDetector" to="." method="_on_tile_detector_body_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
