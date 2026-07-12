@@ -27,7 +27,9 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	if is_moving:
+		
 		sprite.texture = swimming_sprite
+		sprite.scale = Vector2(1, 1)
 		# Calculate direction from body to target
 		var direction = global_position.direction_to(target)
 		var velocity : Vector2 = direction * acceleration
@@ -51,10 +53,14 @@ func _physics_process(delta):
 	
 		sprite.global_position = round(global_position)
 		sprite.rotation = global_transform.inverse().get_rotation()
+		if velocity.x < 0: sprite.flip_h = velocity.x < 0
 	elif is_sharking:
+		sprite.scale = Vector2(0.2, 0.2)
+		sprite.flip_h = false
 		sprite.texture = sharking_sprite
 		sprite.rotation = get_angle_to(sharking_targets[0].global_pos)
 		target_sprite.global_position = sharking_targets[0].global_pos
+
 func update_sharking_behavior()->void:
 	if sharking_targets.is_empty():
 		is_sharking = false
