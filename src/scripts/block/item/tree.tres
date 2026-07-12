@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_2uclw")
 name = "Tree"
-random_state_update = -1.0
+random_state_update = 0.3
 tileset_source_id = 7
 tileset_atlas_coord = Vector2i(3, 0)
 metadata/_custom_type_script = "uid://cxe6xhurg1qks"

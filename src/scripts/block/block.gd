@@ -47,6 +47,16 @@ func _on_random_tick_item():
 			if self.item.current_state >= self.item.max_random_state:
 				self.set_item(Map.get_item_by_name("Tree"))
 			self.map_referance.a_block_was_updated(self.position, self)
+		elif self.item.item_name == "Tree":
+			if has_water_next_to():
+				self.item.current_state += 1
+
+				if self.item.current_state >= self.item.max_random_state:
+					self.set_element(Map.get_element_by_name("Grass"))
+				self.map_referance.a_block_was_updated(self.position, self)
+			else:
+				self.item.current_state = max(self.item.current_state -1, 0)
+				self.map_referance.a_block_was_updated(self.position, self)
 
 func _on_random_tick_element():
 	if not self.element.erosion_proba:
