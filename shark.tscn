@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://jm60m487jgm7" path="res://src/scripts/block/element/shark_rock.png" id="2_l26on"]
 [ext_resource type="Texture2D" uid="uid://ct1l7j2vft3mm" path="res://src/Assets/shark_fin.png" id="3_k17ol"]
 [ext_resource type="Texture2D" uid="uid://bwbbedku14jea" path="res://src/Assets/shark.png" id="4_6ojlb"]
+[ext_resource type="PackedScene" uid="uid://bcfaoxrcflib1" path="res://src/scripts/ripple_effect.tscn" id="4_p1hqx"]
 [ext_resource type="Texture2D" uid="uid://b5aovhmcol56m" path="res://src/Assets/seed.png" id="4_uce6o"]
 [ext_resource type="Texture2D" uid="uid://4xf54vrulyey" path="res://src/scripts/block/item/nexus.png" id="5_l26on"]
 
@@ -61,6 +62,7 @@ tile_detector = NodePath("TileDetector")
 target_sprite = NodePath("target_sprite")
 sharking_sprite = ExtResource("2_l26on")
 swimming_sprite = ExtResource("3_k17ol")
+ripple_scene = ExtResource("4_p1hqx")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=852928385]
 scale = Vector2(0.64000005, 0.64)

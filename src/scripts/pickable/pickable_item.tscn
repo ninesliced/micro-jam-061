@@ -2,81 +2,12 @@
 
 [ext_resource type="Script" uid="uid://kgbli8iblyp7" path="res://src/scripts/pickable/pickable_item.gd" id="1_1ko1y"]
 [ext_resource type="Shader" uid="uid://dh4wtqxpqaamx" path="res://src/scripts/pickable/pickable_item_shader.gdshader" id="1_x1t8b"]
-[ext_resource type="Texture2D" uid="uid://b6v0s66pqns0p" path="res://src/Assets/ripple.png" id="2_03t1c"]
+[ext_resource type="PackedScene" uid="uid://bcfaoxrcflib1" path="res://src/scripts/ripple_effect.tscn" id="2_03t1c"]
 [ext_resource type="Texture2D" uid="uid://b5aovhmcol56m" path="res://src/Assets/seed.png" id="3_x1t8b"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hdf7i"]
 friction = 0.5
 bounce = 0.5
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_03t1c"]
-atlas = ExtResource("2_03t1c")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h6y1m"]
-atlas = ExtResource("2_03t1c")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2cxwy"]
-atlas = ExtResource("2_03t1c")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d2y02"]
-atlas = ExtResource("2_03t1c")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5mr63"]
-atlas = ExtResource("2_03t1c")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o2rvl"]
-atlas = ExtResource("2_03t1c")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3yxkh"]
-atlas = ExtResource("2_03t1c")
-region = Rect2(384, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2h5gu"]
-atlas = ExtResource("2_03t1c")
-region = Rect2(448, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tqlge"]
-animations = [{
-"frames": [],
-"loop": 1,
-"name": &"new_animation",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_03t1c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h6y1m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2cxwy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d2y02")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5mr63")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o2rvl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3yxkh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2h5gu")
-}],
-"loop": 0,
-"name": &"ripple",
-"speed": 8.0
-}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_03t1c"]
 resource_local_to_scene = true
@@ -178,12 +109,7 @@ script = ExtResource("1_1ko1y")
 sprite_2d = NodePath("Sprite2D")
 ripple_effect = NodePath("RippleEffect")
 
-[node name="RippleEffect" type="AnimatedSprite2D" parent="." unique_id=1956599638]
-modulate = Color(1, 1, 1, 0.78431374)
-sprite_frames = SubResource("SpriteFrames_tqlge")
-animation = &"ripple"
-frame = 7
-frame_progress = 1.0
+[node name="RippleEffect" parent="." unique_id=2072871982 instance=ExtResource("2_03t1c")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=838520717]
 material = SubResource("ShaderMaterial_03t1c")
