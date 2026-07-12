@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://buafy44ml1hn" path="res://src/scripts/game/pause_menu.gd" id="9_hdf7i"]
 [ext_resource type="Texture2D" uid="uid://ce1jya3bpntgp" path="res://src/Assets/cursor.png" id="10_8wyrr"]
 [ext_resource type="FontFile" uid="uid://bsq1u221rlgqo" path="res://src/Assets/FiraCode-Regular.ttf" id="12_y4xud"]
+[ext_resource type="PackedScene" uid="uid://dnulvn7spfcp3" path="res://shark.tscn" id="13_y4xud"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vhovy"]
 font_size = 30
@@ -170,3 +171,15 @@ theme = ExtResource("8_quy78")
 text = "0:00"
 label_settings = SubResource("LabelSettings_432l6")
 horizontal_alignment = 1
+
+[node name="Shark" parent="." unique_id=1758020044 instance=ExtResource("13_y4xud")]
+position = Vector2(-70, -86)
+
+[node name="Shark2" parent="." unique_id=1077050688 instance=ExtResource("13_y4xud")]
+position = Vector2(527, -106)
+
+[node name="Shark3" parent="." unique_id=244839147 instance=ExtResource("13_y4xud")]
+position = Vector2(277, 151)
+
+[node name="Shark4" parent="." unique_id=1463205533 instance=ExtResource("13_y4xud")]
+position = Vector2(-112, 151)

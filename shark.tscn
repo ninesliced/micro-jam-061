@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dnulvn7spfcp3"]
+
+[ext_resource type="Script" uid="uid://be61jovh74joi" path="res://shark.gd" id="1_d5pdq"]
+[ext_resource type="Texture2D" uid="uid://cj5ecoyep2qtt" path="res://src/scripts/block/element/shark.png" id="1_rwmi6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jl5gi"]
+radius = 9.0
+
+[node name="Shark" type="RigidBody2D" unique_id=1758020044]
+mass = 5.0
+gravity_scale = 0.0
+linear_damp = 10.0
+angular_damp = 10.0
+script = ExtResource("1_d5pdq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1930518441]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_rwmi6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2085749931]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_jl5gi")
