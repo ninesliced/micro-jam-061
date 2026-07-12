@@ -232,7 +232,7 @@ func map_to_text():
 	return texte
 
 func global_pos_to_pos(gp: Vector2i):
-	return (gp - Vector2i(-8,-8))/16
+	return (gp - Vector2i(8,8))/16
 	
 # Si il trouve pas de block il renvoie en -1000, -1000
 func shark_at_global_pos(gp: Vector2i, shark: Shark) -> Block:
