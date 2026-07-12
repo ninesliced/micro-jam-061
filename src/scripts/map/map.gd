@@ -12,6 +12,7 @@ static var item_type: Dictionary[String, ItemResource] = {
 	"Seed" = load("res://src/scripts/block/item/seed.tres"),
 	"Tree" = load("res://src/scripts/block/item/tree.tres"),
 	"Nexus" = load("res://src/scripts/block/item/nexus.tres"),	
+	"George" = load("res://src/scripts/block/item/george.tres"),	
 }
 
 
@@ -93,6 +94,7 @@ func place_item(pos: Vector2i, item: Item):
 	a_block_was_updated(pos, self.map[pos])
 
 func destroy_block(pos: Vector2i):
+	
 	self.map.erase(pos)
 	a_block_was_updated(pos, null)
 
@@ -227,7 +229,7 @@ func global_pos_to_pos(gp: Vector2i):
 	return (gp - Vector2i(-8,-8))/16
 	
 # Si il trouve pas de block il renvoie en -1000, -1000
-func shark_at_global_pos(gp: Vector2i, shark: Shark) -> Vector2i:
+func shark_at_global_pos(gp: Vector2i, shark: Shark) -> Block:
 	var pos = global_pos_to_pos(gp)
 	var block = get_current_block(pos)
 	if not block:
@@ -235,13 +237,13 @@ func shark_at_global_pos(gp: Vector2i, shark: Shark) -> Vector2i:
 			var block_next = get_current_block(pos+dpos)
 			if block_next:
 				block_next.add_shark(shark)
-				return pos+dpos
+				return block_next
 		for dpos in Utils.diagobal_directions:
 			var block_next = get_current_block(pos+dpos)
 			if block_next:
 				block_next.add_shark(shark)
-				return pos+dpos
+				return block_next
 		print("Pas de block a sharker")
-		return Vector2i(-1000, -1000)
+		return null
 	block.add_shark(shark)
-	return pos
+	return block

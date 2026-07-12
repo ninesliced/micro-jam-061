@@ -1,6 +1,8 @@
 extends Node
 class_name Block
 
+signal block_erodated
+
 var position: Vector2i
 @export var element: Element
 @export var item: Item = null
@@ -81,6 +83,7 @@ func erodate_block():
 	if self.element == Map.get_element_by_name("Grass"):
 		self.set_element(Map.get_element_by_name("Sand"))
 	else:
+		block_erodated.emit(self)
 		self.map_referance.destroy_block(self.position)
 
 
