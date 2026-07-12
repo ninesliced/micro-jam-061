@@ -7,6 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://bcfaoxrcflib1" path="res://src/scripts/ripple_effect.tscn" id="4_p1hqx"]
 [ext_resource type="Texture2D" uid="uid://b5aovhmcol56m" path="res://src/Assets/seed.png" id="4_uce6o"]
 [ext_resource type="Texture2D" uid="uid://4xf54vrulyey" path="res://src/scripts/block/item/nexus.png" id="5_l26on"]
+[ext_resource type="AudioStream" uid="uid://br3tbbitugqc2" path="res://src/Assets/sfx/shark_die_1.ogg" id="5_lnlia"]
+[ext_resource type="AudioStream" uid="uid://duxdinhis3rh3" path="res://src/Assets/sfx/shark_die_2.ogg" id="6_dyvsu"]
+[ext_resource type="AudioStream" uid="uid://blpsdk70gg3ju" path="res://src/Assets/sfx/shark_die_3.ogg" id="7_bjcji"]
+[ext_resource type="AudioStream" uid="uid://crlewwjh145kd" path="res://src/Assets/sfx/shark_die_therock.ogg" id="8_dyvsu"]
+[ext_resource type="Texture2D" uid="uid://tbbt1sdbt6pg" path="res://src/Assets/therock_inwater.png" id="10_bjcji"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_p1hqx"]
+streams_count = 3
+stream_0/stream = ExtResource("5_lnlia")
+stream_1/stream = ExtResource("6_dyvsu")
+stream_2/stream = ExtResource("7_bjcji")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1hqx"]
 atlas = ExtResource("4_6ojlb")
@@ -47,6 +58,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("10_bjcji")
+}],
+"loop": 1,
+"name": &"fin_therock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6ojlb")
 }, {
 "duration": 1.0,
@@ -74,12 +93,13 @@ target_sprite = NodePath("target_sprite")
 sharking_sprite = ExtResource("2_l26on")
 swimming_sprite = ExtResource("3_k17ol")
 ripple_scene = ExtResource("4_p1hqx")
+death_sound = SubResource("AudioStreamRandomizer_p1hqx")
+therock_death_sound = ExtResource("8_dyvsu")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=852928385]
 scale = Vector2(0.64000005, 0.64)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"therock"
-frame_progress = 0.4840416
+animation = &"fin_therock"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2085749931]
 position = Vector2(3, 0)

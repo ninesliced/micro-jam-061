@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://d4amcuden16uu" path="res://addons/transition_manager/transition_manager.gd" id="1_j74jm"]
 [ext_resource type="Shader" uid="uid://dbmbun1t7tan3" path="res://addons/transition_manager/shaders_example.gdshader" id="2_tqw0h"]
 [ext_resource type="Shader" uid="uid://cp22pnkfbw2yh" path="res://addons/transition_manager/circle.gdshader" id="3_iralm"]
+[ext_resource type="AudioStream" uid="uid://bwpnxyhbmy4wb" path="res://src/Assets/sfx/sfx_ui_gamestart.ogg" id="4_p8yk6"]
+[ext_resource type="AudioStream" uid="uid://8or6himoi6ik" path="res://src/Assets/sfx/sfx_ui_menuclose.ogg" id="5_tuenr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iralm"]
 shader = ExtResource("2_tqw0h")
@@ -210,6 +212,8 @@ color = Color(0.084, 0.0877333, 0.14, 1)
 libraries/ = SubResource("AnimationLibrary_j74jm")
 
 [node name="StartSound" type="AudioStreamPlayer2D" parent="." unique_id=2078541931]
+stream = ExtResource("4_p8yk6")
 
 [node name="EndSound" type="AudioStreamPlayer2D" parent="." unique_id=1884880698]
 position = Vector2(240, 134)
+stream = ExtResource("5_tuenr")

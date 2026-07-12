@@ -12,12 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://ce1jya3bpntgp" path="res://src/Assets/cursor.png" id="10_8wyrr"]
 [ext_resource type="Script" uid="uid://dumbts2y6tyqn" path="res://src/scripts/game/hand.gd" id="11_bligx"]
 [ext_resource type="Script" uid="uid://mbxswhkalsj7" path="res://src/scripts/game/game_over_menu.gd" id="11_jxe1l"]
+[ext_resource type="Script" uid="uid://drrnrpmejgms4" path="res://src/scripts/game/explain_menu.gd" id="11_r76yp"]
+[ext_resource type="Script" uid="uid://dxud0r7wbbral" path="res://src/scripts/game/volume_slider.gd" id="12_0i61h"]
 [ext_resource type="FontFile" uid="uid://bsq1u221rlgqo" path="res://src/Assets/FiraCode-Regular.ttf" id="12_y4xud"]
 [ext_resource type="Texture2D" uid="uid://cdrml66i70qt0" path="res://src/Assets/cursor_square.png" id="13_dhjtw"]
 [ext_resource type="PackedScene" uid="uid://c2ujgqffp5fod" path="res://shark_spawner.tscn" id="13_y4xud"]
 [ext_resource type="Script" uid="uid://ovvv0vjvyors" path="res://src/scripts/game/square_cursor.gd" id="14_jxe1l"]
 [ext_resource type="Texture2D" uid="uid://dkwggfppkmfka" path="res://src/Assets/therock.png" id="15_m6j8e"]
 [ext_resource type="AudioStream" uid="uid://bvnmh15m6l510" path="res://src/Assets/ukele.mp3" id="18_jxe1l"]
+[ext_resource type="AudioStream" uid="uid://bmglf1y73nhpe" path="res://src/Assets/sfx/sea_amb.ogg" id="20_ufdcg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vhovy"]
 font_size = 30
@@ -26,6 +29,17 @@ shadow_color = Color(0.99, 0.58344, 0.11880001, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hdf7i"]
 font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ufdcg"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_12jdw"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_r76yp"]
+font_size = 14
 
 [sub_resource type="LabelSettings" id="LabelSettings_v2t2l"]
 font = ExtResource("12_y4xud")
@@ -135,6 +149,64 @@ game = NodePath("..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=443480858]
 
+[node name="ExplainMenu" type="Control" parent="CanvasLayer" unique_id=912839964]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_quy78")
+script = ExtResource("11_r76yp")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ExplainMenu" unique_id=1598167083]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09411765, 0.09019608, 0.13333334, 0.6313726)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ExplainMenu/ColorRect" unique_id=397897618]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CanvasLayer/ExplainMenu/ColorRect/VBoxContainer" unique_id=1450586058]
+layout_mode = 2
+text = "How to play"
+label_settings = SubResource("LabelSettings_vhovy")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/ExplainMenu/ColorRect/VBoxContainer" unique_id=994767513]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_hdf7i")
+
+[node name="Label3" type="Label" parent="CanvasLayer/ExplainMenu/ColorRect/VBoxContainer" unique_id=2110415710]
+layout_mode = 2
+text = "Click on the drifting items to pick them up
+Place items onto or next to other tiles
+Grow coconut trees on sand and use their fruits to attack sharks
+Trees help make your island more resilient
+If your stone statue dies, it's game over!"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="Retry2" type="Button" parent="CanvasLayer/ExplainMenu/ColorRect/VBoxContainer" unique_id=558297764]
+layout_mode = 2
+text = "Play"
+
 [node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=536414412]
 process_mode = 3
 visible = false
@@ -156,6 +228,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.09411765, 0.09019608, 0.13333334, 0.6313726)
 
+[node name="Label3" type="Label" parent="CanvasLayer/PauseMenu/ColorRect" unique_id=469077926]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 120.0
+offset_right = 577.0
+offset_bottom = 255.0
+text = "Click on the drifting items to pick them up
+Place items onto or next to other tiles
+Build your island with sand
+Grow coconut trees on sand and use their fruits to attack sharks
+Trees help make your island more resilient
+Sharks attack your island
+If your stone statue dies, it's game over!"
+label_settings = SubResource("LabelSettings_ufdcg")
+horizontal_alignment = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/ColorRect" unique_id=587164441]
 layout_mode = 1
 anchors_preset = 8
@@ -163,10 +251,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -213.0
+offset_top = -116.0
+offset_right = -145.0
+offset_bottom = 79.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -184,9 +272,34 @@ label_settings = SubResource("LabelSettings_hdf7i")
 layout_mode = 2
 text = "Resume"
 
+[node name="Retry" type="Button" parent="CanvasLayer/PauseMenu/ColorRect/VBoxContainer" unique_id=1700303260]
+layout_mode = 2
+text = "Retry"
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/PauseMenu/ColorRect/VBoxContainer" unique_id=1875868919]
+layout_mode = 2
+text = "Main menu"
+
 [node name="Quit" type="Button" parent="CanvasLayer/PauseMenu/ColorRect/VBoxContainer" unique_id=1458009684]
 layout_mode = 2
 text = "Quit"
+
+[node name="Label3" type="Label" parent="CanvasLayer/PauseMenu" unique_id=606929028]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 277.5
+offset_right = 170.0
+offset_bottom = 294.5
+text = "Volume"
+label_settings = SubResource("LabelSettings_12jdw")
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/PauseMenu" unique_id=249851081]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 298.5
+offset_right = 217.0
+offset_bottom = 314.5
+script = ExtResource("12_0i61h")
 
 [node name="GameOverMenu" type="Control" parent="CanvasLayer" unique_id=168357457]
 process_mode = 3
@@ -233,6 +346,11 @@ label_settings = SubResource("LabelSettings_vhovy")
 layout_mode = 2
 label_settings = SubResource("LabelSettings_hdf7i")
 
+[node name="Label3" type="Label" parent="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer" unique_id=1891830249]
+layout_mode = 2
+text = "Time"
+label_settings = SubResource("LabelSettings_r76yp")
+
 [node name="Retry" type="Button" parent="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer" unique_id=170503979]
 layout_mode = 2
 text = "Retry"
@@ -262,6 +380,7 @@ script = ExtResource("14_jxe1l")
 
 [node name="Debeugue" type="Label" parent="." unique_id=637421362]
 unique_name_in_owner = true
+visible = false
 offset_left = -208.0
 offset_top = -96.0
 offset_right = 233.0
@@ -271,6 +390,7 @@ label_settings = SubResource("LabelSettings_v2t2l")
 
 [node name="TimeLabel" type="Label" parent="." unique_id=162060379]
 unique_name_in_owner = true
+visible = false
 offset_left = -48.0
 offset_top = -168.0
 offset_right = 57.0
@@ -326,6 +446,14 @@ texture = ExtResource("15_m6j8e")
 stream = ExtResource("18_jxe1l")
 autoplay = true
 
+[node name="AudioStreamPlayerAmb" type="AudioStreamPlayer" parent="." unique_id=270734310]
+stream = ExtResource("20_ufdcg")
+volume_db = -6.613
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/ExplainMenu/ColorRect/VBoxContainer/Retry2" to="CanvasLayer/ExplainMenu" method="_on_retry_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/ColorRect/VBoxContainer/Retry" to="CanvasLayer/PauseMenu" method="_on_resume_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/ColorRect/VBoxContainer/MainMenu" to="CanvasLayer/PauseMenu" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer/Retry" to="CanvasLayer/GameOverMenu" method="_on_retry_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer/MainMenu" to="CanvasLayer/GameOverMenu" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer/Quit" to="CanvasLayer/GameOverMenu" method="_on_quit_pressed"]
