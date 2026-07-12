@@ -133,7 +133,8 @@ func get_desharked():
 	
 func add_shark(shark: Shark):
 	sharks.append(shark)
-	shark.connect("leave_tile", remove_shark)
+	if not shark.is_connected("leave_tile", remove_shark):
+		shark.connect("leave_tile", remove_shark)
 	get_sharked()
 
 func remove_shark(shark: Shark):
