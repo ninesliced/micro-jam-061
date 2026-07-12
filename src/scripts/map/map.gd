@@ -41,6 +41,8 @@ var mouse_input_timer_duration : float= 0.15
 @onready var grass_layer: TileMapLayer = $CanvasGroup/GrassLayer
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+@export var game: Game
+
 var erosion_particles: Dictionary[Vector2i, ErosionParticles] = {}
 const EROSION_PARTICLES = preload("uid://0nmm1clwb373")
 

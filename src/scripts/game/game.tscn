@@ -40,8 +40,9 @@ script = ExtResource("1_50moq")
 map = NodePath("Map")
 game_over_menu = NodePath("CanvasLayer/GameOverMenu")
 
-[node name="Map" parent="." unique_id=1065599540 instance=ExtResource("2_o4j0j")]
+[node name="Map" parent="." unique_id=1065599540 node_paths=PackedStringArray("game") instance=ExtResource("2_o4j0j")]
 unique_name_in_owner = true
+game = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=711049568]
 position = Vector2(8, 8)

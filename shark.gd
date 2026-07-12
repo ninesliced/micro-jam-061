@@ -17,6 +17,8 @@ var sharking_targets: Array[Block]
 
 @export var sharking_sprite: Texture2D
 @export var swimming_sprite: Texture2D
+
+@export var ripple_scene: PackedScene
 signal leave_tile
 # Called when the node enters the scene tree for the first time.
 
@@ -93,3 +95,17 @@ func block_sharked(block : Block)->void:
 	update_sharking_behavior()
 func _on_tile_detector_body_exited(body: Node2D) -> void:
 	leave_tile.emit(self)
+
+func die()->void:
+	var new_ripple : RippleEffect = ripple_scene.instantiate()
+	spawner.add_child(new_ripple)
+	new_ripple.global_position = global_position
+	new_ripple.on_spawn()
+	leave_tile.emit(self)
+	queue_free()
+
+
+func _on_button_pressed() -> void:
+	if spawner.game.get_hand() and spawner.game.get_hand().type == Pickable.PickableType.George:
+		spawner.game.use_hand()
+		die()
