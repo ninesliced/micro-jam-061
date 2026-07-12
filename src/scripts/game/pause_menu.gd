@@ -3,6 +3,8 @@ extends Control
 @onready var resume: Button = $ColorRect/VBoxContainer/Resume
 @onready var quit: Button = $ColorRect/VBoxContainer/Quit
 
+var pausable = true
+
 func _ready() -> void:
 	resume.pressed.connect(unpause)
 	quit.pressed.connect(func():
@@ -11,6 +13,8 @@ func _ready() -> void:
 
 
 func pause():
+	if not pausable:
+		return
 	show()
 	get_tree().paused = true
 

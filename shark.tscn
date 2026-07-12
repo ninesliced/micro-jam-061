@@ -15,6 +15,14 @@ region = Rect2(0, 0, 50, 34)
 atlas = ExtResource("4_6ojlb")
 region = Rect2(50, 0, 50, 34)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ojlb"]
+atlas = ExtResource("2_l26on")
+region = Rect2(0, 0, 340, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd3ew"]
+atlas = ExtResource("2_l26on")
+region = Rect2(340, 0, 340, 180)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
 animations = [{
 "frames": [{
@@ -38,7 +46,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_l26on")
+"texture": SubResource("AtlasTexture_6ojlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sd3ew")
 }],
 "loop": 1,
 "name": &"therock",
@@ -65,7 +76,8 @@ swimming_sprite = ExtResource("3_k17ol")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=852928385]
 scale = Vector2(0.64000005, 0.64)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"fin"
+animation = &"therock"
+frame_progress = 0.4840416
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2085749931]
 position = Vector2(3, 0)

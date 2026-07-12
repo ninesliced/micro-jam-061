@@ -5,6 +5,7 @@ extends Node2D
 
 var time = 0.0
 
+
 var hand: Pickable = null:
 	set(value):
 		hand = value
@@ -35,6 +36,8 @@ func _process(delta: float) -> void:
 	%TimeLabel.text = "%d:%02d" % [int(time) / 60, int(fmod(time, 60.0))]
 
 @export var game_over_menu: Control
+@onready var pause_menu: Control = $CanvasLayer/PauseMenu
 
 func game_over():
+	pause_menu.pausable = false
 	game_over_menu.pause()

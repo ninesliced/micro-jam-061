@@ -19,12 +19,13 @@ var sharking_targets: Array[Block]
 @export var swimming_sprite: Texture2D
 signal leave_tile
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 
 var is_therock = false
+const SELF_DESTROY_SOUND = preload("uid://cqeh50c4by6pn")
 
+func _ready() -> void:
+	is_therock = randf() < 0.1
 
 
 func _physics_process(delta):
@@ -57,9 +58,12 @@ func _physics_process(delta):
 		sprite.rotation = global_transform.inverse().get_rotation()
 		if velocity.x < 0: sprite.flip_h = velocity.x < 0
 	elif is_sharking:
-		sprite.scale = Vector2(0.2, 0.2)
 		sprite.flip_h = false
-		sprite.play("eating")
+		sprite.play("eating" if not is_therock else "therock")
+		if is_therock:
+			sprite.scale = Vector2.ONE * 0.2
+		else:
+			sprite.scale = Vector2.ONE * 0.7
 		sprite.rotation = get_angle_to(sharking_targets[0].global_pos)
 		target_sprite.global_position = sharking_targets[0].global_pos
 

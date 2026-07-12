@@ -231,6 +231,7 @@ layout_mode = 2
 text = "Quit"
 
 [node name="Hand" type="Node2D" parent="CanvasLayer" unique_id=719623884]
+process_mode = 3
 z_index = 1000
 script = ExtResource("11_bligx")
 hand_sprite = ExtResource("10_8wyrr")
@@ -266,32 +267,32 @@ horizontal_alignment = 1
 
 [node name="SharkSpawner" parent="." unique_id=1407215147 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-490, 7)
-min_spawn_delay = 1000.0
-max_spawn_delay = 1000.0
+min_spawn_delay = 15.0
+max_spawn_delay = 40.0
 game = NodePath("..")
 
 [node name="SharkSpawner2" parent="." unique_id=1105034384 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-204, -344)
-min_spawn_delay = 1000.0
-max_spawn_delay = 1000.0
+min_spawn_delay = 15.0
+max_spawn_delay = 40.0
 game = NodePath("..")
 
 [node name="SharkSpawner3" parent="." unique_id=1588704642 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(366, -296)
-min_spawn_delay = 1000.0
-max_spawn_delay = 1000.0
+min_spawn_delay = 15.0
+max_spawn_delay = 40.0
 game = NodePath("..")
 
 [node name="SharkSpawner4" parent="." unique_id=1495083789 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(454, 105)
-min_spawn_delay = 1000.0
-max_spawn_delay = 1000.0
+min_spawn_delay = 15.0
+max_spawn_delay = 40.0
 game = NodePath("..")
 
 [node name="SharkSpawner5" parent="." unique_id=322584694 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-23, 268)
-min_spawn_delay = 1000.0
-max_spawn_delay = 1000.0
+min_spawn_delay = 15.0
+max_spawn_delay = 40.0
 game = NodePath("..")
 
 [node name="Therock" type="Sprite2D" parent="." unique_id=677793947]

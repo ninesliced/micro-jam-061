@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cqeh50c4by6pn"]
+
+[ext_resource type="Script" uid="uid://bqntql43nw80t" path="res://src/scripts/utils/self_destroy_sound.gd" id="1_ppan2"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" unique_id=498960652]
+script = ExtResource("1_ppan2")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
