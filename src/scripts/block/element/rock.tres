@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ElementResource" format=3 uid="uid://d04aty05paiaa"]
+
+[ext_resource type="Script" uid="uid://cvu4shs4ydd2q" path="res://src/scripts/block/element/element_resource.gd" id="1_cx8pb"]
+
+[resource]
+script = ExtResource("1_cx8pb")
+name = "Rock"
+terrain = 2
+metadata/_custom_type_script = "uid://cvu4shs4ydd2q"

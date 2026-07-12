@@ -3,13 +3,15 @@ class_name Map
 
 static var element_type: Dictionary[String, ElementResource] = {
 	"Sand" = load("res://src/scripts/block/element/sand.tres"),
-	"Grass" = load("res://src/scripts/block/element/grass.tres")
+	"Grass" = load("res://src/scripts/block/element/grass.tres"),
+	"Rock" = load("res://src/scripts/block/element/rock.tres")
 }
 
 
 static var item_type: Dictionary[String, ItemResource] = {
 	"Seed" = load("res://src/scripts/block/item/seed.tres"),
 	"Tree" = load("res://src/scripts/block/item/tree.tres"),
+	"Nexus" = load("res://src/scripts/block/item/nexus.tres"),	
 }
 
 
@@ -37,7 +39,8 @@ var erosion_particles: Dictionary[Vector2i, ErosionParticles] = {}
 const EROSION_PARTICLES = preload("uid://0nmm1clwb373")
 
 func _ready() -> void:
-	place_element(Vector2i(0,0), get_element_by_name("Sand"))
+	place_element(Vector2i(0,0), get_element_by_name("Rock"))
+	place_item(Vector2i(0,0), get_item_by_name("Nexus"))
 
 
 func is_element_placable(pos: Vector2i):
@@ -73,6 +76,11 @@ func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 			Pickable.PickableType.Seed:
 				place_item(pos, get_item_by_name("Seed"))
 				return true
+	
+	# Reparer le sable
+	if current_block and current_block.element.element_name == "Sand" and picakble and picakble.type == Pickable.PickableType.Sand:
+		current_block.deserodate(0)
+		return true
 	return false
 
 

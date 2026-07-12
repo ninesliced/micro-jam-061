@@ -8,6 +8,7 @@ var position: Vector2i
 @export var map_referance: Map
 
 var erosion_particles: ErosionParticles
+var baby_sharked = false
 
 func _init(pos, map, element_, item_ = null):
 	self.position = pos
@@ -51,11 +52,15 @@ func _on_random_tick_element():
 	if not self.element.erosion_proba:
 		return
 	var random_f = randf()
-	if random_f < self.element.erosion_proba and can_erodate():
-		self.element.erosion_level += 1
-		self.map_referance.a_block_was_updated(self.position, self)
-		if self.element.erosion_level > self.element.erosion_max:
-			erodate_block()
+	if random_f < self.element.erosion_proba:
+		if can_erodate():
+			self.element.erosion_level += 1
+			self.map_referance.a_block_was_updated(self.position, self)
+			if self.element.erosion_level > self.element.erosion_max:
+				erodate_block()
+		elif can_deserodate():
+			self.element.erosion_level = max(self.element.erosion_level - 1, 0)
+			self.map_referance.a_block_was_updated(self.position, self)
 
 func erodate_block():
 	if self.element == Map.get_element_by_name("Grass"):
@@ -71,11 +76,25 @@ func has_water_next_to() -> bool:
 	return false
 
 func can_erodate() -> bool:
-	return has_water_next_to()
+	return has_water_next_to() and baby_sharked
+
+func can_deserodate() -> bool:
+	return not has_water_next_to()
+
 
 func _on_random_tick():
 	_on_random_tick_item()
 	_on_random_tick_element()
+
+func deserodate(value = 0):
+	self.element.erosion_level = 0
+	self.map_referance.a_block_was_updated(self.position, self)
+
+func get_sharked():
+	baby_sharked = true
+	
+func get_desharked():
+	baby_sharked = false
 
 func _to_string() -> String:
 	return "<Block:elem=%s,item=%s>" % [element.name if element else "null", item.name if item else "null"]

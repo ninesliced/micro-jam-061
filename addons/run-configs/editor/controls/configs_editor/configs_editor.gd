@@ -136,4 +136,3 @@ func _update_value(property: StringName, value):
 		
 	var config := configs[selected]
 	config.set(property, value)
-
