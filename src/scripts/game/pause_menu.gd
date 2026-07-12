@@ -3,7 +3,7 @@ extends Control
 @onready var resume: Button = $ColorRect/VBoxContainer/Resume
 @onready var quit: Button = $ColorRect/VBoxContainer/Quit
 
-var pausable = true
+var pausable = false
 
 func _ready() -> void:
 	resume.pressed.connect(unpause)
@@ -30,3 +30,13 @@ func _input(event: InputEvent) -> void:
 			unpause()
 		else:
 			pause()
+
+
+func _on_resume_2_pressed() -> void:
+	get_tree().paused = false
+	TransitionManager.change_scene(load("res://src/buffer_retry.tscn"), "square_gradient")
+
+
+func _on_main_menu_pressed() -> void:
+	get_tree().paused = false
+	TransitionManager.change_scene(load("res://src/main.tscn"), "square_gradient")

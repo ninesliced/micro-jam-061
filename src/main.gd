@@ -8,3 +8,7 @@ func _on_play_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _process(delta: float) -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

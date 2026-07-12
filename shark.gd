@@ -22,6 +22,8 @@ var sharking_targets: Array[Block]
 signal leave_tile
 # Called when the node enters the scene tree for the first time.
 
+@export  var death_sound: AudioStream
+@export  var therock_death_sound: AudioStream
 
 var is_therock = false
 const SELF_DESTROY_SOUND = preload("uid://cqeh50c4by6pn")
@@ -33,8 +35,11 @@ func _ready() -> void:
 func _physics_process(delta):
 	if is_moving:
 		
-		sprite.play("fin")
-		sprite.scale = Vector2(1, 1)
+		sprite.play("fin" if not is_therock else "fin_therock")
+		if is_therock:
+			sprite.scale = Vector2.ONE * 0.2
+		else:
+			sprite.scale = Vector2.ONE * 1.0
 		# Calculate direction from body to target
 		var direction = global_position.direction_to(target)
 		var velocity : Vector2 = direction * acceleration
@@ -103,6 +108,13 @@ func die()->void:
 	new_ripple.on_spawn()
 	leave_tile.emit(self)
 	queue_free()
+	
+	var sfx: AudioStreamPlayer2D = SELF_DESTROY_SOUND.instantiate()
+	sfx.stream = death_sound
+	if is_therock:
+		sfx.stream = therock_death_sound
+	sfx.global_position = global_position
+	get_parent().add_child(sfx)
 
 
 func _on_button_pressed() -> void:

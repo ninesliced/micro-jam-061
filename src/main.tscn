@@ -5,6 +5,8 @@
 [ext_resource type="FontFile" uid="uid://dgvhx610iqt3h" path="res://src/Assets/Vibur-Regular.ttf" id="2_3cfgd"]
 [ext_resource type="Theme" uid="uid://b6qkmtr8mp6ee" path="res://src/Assets/main_theme.tres" id="3_fyndt"]
 [ext_resource type="Script" uid="uid://b73j7vackc2nk" path="res://src/main_credits.gd" id="4_3cfgd"]
+[ext_resource type="Script" uid="uid://dxud0r7wbbral" path="res://src/scripts/game/volume_slider.gd" id="5_rlaii"]
+[ext_resource type="AudioStream" uid="uid://bmglf1y73nhpe" path="res://src/Assets/sfx/sea_amb.ogg" id="6_kmhfv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kmhfv"]
 shader = ExtResource("1_5q4o7")
@@ -37,6 +39,11 @@ shadow_offset = Vector2(4.57, 6.03)
 stacked_outline_count = 1
 stacked_outline_0/size = 9
 stacked_outline_0/color = Color(0.177, 0.31466672, 0.59, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5mrjc"]
+font_size = 12
+
+[sub_resource type="Theme" id="Theme_rlaii"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kmhfv"]
 outline_size = 4
@@ -71,10 +78,10 @@ label_settings = SubResource("LabelSettings_g4v7s")
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 50.0
-offset_top = 106.0
-offset_right = 90.0
-offset_bottom = 162.0
+offset_left = 51.0
+offset_top = 115.0
+offset_right = 91.0
+offset_bottom = 198.0
 grow_vertical = 2
 theme = ExtResource("3_fyndt")
 theme_override_constants/separation = 10
@@ -89,15 +96,33 @@ layout_mode = 2
 text = "Quit"
 alignment = 0
 
+[node name="Label3" type="Label" parent="VBoxContainer" unique_id=1536575732]
+layout_mode = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_5mrjc")
+
+[node name="HSlider" type="HSlider" parent="." unique_id=271571142]
+custom_minimum_size = Vector2(100, 0)
+offset_left = 47.0
+offset_top = 196.0
+offset_right = 147.0
+offset_bottom = 212.0
+theme = SubResource("Theme_rlaii")
+script = ExtResource("5_rlaii")
+
 [node name="Label2" type="Label" parent="." unique_id=2025820609]
-offset_left = 42.0
-offset_top = 308.0
-offset_right = 111.0
-offset_bottom = 331.0
+offset_left = 44.0
+offset_top = 311.0
+offset_right = 113.0
+offset_bottom = 334.0
 theme = ExtResource("3_fyndt")
 text = "A game by "
 label_settings = SubResource("LabelSettings_kmhfv")
 script = ExtResource("4_3cfgd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=718823823]
+stream = ExtResource("6_kmhfv")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
