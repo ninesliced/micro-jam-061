@@ -4,12 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://da0t467v22tbh" path="res://src/scripts/map/map.tscn" id="2_o4j0j"]
 [ext_resource type="PackedScene" uid="uid://bc5gstts3lrlq" path="res://src/scripts/pickable/pickable_spawner.tscn" id="2_watld"]
 [ext_resource type="Script" uid="uid://31407ldqsotx" path="res://src/scripts/pickable/pickable.gd" id="3_50moq"]
+[ext_resource type="Script" uid="uid://chxqg4srpnktr" path="res://src/scripts/game/camera_2d.gd" id="3_432l6"]
 [ext_resource type="Resource" uid="uid://djl3qpu07l5qq" path="res://src/scripts/pickable/Resources/pickable_sand.tres" id="4_quy78"]
 [ext_resource type="Resource" uid="uid://ceeu6iqhruiyw" path="res://src/scripts/pickable/Resources/pickable_seed.tres" id="5_hdf7i"]
 [ext_resource type="PackedScene" uid="uid://oypaj1bkq7jd" path="res://src/scripts/pickable/pickable_item.tscn" id="6_8wyrr"]
 [ext_resource type="Theme" uid="uid://b6qkmtr8mp6ee" path="res://src/Assets/main_theme.tres" id="8_quy78"]
 [ext_resource type="Script" uid="uid://buafy44ml1hn" path="res://src/scripts/game/pause_menu.gd" id="9_hdf7i"]
 [ext_resource type="Texture2D" uid="uid://ce1jya3bpntgp" path="res://src/Assets/cursor.png" id="10_8wyrr"]
+[ext_resource type="FontFile" uid="uid://bsq1u221rlgqo" path="res://src/Assets/FiraCode-Regular.ttf" id="12_y4xud"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vhovy"]
 font_size = 30
@@ -19,12 +21,17 @@ shadow_color = Color(0.99, 0.58344, 0.11880001, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_hdf7i"]
 font_size = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_v2t2l"]
+font = ExtResource("12_y4xud")
+
 [node name="Game" type="Node2D" unique_id=778324019]
 script = ExtResource("1_50moq")
 
 [node name="Map" parent="." unique_id=1065599540 instance=ExtResource("2_o4j0j")]
+unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=711049568]
+script = ExtResource("3_432l6")
 
 [node name="PickableSpawner" parent="." unique_id=1137790638 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
 position = Vector2(-362, -80)
@@ -145,3 +152,4 @@ offset_top = -178.0
 offset_right = 120.0
 offset_bottom = 81.0
 text = "HJLKJFHKDJSHKLFJHSD"
+label_settings = SubResource("LabelSettings_v2t2l")

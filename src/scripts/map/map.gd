@@ -24,6 +24,9 @@ static func get_item_by_name(name) -> Item:
 	return Item.new(item_type[name])
 
 var map: Dictionary[Vector2i, Block] = {}
+var top_left_corner: Vector2i = Vector2i(0,0)
+var bottom_right_corner: Vector2i = Vector2i(0,0)
+var max_size_map: int = 1
 
 @onready var item_layer: TileMapLayer = $ItemLayer
 @onready var element_layer: TileMapLayer = $ElementLayer
@@ -85,7 +88,24 @@ func a_block_was_updated(pos: Vector2i, block: Block):
 	element_layer.block_updated(pos, block)
 	grass_layer.block_updated(pos, block)
 	item_layer.block_updated(pos, block)
+	process_size()
 
+func process_size():
+	var min_i = 1000
+	var max_i = -1000
+	var min_j = 1000
+	var max_j = -1000
+	for pos in map.keys():
+		min_i = min(min_i, pos.x)
+		max_i = max(max_i, pos.x)
+		min_j = min(min_j, pos.y)
+		max_j = max(max_j, pos.y)
+	top_left_corner = Vector2i(min_i, min_j)
+	bottom_right_corner = Vector2i(max_i, max_j)
+	if min_i == 1000:
+		max_size_map = 1
+	else:
+		max_size_map = max(max_i - min_i, max_j - min_j)
 
 var selected = 0
 
