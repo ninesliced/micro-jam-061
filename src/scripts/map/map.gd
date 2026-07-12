@@ -94,7 +94,8 @@ func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 	if current_block != null and current_block.item and current_block.item.item_name == "George" and not picakble:
 		$"..".set_hand(load("res://src/scripts/pickable/Resources/pickable_george.tres"))
 		current_block.set_item(get_item_by_name("Vide"))
-		return true
+		a_block_was_updated(current_block.position, current_block)
+		return false
 	return false
 
 
@@ -167,6 +168,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event is InputEventMouse:
 		if event is InputEventMouseButton and event.is_pressed() and mouse_input_timer <= 0:
+			print("mouse clicked")
 			mouse_input_timer = mouse_input_timer_duration
 			var pos = item_layer.to_local(get_global_mouse_position())
 			var grid_pos = item_layer.local_to_map(pos)
