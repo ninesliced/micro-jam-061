@@ -86,7 +86,7 @@ func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 		
 	# recup george
 	if current_block != null and current_block.item and current_block.item.item_name == "George" and not picakble:
-		current_block.set_item("Vide")
+		current_block.set_item(get_item_by_name("Vide"))
 		$"..".hand = Pickable.PickableType.George
 		return true
 	return false
@@ -221,7 +221,7 @@ func map_to_text():
 	return texte
 
 func global_pos_to_pos(gp: Vector2i):
-	return (gp - Vector2i(-8,-8))/16
+	return (gp - Vector2i(8,8))/16
 	
 # Si il trouve pas de block il renvoie en -1000, -1000
 func shark_at_global_pos(gp: Vector2i, shark: Shark) -> Block:

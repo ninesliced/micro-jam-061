@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bsxonklff7rji" path="res://src/scripts/block/element/shark_smol.png" id="2_d5pdq"]
 [ext_resource type="Texture2D" uid="uid://ct1l7j2vft3mm" path="res://src/Assets/shark_fin.png" id="3_k17ol"]
 [ext_resource type="Texture2D" uid="uid://b5aovhmcol56m" path="res://src/Assets/seed.png" id="4_uce6o"]
+[ext_resource type="Texture2D" uid="uid://4xf54vrulyey" path="res://src/scripts/block/item/nexus.png" id="5_l26on"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jl5gi"]
 radius = 6.5
@@ -11,13 +12,14 @@ radius = 6.5
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqlge"]
 radius = 6.5
 
-[node name="Shark" type="RigidBody2D" unique_id=1758020044 node_paths=PackedStringArray("tile_detector")]
+[node name="Shark" type="RigidBody2D" unique_id=1758020044 node_paths=PackedStringArray("tile_detector", "target_sprite")]
 mass = 5.0
 gravity_scale = 0.0
 linear_damp = 10.0
 angular_damp = 10.0
 script = ExtResource("1_d5pdq")
 tile_detector = NodePath("TileDetector")
+target_sprite = NodePath("target_sprite")
 sharking_sprite = ExtResource("2_d5pdq")
 swimming_sprite = ExtResource("3_k17ol")
 
@@ -39,6 +41,10 @@ shape = SubResource("CircleShape2D_tqlge")
 [node name="Sprite2D" type="Sprite2D" parent="TileDetector" unique_id=1716466873]
 position = Vector2(11, 0)
 texture = ExtResource("4_uce6o")
+
+[node name="target_sprite" type="Sprite2D" parent="." unique_id=2011074338]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_l26on")
 
 [connection signal="body_entered" from="TileDetector" to="." method="_on_tile_detector_body_entered"]
 [connection signal="body_exited" from="TileDetector" to="." method="_on_tile_detector_body_exited"]
