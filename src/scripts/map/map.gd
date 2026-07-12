@@ -37,6 +37,7 @@ var max_size_map: int = 1
 
 func _ready() -> void:
 	place_element(Vector2i(0,0), get_element_by_name("Rock"))
+	place_item(Vector2i(0,0), get_item_by_name("Nexus"))
 
 
 func is_element_placable(pos: Vector2i):
@@ -166,7 +167,7 @@ func _process(delta: float) -> void:
 		for pos in map.keys():
 			var block = map[pos]
 			block._on_random_tick()
-	#%Debeugue.text = map_to_text()
+	%Debeugue.text = map_to_text()
 	
 func map_to_text():
 	var texte = ""

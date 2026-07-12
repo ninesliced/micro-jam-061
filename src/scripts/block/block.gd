@@ -49,11 +49,15 @@ func _on_random_tick_element():
 	if not self.element.erosion_proba:
 		return
 	var random_f = randf()
-	if random_f < self.element.erosion_proba and can_erodate():
-		self.element.erosion_level += 1
-		self.map_referance.a_block_was_updated(self.position, self)
-		if self.element.erosion_level > self.element.erosion_max:
-			erodate_block()
+	if random_f < self.element.erosion_proba:
+		if can_erodate():
+			self.element.erosion_level += 1
+			self.map_referance.a_block_was_updated(self.position, self)
+			if self.element.erosion_level > self.element.erosion_max:
+				erodate_block()
+		else:
+			self.element.erosion_level = max(self.element.erosion_level - 1, 0)
+			self.map_referance.a_block_was_updated(self.position, self)
 
 func erodate_block():
 	if self.element == Map.get_element_by_name("Grass"):
