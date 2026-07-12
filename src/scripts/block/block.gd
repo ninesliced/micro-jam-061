@@ -5,7 +5,7 @@ signal block_erodated
 
 var position: Vector2i
 @export var element: Element
-@export var item: Item = null
+@export var item: Item
 
 @export var map_referance: Map
 
@@ -17,14 +17,17 @@ func _init(pos, map, element_, item_ = null):
 	self.position = pos
 	self.map_referance = map
 	self.element = element_
-	self.item = item_
+	if item_ == null:
+		self.item = Map.get_item_by_name("Vide")
+	else:
+		self.item = item_
 	# self.item.current_state = 0
 	# self.element.erosion_level = 0
 
 func set_element(element_: Element):
 	self.element = element_
-	if element and element.element_name == "Sand":
-		item = null
+	self.element.erosion_level = 0
+	item = Map.get_item_by_name("Vide")
 		
 
 func set_item(new_item):
@@ -63,7 +66,15 @@ func _on_random_tick_item():
 				if self.item.current_state != 0:
 					self.item.current_state = self.item.current_state
 					self.map_referance.a_block_was_updated(self.position, self)
-
+		elif self.item.item_name == "Vide":
+			if had_tree_next_to():
+				self.item.current_state += 1
+				if self.item.current_state >= self.item.max_random_state:
+					set_item(Map.get_item_by_name("George"))
+					self.map_referance.a_block_was_updated(self.position, self)
+			else:
+				self.item.current_state = max(self.item.current_state - 1, 0)
+				
 func _on_random_tick_element():
 	if not self.element.erosion_proba:
 		return
@@ -93,6 +104,12 @@ func has_water_next_to() -> bool:
 			return true
 	return false
 
+func had_tree_next_to() -> bool:
+	for dpos in Utils.four_directions:
+		var block = self.map_referance.get_current_block(dpos+self.position)
+		if block and block.item and block.item.item_name == "Tree":
+			return true
+	return false
 func can_erodate() -> bool:
 	return has_water_next_to() and baby_sharked
 

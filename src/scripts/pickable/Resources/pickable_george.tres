@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Pickable" format=3 uid="uid://bwico3d4flppg"]
+
+[ext_resource type="Script" uid="uid://31407ldqsotx" path="res://src/scripts/pickable/pickable.gd" id="1_l2o2r"]
+
+[sub_resource type="Gradient" id="Gradient_l2o2r"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l2o2r"]
+gradient = SubResource("Gradient_l2o2r")
+
+[resource]
+script = ExtResource("1_l2o2r")
+sprite = SubResource("GradientTexture2D_l2o2r")
+type = 4
+metadata/_custom_type_script = "uid://31407ldqsotx"
