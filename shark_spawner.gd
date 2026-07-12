@@ -12,7 +12,7 @@ class_name SharkSpawner
 var spawn_delay : float:
 	get:
 		return randf_range(min_spawn_delay, max_spawn_delay)
-@export var game: Node2D
+@export var game: Game
 
 var _timer : float = 10.0
 # Called when the node enters the scene tree for the first time.
@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 func spawn_random() -> void:
 	var new_shark := shark_scene.instantiate() as Shark
 	add_child(new_shark)
+	new_shark.spawner = self
 	var angle = randf_range(0, TAU)
 	var distance = randf_range(0, spawn_radius)
 	var random_pos = Vector2.RIGHT.rotated(angle) * distance

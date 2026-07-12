@@ -11,6 +11,7 @@
 [ext_resource type="Theme" uid="uid://b6qkmtr8mp6ee" path="res://src/Assets/main_theme.tres" id="8_quy78"]
 [ext_resource type="Script" uid="uid://buafy44ml1hn" path="res://src/scripts/game/pause_menu.gd" id="9_hdf7i"]
 [ext_resource type="Texture2D" uid="uid://ce1jya3bpntgp" path="res://src/Assets/cursor.png" id="10_8wyrr"]
+[ext_resource type="Script" uid="uid://dumbts2y6tyqn" path="res://src/scripts/game/hand.gd" id="11_bligx"]
 [ext_resource type="FontFile" uid="uid://bsq1u221rlgqo" path="res://src/Assets/FiraCode-Regular.ttf" id="12_y4xud"]
 [ext_resource type="PackedScene" uid="uid://c2ujgqffp5fod" path="res://shark_spawner.tscn" id="13_y4xud"]
 
@@ -30,8 +31,9 @@ font_size = 18
 shadow_size = 3
 shadow_color = Color(0.99, 0.58344, 0.11880001, 1)
 
-[node name="Game" type="Node2D" unique_id=778324019]
+[node name="Game" type="Node2D" unique_id=778324019 node_paths=PackedStringArray("map")]
 script = ExtResource("1_50moq")
+map = NodePath("Map")
 
 [node name="Map" parent="." unique_id=1065599540 instance=ExtResource("2_o4j0j")]
 unique_name_in_owner = true
@@ -147,6 +149,9 @@ layout_mode = 2
 text = "Quit"
 
 [node name="Hand" type="Node2D" parent="." unique_id=719623884]
+z_index = 1000
+script = ExtResource("11_bligx")
+hand_sprite = ExtResource("10_8wyrr")
 
 [node name="HandSprite" type="Sprite2D" parent="Hand" unique_id=824478699]
 unique_name_in_owner = true
@@ -172,20 +177,26 @@ text = "0:00"
 label_settings = SubResource("LabelSettings_432l6")
 horizontal_alignment = 1
 
-[node name="Shark" parent="." unique_id=1758020044 instance=ExtResource("13_y4xud")]
+[node name="Shark" parent="." unique_id=1758020044 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-70, -86)
+game = NodePath("..")
 
-[node name="SharkSpawner" parent="." unique_id=1407215147 instance=ExtResource("13_y4xud")]
+[node name="SharkSpawner" parent="." unique_id=1407215147 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-490, 7)
+game = NodePath("..")
 
-[node name="SharkSpawner2" parent="." unique_id=1105034384 instance=ExtResource("13_y4xud")]
+[node name="SharkSpawner2" parent="." unique_id=1105034384 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-204, -344)
+game = NodePath("..")
 
-[node name="SharkSpawner3" parent="." unique_id=1588704642 instance=ExtResource("13_y4xud")]
+[node name="SharkSpawner3" parent="." unique_id=1588704642 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(366, -296)
+game = NodePath("..")
 
-[node name="SharkSpawner4" parent="." unique_id=1495083789 instance=ExtResource("13_y4xud")]
+[node name="SharkSpawner4" parent="." unique_id=1495083789 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(454, 105)
+game = NodePath("..")
 
-[node name="SharkSpawner5" parent="." unique_id=322584694 instance=ExtResource("13_y4xud")]
+[node name="SharkSpawner5" parent="." unique_id=322584694 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-23, 268)
+game = NodePath("..")
