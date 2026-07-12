@@ -1,6 +1,8 @@
 class_name Game
 extends Node2D
 
+@export var map: Map
+
 var time = 0.0
 
 var hand: Pickable = null:
