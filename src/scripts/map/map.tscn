@@ -3,10 +3,32 @@
 [ext_resource type="Script" uid="uid://24ecg34gn1vx" path="res://src/scripts/map/map.gd" id="1_tx736"]
 [ext_resource type="TileSet" uid="uid://btd2kipa6ly2y" path="res://src/scripts/map/item_tile_set.tres" id="2_62esv"]
 [ext_resource type="TileSet" uid="uid://cpmu7c5wdr8wy" path="res://src/scripts/map/element_tile_set.tres" id="2_cxrw2"]
+[ext_resource type="Shader" uid="uid://b0851bg1rx87x" path="res://src/scripts/map/ocean.gdshader" id="2_ljdov"]
 [ext_resource type="Script" uid="uid://1wu8vbfghfbb" path="res://src/scripts/map/map_canvas_group.gd" id="3_ayfhm"]
 [ext_resource type="Script" uid="uid://c22xc4pbioden" path="res://src/scripts/map/item_layer.gd" id="3_u40d8"]
 [ext_resource type="Script" uid="uid://bexcbi1uv46vv" path="res://src/scripts/map/element_layer.gd" id="4_jrvfg"]
 [ext_resource type="Shader" uid="uid://bqv76apercqtv" path="res://src/scripts/map/map.gdshader" id="6_famy8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ayfhm"]
+shader = ExtResource("2_ljdov")
+shader_parameter/palette = PackedColorArray(0.5081734, 0.8238213, 0.96610445, 1, 0.49803922, 0.8509804, 0.9607843, 1)
+shader_parameter/highlight_color = Color(0.6706657, 0.9041419, 0.98061854, 1)
+shader_parameter/scroll = 0.0
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/min_uv_perspective = 1.0
+shader_parameter/max_uv_perspective = 1.0
+shader_parameter/wave_scale = 3.51
+shader_parameter/noise_octaves = 3
+shader_parameter/noise_scale = 10.0
+shader_parameter/noise_frequency = 3.0
+shader_parameter/noise_value = 0.0
+shader_parameter/wave_time_scale = 0.1
+shader_parameter/highlight_noise_octaves = 3
+shader_parameter/highlight_noise_scale = 14.895
+shader_parameter/highlight_noise_frequency = 3.0
+shader_parameter/highlight_noise_value = 0.0
+shader_parameter/highlight_threshold = 0.695
+shader_parameter/highlight_time_scale = 0.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_famy8"]
 shader = ExtResource("6_famy8")
@@ -24,6 +46,13 @@ shader_parameter/total_duration = 10.0
 
 [node name="Map" type="Node2D" unique_id=1065599540]
 script = ExtResource("1_tx736")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1405230777]
+material = SubResource("ShaderMaterial_ayfhm")
+offset_left = -366.22223
+offset_top = -206.0
+offset_right = 366.22223
+offset_bottom = 206.0
 
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=86772544]
 material = SubResource("ShaderMaterial_famy8")

@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_pva6h")
 name = "Sand"
-erosion_proba = 0.01
+erosion_proba = 0.1
 erosion_max = 5
 metadata/_custom_type_script = "uid://cvu4shs4ydd2q"

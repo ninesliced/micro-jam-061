@@ -7,6 +7,8 @@ var position: Vector2i
 
 @export var map_referance: Map
 
+var erosion_particles: ErosionParticles
+
 func _init(pos, map, element_, item_ = null):
 	self.position = pos
 	self.map_referance = map

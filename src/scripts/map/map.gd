@@ -33,6 +33,9 @@ var max_size_map: int = 1
 @onready var grass_layer: TileMapLayer = $CanvasGroup/GrassLayer
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+var erosion_particles: Dictionary[Vector2i, ErosionParticles] = {}
+const EROSION_PARTICLES = preload("uid://0nmm1clwb373")
+
 func _ready() -> void:
 	place_element(Vector2i(0,0), get_element_by_name("Sand"))
 
@@ -90,6 +93,7 @@ func a_block_was_updated(pos: Vector2i, block: Block):
 	grass_layer.block_updated(pos, block)
 	item_layer.block_updated(pos, block)
 	process_size()
+	update_erosion_particles(pos, block)
 
 func process_size():
 	var min_i = 1000
@@ -113,6 +117,25 @@ func play_sound(position: Vector2, audio: AudioStream):
 	audio_stream_player.stream = audio
 	audio_stream_player.play()
 
+func update_erosion_particles(pos: Vector2i, block: Block):
+	if block and block.element and block.element.erosion_level > 0:
+		var ptc: ErosionParticles
+		if not erosion_particles.has(pos):
+			ptc = EROSION_PARTICLES.instantiate()
+			ptc.global_position = Vector2(pos) * 16.0 + Vector2(8, 8)
+			add_child(ptc)
+			erosion_particles[pos] = ptc
+		ptc = erosion_particles[pos]
+		ptc.speed_scale = remap(block.element.erosion_level, 0.0, block.element.erosion_max, 1.0, 3.0)
+		ptc.amount = int(floor(remap(block.element.erosion_level, 0.0, block.element.erosion_max, 2, 8)))
+		ptc.scale_amount_min = remap(block.element.erosion_level, 0.0, block.element.erosion_max, 1.0, 3.0)
+		ptc.scale_amount_max = remap(block.element.erosion_level, 0.0, block.element.erosion_max, 3.0, 8.0)
+		ptc.restart()
+	
+	elif not block or not block.element or block.element.erosion_level <= 0:
+		if erosion_particles.has(pos):
+			erosion_particles[pos].queue_free()
+			erosion_particles.erase(pos)
 
 var selected = 0
 
@@ -122,9 +145,9 @@ func _input(event: InputEvent) -> void:
 	
 	if event is InputEventMouse:
 		var pressed = (
-			(event is InputEventMouseButton and event.is_pressed()) or 
-			(event is InputEventMouseMotion and 
-				(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or 
+			(event is InputEventMouseButton and event.is_pressed()) or
+			(event is InputEventMouseMotion and
+				(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or
 				Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT))
 			)
 		)
