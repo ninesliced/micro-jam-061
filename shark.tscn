@@ -4,18 +4,33 @@
 [ext_resource type="Texture2D" uid="uid://ct1l7j2vft3mm" path="res://src/Assets/shark_fin.png" id="2_d5pdq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jl5gi"]
-radius = 7.0
+radius = 6.5
 
-[node name="Shark" type="RigidBody2D" unique_id=1758020044]
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqlge"]
+radius = 4.0
+
+[node name="Shark" type="RigidBody2D" unique_id=1758020044 node_paths=PackedStringArray("tile_detector")]
 mass = 5.0
 gravity_scale = 0.0
 linear_damp = 10.0
 angular_damp = 10.0
 script = ExtResource("1_d5pdq")
+tile_detector = NodePath("TileDetector")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1930518441]
 scale = Vector2(0.64000005, 0.64)
 texture = ExtResource("2_d5pdq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2085749931]
+position = Vector2(3, 0)
 shape = SubResource("CircleShape2D_jl5gi")
+
+[node name="TileDetector" type="Area2D" parent="." unique_id=1503953905]
+position = Vector2(-1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileDetector" unique_id=1049506788]
+position = Vector2(11, 0)
+shape = SubResource("CircleShape2D_tqlge")
+
+[connection signal="body_entered" from="TileDetector" to="." method="_on_tile_detector_body_entered"]
+[connection signal="body_exited" from="TileDetector" to="." method="_on_tile_detector_body_exited"]

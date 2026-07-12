@@ -31,8 +31,9 @@ font_size = 18
 shadow_size = 3
 shadow_color = Color(0.99, 0.58344, 0.11880001, 1)
 
-[node name="Game" type="Node2D" unique_id=778324019]
+[node name="Game" type="Node2D" unique_id=778324019 node_paths=PackedStringArray("map")]
 script = ExtResource("1_50moq")
+map = NodePath("Map")
 
 [node name="Map" parent="." unique_id=1065599540 instance=ExtResource("2_o4j0j")]
 unique_name_in_owner = true
@@ -176,20 +177,26 @@ text = "0:00"
 label_settings = SubResource("LabelSettings_432l6")
 horizontal_alignment = 1
 
-[node name="Shark" parent="." unique_id=1758020044 instance=ExtResource("13_y4xud")]
+[node name="Shark" parent="." unique_id=1758020044 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-70, -86)
+game = NodePath("..")
 
-[node name="SharkSpawner" parent="." unique_id=1407215147 instance=ExtResource("13_y4xud")]
+[node name="SharkSpawner" parent="." unique_id=1407215147 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-490, 7)
+game = NodePath("..")
 
-[node name="SharkSpawner2" parent="." unique_id=1105034384 instance=ExtResource("13_y4xud")]
+[node name="SharkSpawner2" parent="." unique_id=1105034384 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-204, -344)
+game = NodePath("..")
 
-[node name="SharkSpawner3" parent="." unique_id=1588704642 instance=ExtResource("13_y4xud")]
+[node name="SharkSpawner3" parent="." unique_id=1588704642 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(366, -296)
+game = NodePath("..")
 
-[node name="SharkSpawner4" parent="." unique_id=1495083789 instance=ExtResource("13_y4xud")]
+[node name="SharkSpawner4" parent="." unique_id=1495083789 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(454, 105)
+game = NodePath("..")
 
-[node name="SharkSpawner5" parent="." unique_id=322584694 instance=ExtResource("13_y4xud")]
+[node name="SharkSpawner5" parent="." unique_id=322584694 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-23, 268)
+game = NodePath("..")

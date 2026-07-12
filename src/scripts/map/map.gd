@@ -226,10 +226,22 @@ func map_to_text():
 func global_pos_to_pos(gp: Vector2i):
 	return (gp - Vector2i(-8,-8))/16
 	
-func shark_at_global_pos(gp: Vector2i, shark: Shark):
+# Si il trouve pas de block il renvoie en -1000, -1000
+func shark_at_global_pos(gp: Vector2i, shark: Shark) -> Vector2i:
 	var pos = global_pos_to_pos(gp)
 	var block = get_current_block(pos)
 	if not block:
+		for dpos in Utils.four_directions:
+			var block_next = get_current_block(pos+dpos)
+			if block_next:
+				block_next.add_shark(shark)
+				return pos+dpos
+		for dpos in Utils.diagobal_directions:
+			var block_next = get_current_block(pos+dpos)
+			if block_next:
+				block_next.add_shark(shark)
+				return pos+dpos
 		print("Pas de block a sharker")
-		return
+		return Vector2i(-1000, -1000)
 	block.add_shark(shark)
+	return pos

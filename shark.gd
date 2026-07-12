@@ -9,6 +9,10 @@ var acceleration : float = 1000
 var max_speed : float = 80
 var is_moving : bool = true
 var angular_force = 50000
+@export var tile_detector: Area2D
+var spawner : SharkSpawner
+
+signal leave_tile
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -41,3 +45,15 @@ func _physics_process(delta):
 	
 	sprite.global_position = round(global_position)
 	sprite.rotation = global_transform.inverse().get_rotation()
+
+
+
+func _on_tile_detector_body_entered(body: Node2D) -> void:
+	if body is TileMapLayer:
+		if spawner.game.map:
+			spawner.game.map.shark_at_global_pos(tile_detector.global_position, self)
+
+
+
+func _on_tile_detector_body_exited(body: Node2D) -> void:
+	leave_tile.emit(self)
