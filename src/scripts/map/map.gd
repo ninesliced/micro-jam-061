@@ -86,7 +86,7 @@ func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 		
 	# recup george
 	if current_block != null and current_block.item and current_block.item.item_name == "George" and not picakble:
-		current_block.set_item("Vide")
+		current_block.set_item(get_item_by_name("Vide"))
 		$"..".hand = Pickable.PickableType.George
 		return true
 	return false
