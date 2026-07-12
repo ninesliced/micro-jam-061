@@ -13,6 +13,7 @@ static var item_type: Dictionary[String, ItemResource] = {
 	"Tree" = load("res://src/scripts/block/item/tree.tres"),
 	"Nexus" = load("res://src/scripts/block/item/nexus.tres"),	
 	"George" = load("res://src/scripts/block/item/george.tres"),	
+	"Vide" = load("res://src/scripts/block/item/vide.tres"),	
 }
 
 
@@ -72,7 +73,7 @@ func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 	# Place item
 	var current_block = get_current_block(pos)
 	# Si y'a un block et que il que y'a pas d'item dessus
-	if current_block != null and current_block.item == null and picakble:
+	if current_block != null and current_block.item and current_block.item.item_name == "Vide" and picakble:
 		match picakble.type:
 			Pickable.PickableType.Seed:
 				place_item(pos, get_item_by_name("Seed"))
@@ -81,6 +82,12 @@ func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 	# Reparer le sable
 	if current_block and current_block.element.element_name == "Sand" and picakble and picakble.type == Pickable.PickableType.Sand:
 		current_block.deserodate(0)
+		return true
+		
+	# recup george
+	if current_block != null and current_block.item and current_block.item.item_name == "George" and not picakble:
+		current_block.set_item("Vide")
+		$"..".hand = Pickable.PickableType.George
 		return true
 	return false
 
@@ -94,7 +101,6 @@ func place_item(pos: Vector2i, item: Item):
 	a_block_was_updated(pos, self.map[pos])
 
 func destroy_block(pos: Vector2i):
-	
 	self.map.erase(pos)
 	a_block_was_updated(pos, null)
 

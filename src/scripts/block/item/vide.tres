@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://dei0sr4kqcaym"]
+
+[ext_resource type="Script" uid="uid://cxe6xhurg1qks" path="res://src/scripts/block/item/item_resource.gd" id="1_ydsav"]
+
+[resource]
+script = ExtResource("1_ydsav")
+name = "Vide"
+metadata/_custom_type_script = "uid://cxe6xhurg1qks"
