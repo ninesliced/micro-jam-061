@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://31407ldqsotx" path="res://src/scripts/pickable/pickable.gd" id="3_50moq"]
 [ext_resource type="Script" uid="uid://chxqg4srpnktr" path="res://src/scripts/game/camera_2d.gd" id="3_432l6"]
 [ext_resource type="Resource" uid="uid://djl3qpu07l5qq" path="res://src/scripts/pickable/Resources/pickable_sand.tres" id="4_quy78"]
-[ext_resource type="Resource" uid="uid://ceeu6iqhruiyw" path="res://src/scripts/pickable/Resources/pickable_seed.tres" id="5_hdf7i"]
 [ext_resource type="PackedScene" uid="uid://oypaj1bkq7jd" path="res://src/scripts/pickable/pickable_item.tscn" id="6_8wyrr"]
 [ext_resource type="Theme" uid="uid://b6qkmtr8mp6ee" path="res://src/Assets/main_theme.tres" id="8_quy78"]
 [ext_resource type="Script" uid="uid://buafy44ml1hn" path="res://src/scripts/game/pause_menu.gd" id="9_hdf7i"]
@@ -50,53 +49,65 @@ script = ExtResource("3_432l6")
 
 [node name="PickableSpawner" parent="." unique_id=1137790638 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
 position = Vector2(-362, -80)
-spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78"), ExtResource("5_hdf7i")])
 possible_directions = Array[Vector2]([Vector2(1, 0)])
 pickable_item_scene = ExtResource("6_8wyrr")
-min_spawn_delay = 8.0
-max_spawn_delay = 20.0
+min_spawn_delay = 15.0
+max_spawn_delay = 25.0
+spawn_radius = 30.0
 game = NodePath("..")
 
 [node name="PickableSpawner2" parent="." unique_id=1495946904 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
 position = Vector2(397, 29)
-spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78"), ExtResource("5_hdf7i")])
 possible_directions = Array[Vector2]([Vector2(-1, 0)])
 pickable_item_scene = ExtResource("6_8wyrr")
+min_spawn_delay = 15.0
+max_spawn_delay = 25.0
+spawn_radius = 30.0
 game = NodePath("..")
 
 [node name="PickableSpawner3" parent="." unique_id=1583906644 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
 position = Vector2(-352, 116)
-spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78"), ExtResource("5_hdf7i")])
 possible_directions = Array[Vector2]([Vector2(1, 0)])
 pickable_item_scene = ExtResource("6_8wyrr")
+min_spawn_delay = 15.0
+max_spawn_delay = 25.0
+spawn_radius = 30.0
 game = NodePath("..")
 
 [node name="PickableSpawner4" parent="." unique_id=927634884 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
 position = Vector2(-139, -221)
-spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78"), ExtResource("5_hdf7i")])
 possible_directions = Array[Vector2]([Vector2(0, 1)])
 pickable_item_scene = ExtResource("6_8wyrr")
+min_spawn_delay = 15.0
+max_spawn_delay = 25.0
+spawn_radius = 30.0
 game = NodePath("..")
 
 [node name="PickableSpawner5" parent="." unique_id=368390371 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
 position = Vector2(195, -227)
-spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78"), ExtResource("5_hdf7i")])
 possible_directions = Array[Vector2]([Vector2(0, 1)])
 pickable_item_scene = ExtResource("6_8wyrr")
+min_spawn_delay = 15.0
+max_spawn_delay = 25.0
+spawn_radius = 30.0
 game = NodePath("..")
 
 [node name="PickableSpawner6" parent="." unique_id=1981779095 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
 position = Vector2(-211, 211)
-spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78"), ExtResource("5_hdf7i")])
 possible_directions = Array[Vector2]([Vector2(0, -1)])
 pickable_item_scene = ExtResource("6_8wyrr")
+min_spawn_delay = 15.0
+max_spawn_delay = 25.0
+spawn_radius = 30.0
 game = NodePath("..")
 
 [node name="PickableSpawner7" parent="." unique_id=599553766 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
 position = Vector2(136, 217)
-spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78"), ExtResource("5_hdf7i")])
 possible_directions = Array[Vector2]([Vector2(0, -1)])
 pickable_item_scene = ExtResource("6_8wyrr")
+min_spawn_delay = 15.0
+max_spawn_delay = 25.0
+spawn_radius = 30.0
 game = NodePath("..")
 
 [node name="StartSpawn" parent="." unique_id=1552174519 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
@@ -268,32 +279,37 @@ horizontal_alignment = 1
 
 [node name="SharkSpawner" parent="." unique_id=1407215147 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-490, 7)
-min_spawn_delay = 15.0
-max_spawn_delay = 40.0
+min_spawn_delay = 25.0
+max_spawn_delay = 45.0
+spawn_radius = 25.0
 game = NodePath("..")
 
 [node name="SharkSpawner2" parent="." unique_id=1105034384 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-204, -344)
-min_spawn_delay = 15.0
-max_spawn_delay = 40.0
+min_spawn_delay = 25.0
+max_spawn_delay = 45.0
+spawn_radius = 25.0
 game = NodePath("..")
 
 [node name="SharkSpawner3" parent="." unique_id=1588704642 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(366, -296)
-min_spawn_delay = 15.0
-max_spawn_delay = 40.0
+min_spawn_delay = 25.0
+max_spawn_delay = 45.0
+spawn_radius = 25.0
 game = NodePath("..")
 
 [node name="SharkSpawner4" parent="." unique_id=1495083789 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(454, 105)
-min_spawn_delay = 15.0
-max_spawn_delay = 40.0
+min_spawn_delay = 25.0
+max_spawn_delay = 45.0
+spawn_radius = 25.0
 game = NodePath("..")
 
 [node name="SharkSpawner5" parent="." unique_id=322584694 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-23, 268)
-min_spawn_delay = 15.0
-max_spawn_delay = 40.0
+min_spawn_delay = 25.0
+max_spawn_delay = 45.0
+spawn_radius = 25.0
 game = NodePath("..")
 
 [node name="Therock" type="Sprite2D" parent="." unique_id=677793947]

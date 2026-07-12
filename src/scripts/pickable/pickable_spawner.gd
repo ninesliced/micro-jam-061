@@ -2,6 +2,7 @@ extends Node2D
 class_name PickableSpawner
 
 @export var spawnable_items : Array[Pickable]
+@export var spawnable_probabilities : Array[float]
 @export var possible_directions : Array[Vector2]
 @export var pickable_item_scene : PackedScene
 
@@ -46,7 +47,9 @@ func spawn_random() -> void:
 	var random_pos = Vector2.RIGHT.rotated(angle) * distance
 	new_item.position = random_pos
 	new_item.moving_direction = possible_directions.pick_random()
-	new_item.resource = spawnable_items.pick_random()
+	var rng = RandomNumberGenerator.new()
+
+	new_item.resource = spawnable_items[rng.rand_weighted(spawnable_probabilities)]
 	new_item.load_resource()
 	
 	
