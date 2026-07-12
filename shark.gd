@@ -89,3 +89,13 @@ func block_sharked(block : Block)->void:
 	update_sharking_behavior()
 func _on_tile_detector_body_exited(body: Node2D) -> void:
 	leave_tile.emit(self)
+
+func die()->void:
+	leave_tile.emit(self)
+	queue_free()
+
+
+func _on_button_pressed() -> void:
+	if spawner.game.get_hand().type == Pickable.PickableType.George:
+		spawner.game.use_hand()
+		die()
