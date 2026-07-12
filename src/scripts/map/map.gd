@@ -25,7 +25,7 @@ static func get_item_by_name(name) -> Item:
 
 var map: Dictionary[Vector2i, Block] = {}
 
-@onready var item_layer: TileMapLayer = $CanvasGroup/ItemLayer
+@onready var item_layer: TileMapLayer = $ItemLayer
 @onready var element_layer: TileMapLayer = $CanvasGroup/ElementLayer
 @onready var grass_layer: TileMapLayer = $CanvasGroup/GrassLayer
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
