@@ -12,15 +12,18 @@
 script = ExtResource("1_tx736")
 
 [node name="ElementLayer" type="TileMapLayer" parent="." unique_id=703666881]
+z_index = 1
 material = SubResource("ShaderMaterial_tv6tg")
 tile_set = ExtResource("2_cxrw2")
 script = ExtResource("4_jrvfg")
 
 [node name="GrassLayer" type="TileMapLayer" parent="." unique_id=1498368570]
+z_index = 1
 material = SubResource("ShaderMaterial_tv6tg")
 tile_set = ExtResource("2_cxrw2")
 script = ExtResource("4_jrvfg")
 
 [node name="ItemLayer" type="TileMapLayer" parent="." unique_id=1745838176]
+z_index = 1
 tile_set = ExtResource("2_62esv")
 script = ExtResource("3_u40d8")
