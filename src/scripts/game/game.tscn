@@ -25,6 +25,11 @@ font_size = 8
 [sub_resource type="LabelSettings" id="LabelSettings_v2t2l"]
 font = ExtResource("12_y4xud")
 
+[sub_resource type="LabelSettings" id="LabelSettings_432l6"]
+font_size = 18
+shadow_size = 3
+shadow_color = Color(0.99, 0.58344, 0.11880001, 1)
+
 [node name="Game" type="Node2D" unique_id=778324019]
 script = ExtResource("1_50moq")
 
@@ -32,6 +37,7 @@ script = ExtResource("1_50moq")
 unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=711049568]
+position = Vector2(8, 8)
 script = ExtResource("3_432l6")
 
 [node name="PickableSpawner" parent="." unique_id=1137790638 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
@@ -148,12 +154,26 @@ texture = ExtResource("10_8wyrr")
 
 [node name="Debeugue" type="Label" parent="." unique_id=637421362]
 unique_name_in_owner = true
-offset_left = -321.0
-offset_top = -178.0
-offset_right = 120.0
-offset_bottom = 81.0
+offset_left = -312.0
+offset_top = -172.0
+offset_right = 129.0
+offset_bottom = 87.0
 text = "."
 label_settings = SubResource("LabelSettings_v2t2l")
+
+[node name="TimeLabel" type="Label" parent="." unique_id=162060379]
+unique_name_in_owner = true
+offset_left = -48.0
+offset_top = -168.0
+offset_right = 57.0
+offset_bottom = -126.0
+theme = ExtResource("8_quy78")
+text = "0:00"
+label_settings = SubResource("LabelSettings_432l6")
+horizontal_alignment = 1
+
+[node name="Shark" parent="." unique_id=1758020044 instance=ExtResource("13_y4xud")]
+position = Vector2(-70, -86)
 
 [node name="SharkSpawner" parent="." unique_id=1407215147 instance=ExtResource("13_y4xud")]
 position = Vector2(-490, 7)

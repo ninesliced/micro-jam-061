@@ -60,6 +60,7 @@ script = ExtResource("3_ayfhm")
 
 [node name="ElementLayer" type="TileMapLayer" parent="CanvasGroup" unique_id=703666881]
 material = SubResource("ShaderMaterial_tv6tg")
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0)
 tile_set = ExtResource("2_cxrw2")
 script = ExtResource("4_jrvfg")
 
