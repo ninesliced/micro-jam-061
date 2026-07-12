@@ -4,10 +4,28 @@ class_name SharkSpawner
 @export var shark_scene : PackedScene
 
 @export var spawn_enable : bool = true
-@export var min_spawn_delay : float = 5.0
-@export var max_spawn_delay : float = 10.0
+
+
+@export var start_min_spawn_delay : float = 5.0
+@export var start_max_spawn_delay : float = 10.0
+
+@export var endgame_min_spawn_delay : float = 5.0
+@export var endgame_max_spawn_delay : float = 10.0
  
 @export var spawn_radius :float = 35.0
+var elapsed_game_time : float = 0
+var endgame_time : float = 150
+var time_to_endgame_ratio: float:
+	get:
+		if elapsed_game_time >= endgame_time : return 1
+		return elapsed_game_time/endgame_time
+
+var min_spawn_delay : float:
+	get:
+		return start_min_spawn_delay + time_to_endgame_ratio*(endgame_min_spawn_delay- start_max_spawn_delay) 
+var max_spawn_delay : float:
+	get:
+		return start_max_spawn_delay + time_to_endgame_ratio*(endgame_max_spawn_delay- start_max_spawn_delay) 
 
 var spawn_delay : float:
 	get:

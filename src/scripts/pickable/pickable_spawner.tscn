@@ -1,7 +1,12 @@
 [gd_scene format=3 uid="uid://bc5gstts3lrlq"]
 
 [ext_resource type="Script" uid="uid://8rau5ivrfxam" path="res://src/scripts/pickable/pickable_spawner.gd" id="1_pfj86"]
+[ext_resource type="Script" uid="uid://31407ldqsotx" path="res://src/scripts/pickable/pickable.gd" id="2_3whij"]
+[ext_resource type="Resource" uid="uid://djl3qpu07l5qq" path="res://src/scripts/pickable/Resources/pickable_sand.tres" id="3_6r1x6"]
+[ext_resource type="Resource" uid="uid://ceeu6iqhruiyw" path="res://src/scripts/pickable/Resources/pickable_seed.tres" id="4_q6d3a"]
 
 [node name="PickableSpawner" type="Node2D" unique_id=1137790638]
 y_sort_enabled = true
 script = ExtResource("1_pfj86")
+spawnable_items = Array[ExtResource("2_3whij")]([ExtResource("3_6r1x6"), ExtResource("4_q6d3a")])
+spawnable_probabilities = Array[float]([5.0, 1.0])
