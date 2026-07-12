@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c2ujgqffp5fod" path="res://shark_spawner.tscn" id="13_y4xud"]
 [ext_resource type="Script" uid="uid://ovvv0vjvyors" path="res://src/scripts/game/square_cursor.gd" id="14_jxe1l"]
 [ext_resource type="Texture2D" uid="uid://dkwggfppkmfka" path="res://src/Assets/therock.png" id="15_m6j8e"]
+[ext_resource type="AudioStream" uid="uid://bvnmh15m6l510" path="res://src/Assets/ukele.mp3" id="18_jxe1l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vhovy"]
 font_size = 30
@@ -51,8 +52,8 @@ script = ExtResource("3_432l6")
 position = Vector2(-362, -80)
 possible_directions = Array[Vector2]([Vector2(1, 0)])
 pickable_item_scene = ExtResource("6_8wyrr")
-min_spawn_delay = 15.0
-max_spawn_delay = 25.0
+min_spawn_delay = 13.0
+max_spawn_delay = 22.0
 spawn_radius = 30.0
 game = NodePath("..")
 
@@ -60,8 +61,8 @@ game = NodePath("..")
 position = Vector2(397, 29)
 possible_directions = Array[Vector2]([Vector2(-1, 0)])
 pickable_item_scene = ExtResource("6_8wyrr")
-min_spawn_delay = 15.0
-max_spawn_delay = 25.0
+min_spawn_delay = 13.0
+max_spawn_delay = 22.0
 spawn_radius = 30.0
 game = NodePath("..")
 
@@ -69,8 +70,8 @@ game = NodePath("..")
 position = Vector2(-352, 116)
 possible_directions = Array[Vector2]([Vector2(1, 0)])
 pickable_item_scene = ExtResource("6_8wyrr")
-min_spawn_delay = 15.0
-max_spawn_delay = 25.0
+min_spawn_delay = 13.0
+max_spawn_delay = 22.0
 spawn_radius = 30.0
 game = NodePath("..")
 
@@ -78,8 +79,8 @@ game = NodePath("..")
 position = Vector2(-139, -221)
 possible_directions = Array[Vector2]([Vector2(0, 1)])
 pickable_item_scene = ExtResource("6_8wyrr")
-min_spawn_delay = 15.0
-max_spawn_delay = 25.0
+min_spawn_delay = 13.0
+max_spawn_delay = 22.0
 spawn_radius = 30.0
 game = NodePath("..")
 
@@ -87,8 +88,8 @@ game = NodePath("..")
 position = Vector2(195, -227)
 possible_directions = Array[Vector2]([Vector2(0, 1)])
 pickable_item_scene = ExtResource("6_8wyrr")
-min_spawn_delay = 15.0
-max_spawn_delay = 25.0
+min_spawn_delay = 13.0
+max_spawn_delay = 22.0
 spawn_radius = 30.0
 game = NodePath("..")
 
@@ -96,8 +97,8 @@ game = NodePath("..")
 position = Vector2(-211, 211)
 possible_directions = Array[Vector2]([Vector2(0, -1)])
 pickable_item_scene = ExtResource("6_8wyrr")
-min_spawn_delay = 15.0
-max_spawn_delay = 25.0
+min_spawn_delay = 13.0
+max_spawn_delay = 22.0
 spawn_radius = 30.0
 game = NodePath("..")
 
@@ -105,14 +106,15 @@ game = NodePath("..")
 position = Vector2(136, 217)
 possible_directions = Array[Vector2]([Vector2(0, -1)])
 pickable_item_scene = ExtResource("6_8wyrr")
-min_spawn_delay = 15.0
-max_spawn_delay = 25.0
+min_spawn_delay = 13.0
+max_spawn_delay = 22.0
 spawn_radius = 30.0
 game = NodePath("..")
 
 [node name="StartSpawn" parent="." unique_id=1552174519 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
 position = Vector2(-181, 46)
 spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78")])
+spawnable_probabilities = Array[float]([5.0])
 possible_directions = Array[Vector2]([Vector2(0, -1)])
 pickable_item_scene = ExtResource("6_8wyrr")
 min_spawn_delay = 0.0
@@ -123,6 +125,7 @@ game = NodePath("..")
 [node name="StartSpawn2" parent="." unique_id=1147130467 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
 position = Vector2(178, -59)
 spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78")])
+spawnable_probabilities = Array[float]([5.0])
 possible_directions = Array[Vector2]([Vector2(0, -1)])
 pickable_item_scene = ExtResource("6_8wyrr")
 min_spawn_delay = 0.0
@@ -279,27 +282,37 @@ horizontal_alignment = 1
 
 [node name="SharkSpawner" parent="." unique_id=1407215147 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-490, 7)
-spawn_radius = 25.0
+start_min_spawn_delay = 30.0
+start_max_spawn_delay = 45.0
+spawn_radius = 8.0
 game = NodePath("..")
 
 [node name="SharkSpawner2" parent="." unique_id=1105034384 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-204, -344)
-spawn_radius = 25.0
+start_min_spawn_delay = 30.0
+start_max_spawn_delay = 45.0
+spawn_radius = 8.0
 game = NodePath("..")
 
 [node name="SharkSpawner3" parent="." unique_id=1588704642 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(366, -296)
-spawn_radius = 25.0
+start_min_spawn_delay = 30.0
+start_max_spawn_delay = 45.0
+spawn_radius = 8.0
 game = NodePath("..")
 
 [node name="SharkSpawner4" parent="." unique_id=1495083789 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(454, 105)
-spawn_radius = 25.0
+start_min_spawn_delay = 30.0
+start_max_spawn_delay = 45.0
+spawn_radius = 8.0
 game = NodePath("..")
 
 [node name="SharkSpawner5" parent="." unique_id=322584694 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-23, 268)
-spawn_radius = 25.0
+start_min_spawn_delay = 30.0
+start_max_spawn_delay = 45.0
+spawn_radius = 8.0
 game = NodePath("..")
 
 [node name="Therock" type="Sprite2D" parent="." unique_id=677793947]
@@ -308,6 +321,10 @@ z_index = 10
 position = Vector2(7.0000005, 7)
 scale = Vector2(0.06, 0.059999973)
 texture = ExtResource("15_m6j8e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2083292213]
+stream = ExtResource("18_jxe1l")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer/Retry" to="CanvasLayer/GameOverMenu" method="_on_retry_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer/MainMenu" to="CanvasLayer/GameOverMenu" method="_on_main_menu_pressed"]

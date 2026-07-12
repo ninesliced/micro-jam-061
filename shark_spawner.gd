@@ -14,7 +14,7 @@ class_name SharkSpawner
  
 @export var spawn_radius :float = 35.0
 var elapsed_game_time : float = 0
-var endgame_time : float = 150
+var endgame_time : float = 180
 var time_to_endgame_ratio: float:
 	get:
 		if elapsed_game_time >= endgame_time : return 1
@@ -22,7 +22,7 @@ var time_to_endgame_ratio: float:
 
 var min_spawn_delay : float:
 	get:
-		return start_min_spawn_delay + time_to_endgame_ratio*(endgame_min_spawn_delay- start_max_spawn_delay) 
+		return start_min_spawn_delay + time_to_endgame_ratio*(endgame_min_spawn_delay- start_min_spawn_delay) 
 var max_spawn_delay : float:
 	get:
 		return start_max_spawn_delay + time_to_endgame_ratio*(endgame_max_spawn_delay- start_max_spawn_delay) 
@@ -40,6 +40,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	elapsed_game_time += delta
 	if spawn_enable:
 		_timer -= delta
 		if _timer <= 0:
