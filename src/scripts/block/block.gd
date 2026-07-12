@@ -12,6 +12,8 @@ func _init(pos, map, element_, item_ = null):
 	self.map_referance = map
 	self.element = element_
 	self.item = item_
+	# self.item.current_state = 0
+	# self.element.erosion_level = 0
 
 func set_element(element_):
 	self.element = element_
@@ -20,9 +22,10 @@ func set_item(new_item):
 	self.item = new_item
 	self.item.current_state = 0
 	self.element.erosion_level = 0
-	if new_item == Map.item_type["Tree"]:
+	print(item, item.item_name)
+	if new_item and new_item.item_name == "Tree":
 		if not has_water_next_to():
-			set_element(Map.element_type["Grass"])
+			set_element(Map.get_element_by_name("Grass"))
 
 func _on_random_tick_item():
 	# Si il a un voisin arbre alors il peut placer un une seed
@@ -33,10 +36,13 @@ func _on_random_tick_item():
 		return
 	var random_f = randf()
 	if random_f < self.item.random_state_update:
-		if self.item == Map.item_type["Seed"]:
+		print(random_f, self.item.random_state_update)
+		if self.item.item_name == "Seed":
 			self.item.current_state += 1
+			print("updated", self.item.current_state)
+
 			if self.item.current_state >= self.item.max_random_state:
-				self.set_item(Map.item_type["Tree"])
+				self.set_item(Map.get_item_by_name("Tree"))
 			self.map_referance.a_block_was_updated(self.position, self)
 
 func _on_random_tick_element():
@@ -50,8 +56,8 @@ func _on_random_tick_element():
 			erodate_block()
 
 func erodate_block():
-	if self.element == Map.element_type["Grass"]:
-		self.set_element(Map.element_type["Sand"])
+	if self.element == Map.get_element_by_name("Grass"):
+		self.set_element(Map.get_element_by_name("Sand"))
 	else:
 		self.map_referance.destroy_block(self.position)
 
