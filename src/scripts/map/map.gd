@@ -73,6 +73,11 @@ func interact_at(pos: Vector2i, picakble: Pickable) -> bool:
 			Pickable.PickableType.Seed:
 				place_item(pos, get_item_by_name("Seed"))
 				return true
+	
+	# Reparer le sable
+	if current_block and current_block.element.element_name == "Sand" and picakble and picakble.type == Pickable.PickableType.Sand:
+		current_block.deserodate(0)
+		return true
 	return false
 
 
