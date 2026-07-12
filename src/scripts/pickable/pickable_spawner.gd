@@ -8,6 +8,8 @@ class_name PickableSpawner
 @export var spawn_enable : bool = true
 @export var min_spawn_delay : float = 5.0
 @export var max_spawn_delay : float = 10.0
+ 
+@export var spawn_radius :float = 35.0
 
 var spawn_delay : float:
 	get:
@@ -32,6 +34,10 @@ func _process(delta: float) -> void:
 func spawn_random() -> void:
 	var new_item : PickableItem = pickable_item_scene.instantiate() as PickableItem
 	add_child(new_item)
+	var angle = randf_range(0, TAU)
+	var distance = randf_range(0, spawn_radius)
+	var random_pos = Vector2.RIGHT.rotated(angle) * distance
+	new_item.position = random_pos
 	new_item.moving_direction = possible_directions.pick_random()
 	new_item.resource = spawnable_items.pick_random()
 	new_item.load_resource()
