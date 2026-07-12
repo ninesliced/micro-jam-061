@@ -1,0 +1,2 @@
+class_name ErosionParticles
+extends CPUParticles2D

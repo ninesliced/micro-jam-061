@@ -152,7 +152,7 @@ offset_left = -321.0
 offset_top = -178.0
 offset_right = 120.0
 offset_bottom = 81.0
-text = "HJLKJFHKDJSHKLFJHSD"
+text = "."
 label_settings = SubResource("LabelSettings_v2t2l")
 
 [node name="Shark" parent="." unique_id=1758020044 instance=ExtResource("13_y4xud")]

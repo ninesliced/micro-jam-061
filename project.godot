@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Utils="*uid://dep4jrhnu15bk"
 RunConfigManager="*uid://bdmd27xjo35cf"
+Init="*uid://cb083op2ind0l"
 
 [debug]
 
@@ -28,7 +29,6 @@ gdscript/warnings/unused_parameter=0
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
