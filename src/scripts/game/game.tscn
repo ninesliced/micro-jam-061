@@ -167,10 +167,10 @@ script = ExtResource("14_jxe1l")
 
 [node name="Debeugue" type="Label" parent="." unique_id=637421362]
 unique_name_in_owner = true
-offset_left = -312.0
-offset_top = -172.0
-offset_right = 129.0
-offset_bottom = 87.0
+offset_left = -208.0
+offset_top = -96.0
+offset_right = 233.0
+offset_bottom = 163.0
 text = "."
 label_settings = SubResource("LabelSettings_v2t2l")
 
