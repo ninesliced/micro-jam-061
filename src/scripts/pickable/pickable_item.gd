@@ -11,7 +11,7 @@ class_name PickableItem
 		set_water_inline_on(v)
 		
 @export var moving_direction: Vector2
-@export var move_speed : float = 14
+@export var move_speed : float = 10
 
 var mat : ShaderMaterial
 @export var sink_height : int = 4:
@@ -20,7 +20,7 @@ var mat : ShaderMaterial
 		set_inline_width(v)
 		
 var _death_timer : float = 10
-@export var lifespan : float = 60
+@export var lifespan : float = 120
 		
 func _ready() -> void:
 	mat = sprite_2d.material as ShaderMaterial

@@ -87,6 +87,7 @@ radius = 6.0
 physics_material_override = SubResource("PhysicsMaterial_hdf7i")
 gravity_scale = 0.0
 lock_rotation = true
+linear_damp_mode = 1
 script = ExtResource("1_1ko1y")
 sprite_2d = NodePath("Sprite2D")
 
