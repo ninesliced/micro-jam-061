@@ -13,6 +13,9 @@ var angular_force = 50000
 var spawner : SharkSpawner
 var is_sharking : bool = false
 var sharking_targets: Array[Block]
+
+@export var sharking_sprite: Texture2D
+@export var swimming_sprite: Texture2D
 signal leave_tile
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,6 +26,7 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	if is_moving:
+		sprite.texture = swimming_sprite
 		# Calculate direction from body to target
 		var direction = global_position.direction_to(target)
 		var velocity : Vector2 = direction * acceleration
@@ -47,6 +51,7 @@ func _physics_process(delta):
 		sprite.global_position = round(global_position)
 		sprite.rotation = global_transform.inverse().get_rotation()
 	elif is_sharking:
+		sprite.texture = sharking_sprite
 		sprite.rotation = get_angle_to(sharking_targets[0].position)
 		
 func update_sharking_behavior()->void:
@@ -63,7 +68,8 @@ func _on_tile_detector_body_entered(body: Node2D) -> void:
 			var target_block: Block = spawner.game.map.shark_at_global_pos(tile_detector.global_position, self)
 			if target_block:
 				is_sharking = true
-				target_block.connect("block_erodated", block_sharked)
+				if not target_block.is_connected("block_erodated", block_sharked):
+					target_block.connect("block_erodated", block_sharked)
 				if not sharking_targets.has(target_block):
 					sharking_targets.append(target_block)
 			update_sharking_behavior()

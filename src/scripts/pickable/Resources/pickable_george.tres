@@ -1,14 +1,26 @@
 [gd_resource type="Resource" script_class="Pickable" format=3 uid="uid://bwico3d4flppg"]
 
+[ext_resource type="AudioStream" uid="uid://cww6e1gruk41k" path="res://src/Assets/sfx/Fantozzi-SandL1.ogg" id="1_ffglp"]
 [ext_resource type="Script" uid="uid://31407ldqsotx" path="res://src/scripts/pickable/pickable.gd" id="1_l2o2r"]
+[ext_resource type="AudioStream" uid="uid://b3iu2aexgerwj" path="res://src/Assets/sfx/Fantozzi-SandL2.ogg" id="2_0tsuo"]
+[ext_resource type="Texture2D" uid="uid://bl7yp14pxn0fx" path="res://src/Assets/george.png" id="2_1waqt"]
+[ext_resource type="AudioStream" uid="uid://budo3xuvijmvt" path="res://src/Assets/sfx/Fantozzi-SandL3.ogg" id="3_pgrtm"]
+[ext_resource type="AudioStream" uid="uid://d0uyctp41tdna" path="res://src/Assets/sfx/Fantozzi-SandR1.ogg" id="4_7jcb0"]
+[ext_resource type="AudioStream" uid="uid://l8vs5pnog71o" path="res://src/Assets/sfx/Fantozzi-SandR2.ogg" id="5_wrkcu"]
+[ext_resource type="AudioStream" uid="uid://bhm8qlxgrgt60" path="res://src/Assets/sfx/Fantozzi-SandR3.ogg" id="6_wa1qr"]
 
-[sub_resource type="Gradient" id="Gradient_l2o2r"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_l2o2r"]
-gradient = SubResource("Gradient_l2o2r")
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d4f6t"]
+streams_count = 6
+stream_0/stream = ExtResource("1_ffglp")
+stream_1/stream = ExtResource("2_0tsuo")
+stream_2/stream = ExtResource("3_pgrtm")
+stream_3/stream = ExtResource("4_7jcb0")
+stream_4/stream = ExtResource("5_wrkcu")
+stream_5/stream = ExtResource("6_wa1qr")
 
 [resource]
 script = ExtResource("1_l2o2r")
-sprite = SubResource("GradientTexture2D_l2o2r")
+sprite = ExtResource("2_1waqt")
 type = 4
+audio = SubResource("AudioStreamRandomizer_d4f6t")
 metadata/_custom_type_script = "uid://31407ldqsotx"
