@@ -8,7 +8,9 @@ var time = 0.0
 var hand: Pickable = null:
 	set(value):
 		hand = value
+		print("Hand")
 		if value:
+			print("Hand Value")
 			%HandSprite.texture = value.sprite
 		else:
 			%HandSprite.texture = null
@@ -18,8 +20,10 @@ func can_set_hand():
 
 func set_hand(pickable: Pickable):
 	hand = pickable
+	print("Get pickable", pickable)
 
 func use_hand():
+	print("libere")
 	hand = null
 	Input.set_custom_mouse_cursor(null)
 

@@ -37,7 +37,6 @@ func set_item(new_item):
 	self.item = new_item
 	self.item.current_state = 0
 	self.element.erosion_level = 0
-	print(item, item.item_name)
 	if new_item and new_item.item_name == "Tree":
 		if not has_water_next_to():
 			set_element(Map.get_element_by_name("Grass"))
@@ -51,7 +50,6 @@ func _on_random_tick_item():
 		return
 	var random_f = randf()
 	if random_f < self.item.random_state_update:
-		print(random_f, self.item.random_state_update)
 		if self.item.item_name == "Seed":
 			self.item.current_state += 1
 
