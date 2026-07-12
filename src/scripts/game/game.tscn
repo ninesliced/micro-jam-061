@@ -387,7 +387,6 @@ label_settings = SubResource("LabelSettings_v2t2l")
 
 [node name="TimeLabel" type="Label" parent="." unique_id=162060379]
 unique_name_in_owner = true
-visible = false
 offset_left = -48.0
 offset_top = -168.0
 offset_right = 57.0
