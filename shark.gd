@@ -1,6 +1,9 @@
 extends RigidBody2D
 class_name Shark
 
+
+@onready var sprite: Sprite2D = $Sprite2D
+
 var target : Vector2 = Vector2(0,0)
 var acceleration : float = 1000
 var max_speed : float = 80
@@ -35,3 +38,6 @@ func _physics_process(delta):
 		
 		var dir = transform.y.dot(global_position.direction_to(target))
 		constant_torque = dir * angular_force
+	
+	sprite.global_position = round(global_position)
+	sprite.rotation = global_transform.inverse().get_rotation()

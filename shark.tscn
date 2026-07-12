@@ -1,17 +1,7 @@
 [gd_scene format=3 uid="uid://dnulvn7spfcp3"]
 
 [ext_resource type="Script" uid="uid://be61jovh74joi" path="res://shark.gd" id="1_d5pdq"]
-[ext_resource type="Texture2D" uid="uid://bsxonklff7rji" path="res://src/scripts/block/element/shark_smol.png" id="2_d5pdq"]
-[ext_resource type="Shader" uid="uid://dh4wtqxpqaamx" path="res://src/scripts/pickable/pickable_item_shader.gdshader" id="2_k17ol"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uce6o"]
-shader = ExtResource("2_k17ol")
-shader_parameter/use_outline = true
-shader_parameter/use_water_inline = true
-shader_parameter/outline_color = Color(0.65333027, 0, 0.051633887, 1)
-shader_parameter/outline_width = 1.0
-shader_parameter/inline_color = Color(0, 0, 0, 1)
-shader_parameter/inline_width = 1.0
+[ext_resource type="Texture2D" uid="uid://ct1l7j2vft3mm" path="res://src/Assets/shark_fin.png" id="2_d5pdq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jl5gi"]
 radius = 7.0
@@ -24,8 +14,7 @@ angular_damp = 10.0
 script = ExtResource("1_d5pdq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1930518441]
-material = SubResource("ShaderMaterial_uce6o")
-position = Vector2(0, -2)
+scale = Vector2(0.64000005, 0.64)
 texture = ExtResource("2_d5pdq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2085749931]
