@@ -6,4 +6,5 @@
 script = ExtResource("1_7ghpp")
 name = "George"
 random_state_update = -1.0
+tileset_source_id = 2
 metadata/_custom_type_script = "uid://cxe6xhurg1qks"
