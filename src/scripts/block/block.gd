@@ -7,6 +7,7 @@ var position: Vector2i
 
 @export var map_referance: Map
 
+var erosion_particles: ErosionParticles
 var baby_sharked = false
 
 func _init(pos, map, element_, item_ = null):

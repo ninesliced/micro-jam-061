@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_alte1")
 name = "Dirt"
+tile_map_layer = "GrassLayer"
 metadata/_custom_type_script = "uid://cvu4shs4ydd2q"

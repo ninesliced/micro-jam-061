@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ElementResource" format=3 uid="uid://dgv46vbi4sat6"]
+[gd_resource type="Resource" script_class="ElementResource" format=3 uid="uid://bb10qm143aju3"]
 
 [ext_resource type="Script" uid="uid://cvu4shs4ydd2q" path="res://src/scripts/block/element/element_resource.gd" id="1_0nutm"]
 
@@ -6,4 +6,5 @@
 script = ExtResource("1_0nutm")
 name = "Grass"
 terrain = 1
+tile_map_layer = "GrassLayer"
 metadata/_custom_type_script = "uid://cvu4shs4ydd2q"

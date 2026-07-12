@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://0nmm1clwb373"]
+
+[ext_resource type="Script" uid="uid://dgignqsi8jb57" path="res://src/scripts/map/erosion_particles.gd" id="1_vojnh"]
+
+[sub_resource type="Curve" id="Curve_g4v7s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_yf5fn"]
+colors = PackedColorArray(0.17199999, 0.6650667, 0.86, 1, 0.111600004, 0.13644005, 0.36, 1)
+
+[node name="Node2D" type="CPUParticles2D" unique_id=2882696]
+modulate = Color(1, 1, 1, 0.58431375)
+position = Vector2(8, 8)
+lifetime = 2.7399999999999998
+lifetime_randomness = 0.37
+emission_shape = 3
+emission_rect_extents = Vector2(6, 6)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_g4v7s")
+color_initial_ramp = SubResource("Gradient_yf5fn")
+script = ExtResource("1_vojnh")
