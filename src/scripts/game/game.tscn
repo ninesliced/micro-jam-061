@@ -71,7 +71,7 @@ pickable_item_scene = ExtResource("6_8wyrr")
 game = NodePath("..")
 
 [node name="PickableSpawner6" parent="." unique_id=1981779095 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
-position = Vector2(-211, 214)
+position = Vector2(-211, 211)
 spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78"), ExtResource("5_hdf7i")])
 possible_directions = Array[Vector2]([Vector2(0, -1)])
 pickable_item_scene = ExtResource("6_8wyrr")

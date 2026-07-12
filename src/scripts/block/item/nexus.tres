@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://bw2pgsfqox4xp"]
+
+[ext_resource type="Script" uid="uid://cxe6xhurg1qks" path="res://src/scripts/block/item/item_resource.gd" id="1_xp5v8"]
+
+[resource]
+script = ExtResource("1_xp5v8")
+name = "Nexus"
+random_state_update = -1.0
+metadata/_custom_type_script = "uid://cxe6xhurg1qks"

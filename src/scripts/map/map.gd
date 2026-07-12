@@ -3,13 +3,15 @@ class_name Map
 
 static var element_type: Dictionary[String, ElementResource] = {
 	"Sand" = load("res://src/scripts/block/element/sand.tres"),
-	"Grass" = load("res://src/scripts/block/element/grass.tres")
+	"Grass" = load("res://src/scripts/block/element/grass.tres"),
+	"Rock" = load("res://src/scripts/block/element/rock.tres")
 }
 
 
 static var item_type: Dictionary[String, ItemResource] = {
 	"Seed" = load("res://src/scripts/block/item/seed.tres"),
 	"Tree" = load("res://src/scripts/block/item/tree.tres"),
+	"Nexus" = load("res://src/scripts/block/item/nexus.tres"),	
 }
 
 
@@ -34,7 +36,7 @@ var max_size_map: int = 1
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
-	place_element(Vector2i(0,0), get_element_by_name("Sand"))
+	place_element(Vector2i(0,0), get_element_by_name("Rock"))
 
 
 func is_element_placable(pos: Vector2i):
@@ -164,7 +166,7 @@ func _process(delta: float) -> void:
 		for pos in map.keys():
 			var block = map[pos]
 			block._on_random_tick()
-	%Debeugue.text = map_to_text()
+	#%Debeugue.text = map_to_text()
 	
 func map_to_text():
 	var texte = ""
