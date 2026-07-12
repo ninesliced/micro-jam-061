@@ -19,8 +19,11 @@ func _init(pos, map, element_, item_ = null):
 	# self.item.current_state = 0
 	# self.element.erosion_level = 0
 
-func set_element(element_):
+func set_element(element_: Element):
 	self.element = element_
+	if element and element.element_name == "Sand":
+		item = null
+		
 
 func set_item(new_item):
 	self.item = new_item
@@ -43,21 +46,21 @@ func _on_random_tick_item():
 		print(random_f, self.item.random_state_update)
 		if self.item.item_name == "Seed":
 			self.item.current_state += 1
-			print("updated", self.item.current_state)
 
 			if self.item.current_state >= self.item.max_random_state:
 				self.set_item(Map.get_item_by_name("Tree"))
 			self.map_referance.a_block_was_updated(self.position, self)
-		elif self.item.item_name == "Tree":
-			if has_water_next_to():
+		elif self.item.item_name == "Tree" and self.element.element_name != "Grass":
+			if not has_water_next_to():
 				self.item.current_state += 1
 
 				if self.item.current_state >= self.item.max_random_state:
 					self.set_element(Map.get_element_by_name("Grass"))
 				self.map_referance.a_block_was_updated(self.position, self)
 			else:
-				self.item.current_state = max(self.item.current_state -1, 0)
-				self.map_referance.a_block_was_updated(self.position, self)
+				if self.item.current_state != 0:
+					self.item.current_state = self.item.current_state
+					self.map_referance.a_block_was_updated(self.position, self)
 
 func _on_random_tick_element():
 	if not self.element.erosion_proba:
@@ -70,8 +73,9 @@ func _on_random_tick_element():
 			if self.element.erosion_level > self.element.erosion_max:
 				erodate_block()
 		elif can_deserodate():
-			self.element.erosion_level = max(self.element.erosion_level - 1, 0)
-			self.map_referance.a_block_was_updated(self.position, self)
+			if self.element.erosion_level != 0:
+				self.element.erosion_level = self.element.erosion_level
+				self.map_referance.a_block_was_updated(self.position, self)
 
 func erodate_block():
 	if self.element == Map.get_element_by_name("Grass"):

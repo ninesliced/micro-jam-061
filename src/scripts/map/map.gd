@@ -230,6 +230,16 @@ func shark_at_global_pos(gp: Vector2i, shark: Shark):
 	var pos = global_pos_to_pos(gp)
 	var block = get_current_block(pos)
 	if not block:
+		for dpos in Utils.four_directions:
+			var block_next = get_current_block(pos+dpos)
+			if block_next:
+				block_next.add_shark(shark)
+				return
+		for dpos in Utils.diagobal_directions:
+			var block_next = get_current_block(pos+dpos)
+			if block_next:
+				block_next.add_shark(shark)
+				return
 		print("Pas de block a sharker")
 		return
 	block.add_shark(shark)
