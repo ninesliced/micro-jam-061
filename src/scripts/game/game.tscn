@@ -13,7 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://ce1jya3bpntgp" path="res://src/Assets/cursor.png" id="10_8wyrr"]
 [ext_resource type="Script" uid="uid://dumbts2y6tyqn" path="res://src/scripts/game/hand.gd" id="11_bligx"]
 [ext_resource type="FontFile" uid="uid://bsq1u221rlgqo" path="res://src/Assets/FiraCode-Regular.ttf" id="12_y4xud"]
+[ext_resource type="Texture2D" uid="uid://cdrml66i70qt0" path="res://src/Assets/cursor_square.png" id="13_dhjtw"]
 [ext_resource type="PackedScene" uid="uid://c2ujgqffp5fod" path="res://shark_spawner.tscn" id="13_y4xud"]
+[ext_resource type="Script" uid="uid://ovvv0vjvyors" path="res://src/scripts/game/square_cursor.gd" id="14_jxe1l"]
+[ext_resource type="Texture2D" uid="uid://dkwggfppkmfka" path="res://src/Assets/therock.png" id="15_m6j8e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vhovy"]
 font_size = 30
@@ -157,6 +160,11 @@ hand_sprite = ExtResource("10_8wyrr")
 unique_name_in_owner = true
 texture = ExtResource("10_8wyrr")
 
+[node name="SquareCursor" type="Sprite2D" parent="." unique_id=1698950238]
+texture = ExtResource("13_dhjtw")
+centered = false
+script = ExtResource("14_jxe1l")
+
 [node name="Debeugue" type="Label" parent="." unique_id=637421362]
 unique_name_in_owner = true
 offset_left = -312.0
@@ -177,10 +185,6 @@ text = "0:00"
 label_settings = SubResource("LabelSettings_432l6")
 horizontal_alignment = 1
 
-[node name="Shark" parent="." unique_id=1758020044 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
-position = Vector2(-70, -86)
-game = NodePath("..")
-
 [node name="SharkSpawner" parent="." unique_id=1407215147 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-490, 7)
 game = NodePath("..")
@@ -200,3 +204,9 @@ game = NodePath("..")
 [node name="SharkSpawner5" parent="." unique_id=322584694 node_paths=PackedStringArray("game") instance=ExtResource("13_y4xud")]
 position = Vector2(-23, 268)
 game = NodePath("..")
+
+[node name="Therock" type="Sprite2D" parent="." unique_id=677793947]
+z_index = 10
+position = Vector2(7.0000005, 7)
+scale = Vector2(0.06, 0.059999973)
+texture = ExtResource("15_m6j8e")
