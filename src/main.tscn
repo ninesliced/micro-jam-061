@@ -1,3 +1,103 @@
 [gd_scene format=3 uid="uid://c11xqif3hh7pi"]
 
+[ext_resource type="Shader" uid="uid://b0851bg1rx87x" path="res://src/scripts/map/ocean.gdshader" id="1_5q4o7"]
+[ext_resource type="Script" uid="uid://bupjy08uykni5" path="res://src/main.gd" id="1_fyndt"]
+[ext_resource type="FontFile" uid="uid://dgvhx610iqt3h" path="res://src/Assets/Vibur-Regular.ttf" id="2_3cfgd"]
+[ext_resource type="Theme" uid="uid://b6qkmtr8mp6ee" path="res://src/Assets/main_theme.tres" id="3_fyndt"]
+[ext_resource type="Script" uid="uid://b73j7vackc2nk" path="res://src/main_credits.gd" id="4_3cfgd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kmhfv"]
+shader = ExtResource("1_5q4o7")
+shader_parameter/palette = PackedColorArray(0.5081734, 0.8238213, 0.96610445, 1, 0.49803922, 0.8509804, 0.9607843, 1)
+shader_parameter/highlight_color = Color(0.6706657, 0.9041419, 0.98061854, 1)
+shader_parameter/scroll = 0.0
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/min_uv_perspective = 1.0
+shader_parameter/max_uv_perspective = 1.0
+shader_parameter/wave_scale = 3.51
+shader_parameter/noise_octaves = 3
+shader_parameter/noise_scale = 10.0
+shader_parameter/noise_frequency = 3.0
+shader_parameter/noise_value = 0.0
+shader_parameter/wave_time_scale = 0.1
+shader_parameter/highlight_noise_octaves = 3
+shader_parameter/highlight_noise_scale = 14.895
+shader_parameter/highlight_noise_frequency = 3.0
+shader_parameter/highlight_noise_value = 0.0
+shader_parameter/highlight_threshold = 0.695
+shader_parameter/highlight_time_scale = 0.2
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font = ExtResource("2_3cfgd")
+font_size = 45
+outline_size = 4
+shadow_size = 4
+shadow_color = Color(0.11439999, 0.17409328, 0.44, 1)
+shadow_offset = Vector2(4.57, 6.03)
+stacked_outline_count = 1
+stacked_outline_0/size = 9
+stacked_outline_0/color = Color(0.177, 0.31466672, 0.59, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kmhfv"]
+outline_size = 4
+outline_color = Color(0.09659999, 0.2845101, 0.69, 1)
+
 [node name="Main" type="Node2D" unique_id=878688448]
+script = ExtResource("1_fyndt")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2053400068]
+material = SubResource("ShaderMaterial_kmhfv")
+offset_left = -57.0
+offset_top = -21.0
+offset_right = 675.44446
+offset_bottom = 391.0
+
+[node name="Label" type="Label" parent="." unique_id=1528178408]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = 36.0
+offset_right = 190.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ROQUIN"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=834194509]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = 106.0
+offset_right = 90.0
+offset_bottom = 162.0
+grow_vertical = 2
+theme = ExtResource("3_fyndt")
+theme_override_constants/separation = 10
+
+[node name="Play" type="Button" parent="VBoxContainer" unique_id=975326210]
+layout_mode = 2
+text = "Play"
+alignment = 0
+
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=2102679935]
+layout_mode = 2
+text = "Quit"
+alignment = 0
+
+[node name="Label2" type="Label" parent="." unique_id=2025820609]
+offset_left = 42.0
+offset_top = 308.0
+offset_right = 111.0
+offset_bottom = 331.0
+theme = ExtResource("3_fyndt")
+text = "A game by "
+label_settings = SubResource("LabelSettings_kmhfv")
+script = ExtResource("4_3cfgd")
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

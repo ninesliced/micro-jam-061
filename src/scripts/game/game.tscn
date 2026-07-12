@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://buafy44ml1hn" path="res://src/scripts/game/pause_menu.gd" id="9_hdf7i"]
 [ext_resource type="Texture2D" uid="uid://ce1jya3bpntgp" path="res://src/Assets/cursor.png" id="10_8wyrr"]
 [ext_resource type="Script" uid="uid://dumbts2y6tyqn" path="res://src/scripts/game/hand.gd" id="11_bligx"]
+[ext_resource type="Script" uid="uid://mbxswhkalsj7" path="res://src/scripts/game/game_over_menu.gd" id="11_jxe1l"]
 [ext_resource type="FontFile" uid="uid://bsq1u221rlgqo" path="res://src/Assets/FiraCode-Regular.ttf" id="12_y4xud"]
 [ext_resource type="Texture2D" uid="uid://cdrml66i70qt0" path="res://src/Assets/cursor_square.png" id="13_dhjtw"]
 [ext_resource type="PackedScene" uid="uid://c2ujgqffp5fod" path="res://shark_spawner.tscn" id="13_y4xud"]
@@ -34,9 +35,10 @@ font_size = 18
 shadow_size = 3
 shadow_color = Color(0.99, 0.58344, 0.11880001, 1)
 
-[node name="Game" type="Node2D" unique_id=778324019 node_paths=PackedStringArray("map")]
+[node name="Game" type="Node2D" unique_id=778324019 node_paths=PackedStringArray("map", "game_over_menu")]
 script = ExtResource("1_50moq")
 map = NodePath("Map")
+game_over_menu = NodePath("CanvasLayer/GameOverMenu")
 
 [node name="Map" parent="." unique_id=1065599540 instance=ExtResource("2_o4j0j")]
 unique_name_in_owner = true
@@ -96,6 +98,26 @@ possible_directions = Array[Vector2]([Vector2(0, -1)])
 pickable_item_scene = ExtResource("6_8wyrr")
 game = NodePath("..")
 
+[node name="StartSpawn" parent="." unique_id=1552174519 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
+position = Vector2(-181, 46)
+spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78")])
+possible_directions = Array[Vector2]([Vector2(0, -1)])
+pickable_item_scene = ExtResource("6_8wyrr")
+min_spawn_delay = 0.0
+max_spawn_delay = 0.0
+limit = 1.0
+game = NodePath("..")
+
+[node name="StartSpawn2" parent="." unique_id=1147130467 node_paths=PackedStringArray("game") instance=ExtResource("2_watld")]
+position = Vector2(178, -59)
+spawnable_items = Array[ExtResource("3_50moq")]([ExtResource("4_quy78")])
+possible_directions = Array[Vector2]([Vector2(0, -1)])
+pickable_item_scene = ExtResource("6_8wyrr")
+min_spawn_delay = 0.0
+max_spawn_delay = 0.0
+limit = 1.0
+game = NodePath("..")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=443480858]
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=536414412]
@@ -151,12 +173,69 @@ text = "Resume"
 layout_mode = 2
 text = "Quit"
 
-[node name="Hand" type="Node2D" parent="." unique_id=719623884]
+[node name="GameOverMenu" type="Control" parent="CanvasLayer" unique_id=168357457]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_quy78")
+script = ExtResource("11_jxe1l")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameOverMenu" unique_id=408095222]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09411765, 0.09019608, 0.13333334, 0.6313726)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverMenu/ColorRect" unique_id=354903345]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer" unique_id=1228043691]
+layout_mode = 2
+text = "Game Over!"
+label_settings = SubResource("LabelSettings_vhovy")
+
+[node name="Label2" type="Label" parent="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer" unique_id=1387713428]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_hdf7i")
+
+[node name="Retry" type="Button" parent="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer" unique_id=170503979]
+layout_mode = 2
+text = "Retry"
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer" unique_id=446861513]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer" unique_id=767358891]
+layout_mode = 2
+text = "Quit"
+
+[node name="Hand" type="Node2D" parent="CanvasLayer" unique_id=719623884]
 z_index = 1000
 script = ExtResource("11_bligx")
 hand_sprite = ExtResource("10_8wyrr")
 
-[node name="HandSprite" type="Sprite2D" parent="Hand" unique_id=824478699]
+[node name="HandSprite" type="Sprite2D" parent="CanvasLayer/Hand" unique_id=824478699]
 unique_name_in_owner = true
 texture = ExtResource("10_8wyrr")
 
@@ -216,3 +295,7 @@ z_index = 10
 position = Vector2(7.0000005, 7)
 scale = Vector2(0.06, 0.059999973)
 texture = ExtResource("15_m6j8e")
+
+[connection signal="pressed" from="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer/Retry" to="CanvasLayer/GameOverMenu" method="_on_retry_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer/MainMenu" to="CanvasLayer/GameOverMenu" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverMenu/ColorRect/VBoxContainer/Quit" to="CanvasLayer/GameOverMenu" method="_on_quit_pressed"]

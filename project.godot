@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Utils="*uid://dep4jrhnu15bk"
 RunConfigManager="*uid://bdmd27xjo35cf"
 Init="*uid://cb083op2ind0l"
+TransitionManager="*uid://kvf06xb5r4o0"
 
 [debug]
 

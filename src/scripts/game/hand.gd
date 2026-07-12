@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var hand_sprite: Texture2D
-@onready var game = $".."
+@onready var game: Game = $"../.."
 
 func _process(delta: float) -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
