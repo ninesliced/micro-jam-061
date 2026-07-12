@@ -102,6 +102,6 @@ func die()->void:
 
 
 func _on_button_pressed() -> void:
-	if spawner.game.get_hand().type == Pickable.PickableType.George:
+	if spawner.game.get_hand() and spawner.game.get_hand().type == Pickable.PickableType.George:
 		spawner.game.use_hand()
 		die()
