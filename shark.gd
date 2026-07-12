@@ -1,5 +1,5 @@
 extends RigidBody2D
-
+class_name Shark
 
 var target : Vector2 = Vector2(0,0)
 var acceleration : float = 1000
@@ -33,5 +33,5 @@ func _physics_process(delta):
 		# you may need to adjust mass or use Impulses (Method 2).
 		apply_central_force(velocity)
 		
-		var dir = transform.y.dot(position.direction_to(target))
+		var dir = transform.y.dot(global_position.direction_to(target))
 		constant_torque = dir * angular_force

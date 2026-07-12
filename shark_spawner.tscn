@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c2ujgqffp5fod"]
+
+[ext_resource type="Script" uid="uid://20mlx3pbr3d0" path="res://shark_spawner.gd" id="1_cvlxs"]
+[ext_resource type="PackedScene" uid="uid://dnulvn7spfcp3" path="res://shark.tscn" id="2_fhjv5"]
+
+[node name="SharkSpawner" type="Node2D" unique_id=1407215147]
+script = ExtResource("1_cvlxs")
+shark_scene = ExtResource("2_fhjv5")
+min_spawn_delay = 10.0
+max_spawn_delay = 20.0
