@@ -29,3 +29,8 @@ func get_hand():
 func _process(delta: float) -> void:
 	time += delta
 	%TimeLabel.text = "%d:%02d" % [int(time) / 60, int(fmod(time, 60.0))]
+
+@export var game_over_menu: Control
+
+func game_over():
+	game_over_menu.pause()

@@ -3,8 +3,47 @@
 [ext_resource type="Script" uid="uid://be61jovh74joi" path="res://shark.gd" id="1_d5pdq"]
 [ext_resource type="Texture2D" uid="uid://jm60m487jgm7" path="res://src/scripts/block/element/shark_rock.png" id="2_l26on"]
 [ext_resource type="Texture2D" uid="uid://ct1l7j2vft3mm" path="res://src/Assets/shark_fin.png" id="3_k17ol"]
+[ext_resource type="Texture2D" uid="uid://bwbbedku14jea" path="res://src/Assets/shark.png" id="4_6ojlb"]
 [ext_resource type="Texture2D" uid="uid://b5aovhmcol56m" path="res://src/Assets/seed.png" id="4_uce6o"]
 [ext_resource type="Texture2D" uid="uid://4xf54vrulyey" path="res://src/scripts/block/item/nexus.png" id="5_l26on"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1hqx"]
+atlas = ExtResource("4_6ojlb")
+region = Rect2(0, 0, 50, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocxqc"]
+atlas = ExtResource("4_6ojlb")
+region = Rect2(50, 0, 50, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1hqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocxqc")
+}],
+"loop": 1,
+"name": &"eating",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k17ol")
+}],
+"loop": 1,
+"name": &"fin",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l26on")
+}],
+"loop": 1,
+"name": &"therock",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jl5gi"]
 radius = 6.5
@@ -23,9 +62,10 @@ target_sprite = NodePath("target_sprite")
 sharking_sprite = ExtResource("2_l26on")
 swimming_sprite = ExtResource("3_k17ol")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1930518441]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=852928385]
 scale = Vector2(0.64000005, 0.64)
-texture = ExtResource("3_k17ol")
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"fin"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2085749931]
 position = Vector2(3, 0)

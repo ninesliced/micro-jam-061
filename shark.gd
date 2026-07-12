@@ -2,7 +2,7 @@ extends RigidBody2D
 class_name Shark
 
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Sprite2D
 
 var target : Vector2 = Vector2(0,0)
 var acceleration : float = 1000
@@ -23,12 +23,14 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
+var is_therock = false
+
 
 
 func _physics_process(delta):
 	if is_moving:
 		
-		sprite.texture = swimming_sprite
+		sprite.play("fin")
 		sprite.scale = Vector2(1, 1)
 		# Calculate direction from body to target
 		var direction = global_position.direction_to(target)
@@ -57,7 +59,7 @@ func _physics_process(delta):
 	elif is_sharking:
 		sprite.scale = Vector2(0.2, 0.2)
 		sprite.flip_h = false
-		sprite.texture = sharking_sprite
+		sprite.play("eating")
 		sprite.rotation = get_angle_to(sharking_targets[0].global_pos)
 		target_sprite.global_position = sharking_targets[0].global_pos
 

@@ -11,6 +11,9 @@ class_name PickableSpawner
  
 @export var spawn_radius :float = 35.0
 
+@export var limit = INF
+var count = 0
+
 var spawn_delay : float:
 	get:
 		return randf_range(min_spawn_delay, max_spawn_delay)
@@ -20,6 +23,7 @@ var _timer : float = 10.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_timer = spawn_delay
+	count = limit 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,6 +36,9 @@ func _process(delta: float) -> void:
 
 
 func spawn_random() -> void:
+	if count <= 0:
+		return
+	count -= 1
 	var new_item : PickableItem = pickable_item_scene.instantiate() as PickableItem
 	add_child(new_item)
 	var angle = randf_range(0, TAU)
