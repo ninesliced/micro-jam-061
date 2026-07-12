@@ -13,6 +13,7 @@ var angular_force = 50000
 var spawner : SharkSpawner
 var is_sharking : bool = false
 var sharking_targets: Array[Block]
+@export var target_sprite: Sprite2D
 
 @export var sharking_sprite: Texture2D
 @export var swimming_sprite: Texture2D
@@ -52,8 +53,8 @@ func _physics_process(delta):
 		sprite.rotation = global_transform.inverse().get_rotation()
 	elif is_sharking:
 		sprite.texture = sharking_sprite
-		sprite.rotation = get_angle_to(sharking_targets[0].position)
-		
+		sprite.rotation = get_angle_to(sharking_targets[0].global_pos)
+		target_sprite.global_position = sharking_targets[0].global_pos
 func update_sharking_behavior()->void:
 	if sharking_targets.is_empty():
 		is_sharking = false

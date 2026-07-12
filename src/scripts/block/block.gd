@@ -4,6 +4,9 @@ class_name Block
 signal block_erodated
 
 var position: Vector2i
+var global_pos : Vector2:
+	get:
+		return (position*16 + Vector2i(+8,+8))
 @export var element: Element
 @export var item: Item
 
