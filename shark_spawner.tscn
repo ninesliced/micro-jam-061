@@ -2,9 +2,14 @@
 
 [ext_resource type="Script" uid="uid://20mlx3pbr3d0" path="res://shark_spawner.gd" id="1_cvlxs"]
 [ext_resource type="PackedScene" uid="uid://dnulvn7spfcp3" path="res://shark.tscn" id="2_fhjv5"]
+[ext_resource type="Texture2D" uid="uid://dkwggfppkmfka" path="res://src/Assets/therock.png" id="3_ajqxr"]
 
 [node name="SharkSpawner" type="Node2D" unique_id=1407215147]
 script = ExtResource("1_cvlxs")
 shark_scene = ExtResource("2_fhjv5")
 min_spawn_delay = 10.0
 max_spawn_delay = 20.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1974059416]
+scale = Vector2(0.053333335, 0.05333332)
+texture = ExtResource("3_ajqxr")

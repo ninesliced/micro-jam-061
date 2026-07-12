@@ -11,7 +11,8 @@ var is_moving : bool = true
 var angular_force = 50000
 @export var tile_detector: Area2D
 var spawner : SharkSpawner
-
+var is_sharking : bool = false
+var sharking_targets: Array[Block]
 signal leave_tile
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -43,17 +44,33 @@ func _physics_process(delta):
 		var dir = transform.y.dot(global_position.direction_to(target))
 		constant_torque = dir * angular_force
 	
-	sprite.global_position = round(global_position)
-	sprite.rotation = global_transform.inverse().get_rotation()
-
-
+		sprite.global_position = round(global_position)
+		sprite.rotation = global_transform.inverse().get_rotation()
+	elif is_sharking:
+		sprite.rotation = get_angle_to(sharking_targets[0].position)
+		
+func update_sharking_behavior()->void:
+	if sharking_targets.is_empty():
+		is_sharking = false
+		is_moving = true
+	else:
+		is_sharking = true
+		is_moving = false
 
 func _on_tile_detector_body_entered(body: Node2D) -> void:
 	if body is TileMapLayer:
 		if spawner.game.map:
-			spawner.game.map.shark_at_global_pos(tile_detector.global_position, self)
+			var target_block: Block = spawner.game.map.shark_at_global_pos(tile_detector.global_position, self)
+			if target_block:
+				is_sharking = true
+				target_block.connect("block_erodated", block_sharked)
+				if not sharking_targets.has(target_block):
+					sharking_targets.append(target_block)
+			update_sharking_behavior()
 
-
-
+func block_sharked(block : Block)->void:
+	if sharking_targets.has(block):
+		sharking_targets.erase(block)
+	update_sharking_behavior()
 func _on_tile_detector_body_exited(body: Node2D) -> void:
 	leave_tile.emit(self)
