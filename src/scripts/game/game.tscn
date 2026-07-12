@@ -206,6 +206,7 @@ position = Vector2(-23, 268)
 game = NodePath("..")
 
 [node name="Therock" type="Sprite2D" parent="." unique_id=677793947]
+visible = false
 z_index = 10
 position = Vector2(7.0000005, 7)
 scale = Vector2(0.06, 0.059999973)

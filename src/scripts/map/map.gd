@@ -173,25 +173,14 @@ func _input(event: InputEvent) -> void:
 			var grid_pos = item_layer.local_to_map(pos)
 			
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-				if Input.is_key_pressed(KEY_SHIFT) and OS.has_feature("debug"):
-					var pickable = Pickable.new()
-					var elem
-					if selected == 0:
-						elem = get_element_by_name("Sand")
-					elif selected == 1:
-						elem = get_element_by_name("Grass")
-					place_element(grid_pos, elem)
-				else:
-					var game: Game = $".."
-					var pickable = game.get_hand()
-					var interact_has_worked = interact_at(grid_pos, pickable)
-					if interact_has_worked:
-						if pickable:
-							play_sound(get_global_mouse_position(), pickable.audio)
-						game.use_hand()
+				var game: Game = $".."
+				var pickable = game.get_hand()
+				var interact_has_worked = interact_at(grid_pos, pickable)
+				if interact_has_worked:
+					if pickable:
+						play_sound(get_global_mouse_position(), pickable.audio)
+					game.use_hand()
 					
-			elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and OS.has_feature("debug"):
-				destroy_block(grid_pos)
 
 var timer = 0
 
